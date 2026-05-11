@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Para Dave — De Mateo, REMAKE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F2EFE8;
+  --bg-alt: #E8E4DA;
+  --ink: #0A0A0A;
+  --ink-soft: #1A1A1A;
+  --ink-mute: #6B6B6B;
+  --ink-light: #9B9A97;
+  --accent: #FF4D1A;
+  --green: #1F4D3A;
+  --line: rgba(10,10,10,0.12);
+  --dark: #0A0A0A;
+  --cream: #F2EFE8;
+  --pad-x: 4rem;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-strong: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@media (max-width: 768px) { :root { --pad-x: 1.5rem; } }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: var(--bg); }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter Tight', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  cursor: none;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+@media (max-width: 768px) { body { cursor: auto; } }
+::-webkit-scrollbar { width: 0; }
+
+.cursor {
+  position: fixed; width: 8px; height: 8px;
+  background: var(--ink); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s var(--ease), height 0.4s var(--ease), background 0.4s;
+  mix-blend-mode: difference;
+}
+
+.cursor.expand { width: 60px; height: 60px; background: var(--cream); }
+@media (max-width: 768px) { .cursor { display: none; } }
+
+.slide {
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 6rem var(--pad-x) 4rem;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 768px) { .slide { padding: 5rem var(--pad-x) 6rem; } }
+
+h1, h2, h3 {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  color: var(--ink);
+}
+
+.serif {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+
+.label {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+p { font-family: 'Inter Tight', sans-serif; line-height: 1.5; color: var(--ink-soft); }
+
+.top-nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--pad-x);
+  z-index: 100;
+  background: rgba(242,239,232,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(10,10,10,0.06);
+  transition: background 0.5s var(--ease), color 0.5s var(--ease);
+}
+
+.top-nav > * { color: var(--ink); transition: color 0.5s var(--ease); }
+
+body.dark-active .top-nav {
+  background: rgba(10,10,10,0.92);
+  border-bottom-color: rgba(255,255,255,0.1);
+}
+
+body.dark-active .top-nav > * { color: var(--cream); }
+
+.nav-logo {
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  font-size: 1rem;
+}
+
+.nav-logo .rmk-mark {
+  letter-spacing: 0.2em;
+}
+
+.nav-meta { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; }
+
+@media (max-width: 768px) {
+  .top-nav { height: 3.5rem; padding: 0 1.25rem; }
+  .nav-meta { font-size: 0.65rem; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+
+.slide.active .reveal { opacity: 1; transform: translateY(0); }
+
+.line-mask { display: block; overflow: hidden; position: relative; }
+.line-mask > span {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 1.1s var(--ease);
+}
+.slide.active .line-mask > span { transform: translateY(0); }
+
+.img-wrap { position: relative; overflow: hidden; width: 100%; height: 100%; }
+.img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  transform: scaleX(1);
+  transform-origin: right;
+  transition: transform 1.4s var(--ease-strong);
+  z-index: 5;
+}
+.slide.active .img-wrap::after { transform: scaleX(0); }
+.slide-dark .img-wrap::after { background: var(--dark); }
+
+.img-inner {
+  width: 100%; height: 100%;
+  transform: scale(1.15);
+  transition: transform 1.6s var(--ease);
+}
+.slide.active .img-inner { transform: scale(1); }
+
+[data-d="0"] { transition-delay: 0.1s; }
+[data-d="1"] { transition-delay: 0.25s; }
+[data-d="2"] { transition-delay: 0.4s; }
+[data-d="3"] { transition-delay: 0.55s; }
+[data-d="4"] { transition-delay: 0.7s; }
+[data-d="5"] { transition-delay: 0.85s; }
+[data-d="6"] { transition-delay: 1s; }
+
+.img-frame {
+  position: relative;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.real-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.img-bg { position: absolute; inset: 0; z-index: 0; }
+
+.ph-warm .img-bg { background: linear-gradient(135deg, #E8DCC4 0%, #D4B98A 50%, #B8956A 100%); }
+.ph-sage .img-bg { background: linear-gradient(135deg, #D8DDC9 0%, #B8C5A5 50%, #919E7E 100%); }
+.ph-stone .img-bg { background: linear-gradient(135deg, #D8D5CC 0%, #ADA899 50%, #837F73 100%); }
+.ph-mist .img-bg { background: linear-gradient(135deg, #D5DCE5 0%, #ABB6C2 50%, #828FA0 100%); }
+.ph-rust .img-bg { background: linear-gradient(135deg, #E8D0BE 0%, #C99A7E 50%, #A6745A 100%); }
+.ph-cream .img-bg { background: linear-gradient(135deg, #F0E8D0 0%, #D9C9A0 50%, #BCA679 100%); }
+
+@keyframes kenBurns {
+  0%, 100% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.08) translate(-1.5%, -1.5%); }
+}
+.slide.active .real-img.kb { animation: kenBurns 14s ease-in-out infinite; }
+
+/* ===== SLIDE 1: COVER ===== */
+.cover { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .cover { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+}
+
+.cover-text {
+  padding: 6rem var(--pad-x) 4rem;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .cover-text { padding: 5rem var(--pad-x) 1.5rem; gap: 1rem; }
+}
+
+.cover-meta-top { display: flex; flex-direction: column; gap: 0.5rem; }
+.cover-meta-top .l1 {
+  font-family: 'Instrument Serif', serif; font-style: italic;
+  font-size: 1.1rem; color: var(--ink);
+}
+.cover-meta-top .l2 {
+  font-size: 0.75rem; color: var(--ink-mute);
+  letter-spacing: 0.05em; line-height: 1.5;
+}
+
+.cover-title {
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.88;
+  font-size: clamp(2.25rem, 6.5vw, 5.5rem);
+}
+
+.cover-title .accent {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--accent);
+}
+
+.cover-bottom {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ink-mute); font-weight: 500;
+}
+
+.cover-bottom .rmk-stamp {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: var(--ink);
+}
+
+.cover-image { height: 100%; position: relative; }
+
+@media (max-width: 768px) {
+  .cover-image { min-height: 35vh; }
+  .cover-bottom { font-size: 0.6rem; }
+}
+
+/* ===== SLIDE 2: CÓMO FUNCIONA (más pedagógico) ===== */
+.howto {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 2.5rem;
+  height: 100%;
+}
+
+@media (max-width: 768px) { .howto { gap: 1.5rem; } }
+
+.howto-head h2 { font-size: clamp(2rem, 5vw, 3.75rem); }
+.howto-head h2 .accent { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-weight: 400; }
+
+.howto-sub {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  color: var(--ink-mute);
+  margin-top: 1rem;
+  max-width: 700px;
+  line-height: 1.4;
+}
+
+.howto-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 768px) {
+  .howto-grid { grid-template-columns: 1fr; }
+}
+
+.howto-step {
+  padding: 2rem 1.5rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  transition: background 0.5s var(--ease);
+  min-height: 320px;
+  position: relative;
+}
+
+.howto-step:last-child { border-right: none; }
+
+@media (max-width: 768px) {
+  .howto-step { border-right: none; min-height: auto; padding: 1.5rem 0; }
+}
+
+.howto-step:hover { background: var(--bg-alt); }
+
+.howto-step-num {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 2.5rem;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 1.25rem;
+}
+
+.howto-step .when {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.howto-step h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.85rem;
+  line-height: 1.25;
+}
+
+.howto-step p {
+  font-size: 0.85rem;
+  color: var(--ink-mute);
+  line-height: 1.55;
+  flex: 1;
+}
+
+.howto-step-tag {
+  margin-top: 1.25rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.howto-step-tag.us { color: var(--green); }
+.howto-step-tag.you { color: var(--accent); }
+
+.howto-step-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ===== SLIDE 3: FORMULARIO ===== */
+.form-slide {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  height: 100%;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .form-slide { grid-template-columns: 1fr; gap: 1.5rem; align-items: start; }
+}
+
+.form-text h2 { font-size: clamp(2rem, 5vw, 3.75rem); margin-bottom: 1.5rem; }
+.form-text h2 .accent { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-weight: 400; }
+
+.form-intro {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  color: var(--ink-mute);
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+.form-text p {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+}
+
+.form-cta {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-cta-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.form-cta-text {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.form-image { height: 60vh; min-height: 400px; }
+
+@media (max-width: 768px) { .form-image { height: 30vh; min-height: 240px; } }
+
+/* ===== SLIDE 4: TRABAJO EN EQUIPO ===== */
+.equipo {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 2.5rem;
+  height: 100%;
+}
+
+@media (max-width: 768px) { .equipo { gap: 1.5rem; } }
+
+.equipo-head h2 { font-size: clamp(2rem, 5vw, 3.75rem); }
+.equipo-head h2 .accent { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-weight: 400; }
+
+.equipo-sub {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  color: var(--ink-mute);
+  margin-top: 1rem;
+  max-width: 700px;
+  line-height: 1.4;
+}
+
+.equipo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 768px) { .equipo-grid { grid-template-columns: 1fr; } }
+
+.equipo-col {
+  padding: 2.5rem 2rem;
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+}
+
+.equipo-col:last-child { border-right: none; }
+
+@media (max-width: 768px) {
+  .equipo-col { border-right: none; padding: 2rem 0; }
+}
+
+.equipo-col.dark { background: var(--ink); color: var(--cream); }
+
+.equipo-label {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  margin-bottom: 1.25rem;
+  line-height: 1;
+}
+
+.equipo-col.light .equipo-label { color: var(--accent); }
+.equipo-col.dark .equipo-label { color: var(--accent); }
+
+.equipo-col h3 {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  letter-spacing: -0.02em; line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.equipo-col.dark h3 { color: var(--cream); }
+
+.equipo-list { list-style: none; }
+.equipo-list li {
+  padding: 0.55rem 0;
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.equipo-col.dark .equipo-list li {
+  color: rgba(255,255,255,0.85);
+  border-bottom-color: rgba(255,255,255,0.15);
+}
+
+.equipo-col.light .equipo-list li { color: var(--ink-soft); }
+.equipo-list li:last-child { border-bottom: none; }
+
+/* ===== SLIDE 5: NÚMEROS REALES ===== */
+.numeros {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 2rem;
+  height: 100%;
+}
+
+@media (max-width: 768px) { .numeros { gap: 1.5rem; } }
+
+.numeros-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: end;
+}
+
+@media (max-width: 768px) { .numeros-head { grid-template-columns: 1fr; gap: 1rem; } }
+
+.numeros-head h2 { font-size: clamp(2rem, 5vw, 3.75rem); }
+.numeros-head h2 .accent { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-weight: 400; }
+
+.numeros-aside {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  color: var(--ink-mute);
+  max-width: 320px;
+  line-height: 1.4;
+}
+
+.numeros-table { border-top: 1px solid var(--line); }
+
+.numeros-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+  transition: background 0.5s var(--ease);
+}
+
+.numeros-row:hover { background: var(--bg-alt); }
+
+.numeros-row.header {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+  padding: 0.75rem 0;
+}
+
+.numeros-row.header:hover { background: transparent; }
+
+.numeros-period {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: var(--accent);
+  line-height: 1;
+}
+
+.numeros-metric {
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.numeros-metric small {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--ink-mute);
+  margin-top: 0.4rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .numeros-row { grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.25rem 0; }
+  .numeros-row.header { display: none; }
+  .numeros-period { 
+    grid-column: 1 / -1;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .numeros-metric { font-size: 1rem; }
+  .numeros-metric::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+    font-family: 'Inter Tight', sans-serif;
+    font-style: normal;
+  }
+}
+
+/* ===== SLIDE 6: OPCIONES ===== */
+.opciones {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 2rem;
+  height: 100%;
+}
+
+@media (max-width: 768px) { .opciones { gap: 1.5rem; } }
+
+.opciones-head {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 4rem;
+  align-items: end;
+}
+
+@media (max-width: 768px) { .opciones-head { grid-template-columns: 1fr; gap: 1rem; } }
+
+.opciones-head h2 { font-size: clamp(2rem, 5vw, 3.75rem); }
+.opciones-head h2 .accent { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-weight: 400; }
+
+.opciones-aside {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  color: var(--ink-mute);
+  max-width: 320px;
+  line-height: 1.4;
+}
+
+.opciones-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 768px) { .opciones-grid { grid-template-columns: 1fr; } }
+
+.opcion {
+  padding: 2rem 1.75rem;
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  transition: background 0.5s var(--ease);
+  position: relative;
+}
+
+.opcion:last-child { border-right: none; }
+
+@media (max-width: 768px) {
+  .opcion { border-right: none; padding: 1.75rem 0; }
+}
+
+.opcion:hover { background: var(--bg-alt); }
+.opcion.featured { background: var(--ink); color: var(--cream); }
+.opcion.featured:hover { background: var(--ink); }
+
+.opcion-badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.75rem;
+  background: var(--accent);
+  color: white;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.opcion-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1.5rem;
+}
+
+.opcion-letter {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 2rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.opcion-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+}
+
+.opcion.featured .opcion-tag { color: rgba(255,255,255,0.55); }
+
+.opcion h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.opcion.featured h3 { color: var(--cream); }
+
+.opcion-prices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.opcion-price-item { display: flex; flex-direction: column; gap: 0.25rem; }
+
+.opcion-price-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+}
+
+.opcion.featured .opcion-price-label { color: rgba(255,255,255,0.55); }
+
+.opcion-price-value {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.opcion-total {
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1.25rem;
+}
+
+.opcion.featured .opcion-total { border-top-color: rgba(255,255,255,0.18); }
+
+.opcion-total-label {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-mute);
+}
+
+.opcion.featured .opcion-total-label { color: rgba(255,255,255,0.55); }
+
+.opcion-total-value {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.opcion-results {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--ink-mute);
+  margin-top: auto;
+}
+
+.opcion.featured .opcion-results { color: rgba(255,255,255,0.7); }
+
+.opcion-result-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.opcion.featured .opcion-result-line { border-bottom-color: rgba(255,255,255,0.1); }
+
+.opcion-result-line:last-child { border-bottom: none; }
+
+.opcion-result-line strong { color: var(--ink); font-weight: 500; }
+.opcion.featured .opcion-result-line strong { color: var(--cream); }
+
+/* ===== SLIDE 7: CRONOGRAMA DE PAGOS (NUEVO – muy gráfico) ===== */
+.cronograma {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 2rem;
+  height: 100%;
+}
+
+@media (max-width: 768px) { .cronograma { gap: 1.5rem; } }
+
+.cronograma-head h2 { font-size: clamp(2rem, 5vw, 3.75rem); }
+.cronograma-head h2 .accent { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-weight: 400; }
+
+.cronograma-sub {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  color: var(--ink-mute);
+  margin-top: 1rem;
+  max-width: 700px;
+  line-height: 1.4;
+}
+
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 768px) { .timeline { grid-template-columns: 1fr; } }
+
+.timeline-cell {
+  padding: 2rem 1.5rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  transition: background 0.5s var(--ease);
+  position: relative;
+}
+
+.timeline-cell:last-child { border-right: none; }
+
+@media (max-width: 768px) {
+  .timeline-cell { border-right: none; padding: 1.75rem 0; }
+}
+
+.timeline-cell:hover { background: var(--bg-alt); }
+.timeline-cell.featured { background: var(--ink); color: var(--cream); }
+.timeline-cell.featured:hover { background: var(--ink); }
+
+.timeline-period {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 2rem;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.timeline-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-cell.featured .timeline-tag { color: rgba(255,255,255,0.55); }
+
+.timeline-cell h3 {
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.timeline-cell.featured h3 { color: var(--cream); }
+
+.timeline-numbers {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 1rem;
+}
+
+.timeline-cell.featured .timeline-numbers {
+  border-top-color: rgba(255,255,255,0.18);
+  border-bottom-color: rgba(255,255,255,0.18);
+}
+
+.timeline-number-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.timeline-number-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.timeline-cell.featured .timeline-number-label { color: rgba(255,255,255,0.55); }
+
+.timeline-number-value {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline-number-value .struck {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--ink-mute);
+  text-decoration: line-through;
+  font-weight: 400;
+  margin-top: 0.2rem;
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  letter-spacing: 0;
+}
+
+.timeline-cell.featured .timeline-number-value .struck { color: rgba(255,255,255,0.4); }
+
+.timeline-total {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 1rem;
+  padding-top: 0.5rem;
+}
+
+.timeline-total-label {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.timeline-cell.featured .timeline-total-label { color: var(--cream); }
+
+.timeline-total-value {
+  font-size: 1.75rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.timeline-discount {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--line);
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.timeline-cell.featured .timeline-discount {
+  border-top-color: rgba(255,255,255,0.18);
+  color: #FFB89A;
+}
+
+/* ===== SLIDE 8: REGALO (comparación) ===== */
+.regalo {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 2.5rem;
+  height: 100%;
+}
+
+@media (max-width: 768px) { .regalo { gap: 1.5rem; } }
+
+.regalo-head h2 { font-size: clamp(2rem, 5vw, 3.75rem); }
+.regalo-head h2 .accent { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-weight: 400; }
+
+.regalo-sub {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+  color: var(--ink-mute);
+  margin-top: 1rem;
+  max-width: 700px;
+  line-height: 1.4;
+}
+
+.compare {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 768px) { .compare { grid-template-columns: 1fr; } }
+
+.compare-cell {
+  padding: 2rem 1.5rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  transition: background 0.5s var(--ease);
+  position: relative;
+}
+
+.compare-cell:last-child { border-right: none; }
+
+@media (max-width: 768px) {
+  .compare-cell { border-right: none; padding: 1.75rem 0; }
+}
+
+.compare-cell:hover { background: var(--bg-alt); }
+
+.compare-cell.featured {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.compare-cell.featured:hover { background: var(--ink); }
+
+.compare-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.compare-cell.featured .compare-label { color: rgba(255,255,255,0.55); }
+
+.compare-name {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  margin-bottom: 1.5rem;
+}
+
+.compare-cell.featured .compare-name { color: var(--cream); }
+
+.compare-price {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+  color: var(--ink-mute);
+  text-decoration: line-through;
+}
+
+.compare-cell.featured .compare-price {
+  color: rgba(255,255,255,0.45);
+}
+
+.compare-cell .compare-price.no-strike {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.compare-cell.featured .compare-price.no-strike {
+  color: var(--accent);
+}
+
+.compare-price-currency {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-mute);
+  margin-bottom: 1.25rem;
+}
+
+.compare-cell.featured .compare-price-currency { color: rgba(255,255,255,0.55); }
+
+.compare-desc {
+  font-size: 0.8rem;
+  color: var(--ink-mute);
+  line-height: 1.5;
+  margin-top: auto;
+}
+
+.compare-cell.featured .compare-desc { color: rgba(255,255,255,0.7); }
+
+.regalo-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.regalo-footer-text {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  color: var(--ink);
+  line-height: 1.4;
+  max-width: 800px;
+}
+
+.regalo-footer-text .highlight {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0 0.5rem;
+}
+
+/* ===== SLIDE 9: CONTRATO Y RESPALDO ===== */
+.contrato {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  height: 100%;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .contrato { grid-template-columns: 1fr; gap: 1.5rem; align-items: start; }
+}
+
+.contrato-text h2 { font-size: clamp(2rem, 5vw, 3.75rem); margin-bottom: 1.5rem; }
+.contrato-text h2 .accent { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-weight: 400; }
+
+.contrato-brand-line {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+}
+
+.contrato-brand-line strong {
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: var(--ink);
+}
+
+.contrato-intro {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  color: var(--ink-mute);
+  margin-bottom: 2rem;
+  line-height: 1.4;
+  max-width: 500px;
+}
+
+.contrato-list {
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.contrato-list li {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  align-items: baseline;
+  line-height: 1.5;
+}
+
+.contrato-list li::before {
+  content: '✓';
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.contrato-image { height: 60vh; min-height: 400px; }
+
+@media (max-width: 768px) { .contrato-image { height: 30vh; min-height: 240px; } }
+
+/* ===== SLIDE 10: CIERRE + CTA ===== */
+.cierre {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .cierre { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+}
+
+.cierre-text {
+  padding-right: var(--pad-x);
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+
+@media (max-width: 768px) { .cierre-text { padding-right: 0; gap: 1.5rem; } }
+
+.cierre-greeting {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  color: var(--ink-mute);
+  margin-bottom: 1rem;
+}
+
+.cierre-text h2 {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  letter-spacing: -0.03em; line-height: 0.95;
+}
+
+.cierre-text h2 .accent {
+  font-family: 'Instrument Serif', serif; font-style: italic;
+  color: var(--accent); font-weight: 400;
+}
+
+.cierre-message {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.cierre-actions {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.cierre-action {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding 0.5s var(--ease);
+}
+
+.cierre-action:hover { padding-left: 0.5rem; }
+.cierre-action:last-child { border-bottom: none; }
+
+.cierre-action-num {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--accent);
+}
+
+.cierre-action-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.cierre-action-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+}
+
+.cierre-action-link {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.cierre-action-link:hover { color: var(--accent); }
+
+.cierre-action-arrow {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--ink-light);
+  transition: transform 0.5s var(--ease), color 0.5s var(--ease);
+}
+
+.cierre-action:hover .cierre-action-arrow {
+  transform: translateX(6px);
+  color: var(--accent);
+}
+
+.cierre-signature {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+  .cierre-signature { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+}
+
+.cierre-signature-from {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+.cierre-signature-role {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.cierre-meta { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500; }
+
+.cierre-image { height: 100%; min-height: 60vh; }
+
+@media (max-width: 768px) { .cierre-image { min-height: 35vh; } }
+
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: var(--accent); z-index: 200;
+  transition: width 0.1s linear; width: 0%;
+}
+
+.mobile-nav { display: none; }
+
+@media (max-width: 768px) {
+  .mobile-nav {
+    display: flex; position: fixed;
+    bottom: 1rem; left: 50%; transform: translateX(-50%);
+    z-index: 100; gap: 0.5rem;
+    background: rgba(242,239,232,0.96);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(10,10,10,0.08);
+    padding: 0.4rem 0.5rem; border-radius: 100px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+  }
+  
+  body.dark-active .mobile-nav {
+    background: rgba(20,20,20,0.96);
+    border-color: rgba(255,255,255,0.1);
+  }
+  
+  .mobile-nav button {
+    border: none; background: transparent;
+    width: 36px; height: 36px;
+    cursor: pointer; color: var(--ink);
+    font-family: 'Instrument Serif', serif; font-style: italic;
+    font-size: 1.1rem; border-radius: 50%;
+  }
+  
+  body.dark-active .mobile-nav button { color: var(--cream); }
+  
+  .mobile-nav .progress-text {
+    font-size: 0.7rem; color: var(--ink-mute);
+    padding: 0 0.5rem; display: flex; align-items: center;
+    font-variant-numeric: tabular-nums; letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+  
+  body.dark-active .mobile-nav .progress-text { color: rgba(255,255,255,0.55); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<div class="top-nav">
+  <div class="nav-logo"><span class="rmk-mark">REMAKE</span> <span style="opacity: 0.5; font-weight: 400;">· para Dave</span></div>
+  <div class="nav-meta"><span id="navNum">01</span> / 10</div>
+</div>
+
+<div class="mobile-nav">
+  <button id="mPrev">←</button>
+  <div class="progress-text"><span id="mNum">01</span> / 10</div>
+  <button id="mNext">→</button>
+</div>
+
+<!-- ===== SLIDE 1: COVER ===== -->
+<section class="slide" data-num="01">
+  <div class="cover">
+    <div class="cover-text">
+      <div class="cover-meta-top">
+        <div class="line-mask"><span data-d="0" class="l1">Dave —</span></div>
+        <div class="line-mask"><span data-d="1" class="l2">Te escribo personalmente porque<br>quiero contarte algo que cambia el juego.</span></div>
+      </div>
+      
+      <h1 class="cover-title">
+        <span class="line-mask"><span data-d="2">Te traemos</span></span>
+        <span class="line-mask"><span data-d="3">los casos.</span></span>
+        <span class="line-mask"><span data-d="4" class="accent">Tú los cierras.</span></span>
+      </h1>
+      
+      <div class="cover-bottom reveal" data-d="5">
+        <span>De Mateo · <span class="rmk-stamp">REMAKE</span></span>
+        <span class="serif" style="text-transform: none; letter-spacing: 0; font-size: 1rem; color: var(--ink);">↓ scroll</span>
+      </div>
+    </div>
+    
+    <div class="cover-image">
+      <div class="img-wrap">
+        <div class="img-inner">
+          <div class="img-frame ph-warm">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80&fm=jpg&fit=crop" class="real-img kb" alt="Professional warm light" loading="lazy" onerror="this.style.display='none'">
+            <div class="img-bg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 2: CÓMO FUNCIONA — pedagogía clara ===== -->
+<section class="slide" data-num="02">
+  <div class="howto">
+    <div class="howto-head">
+      <div class="line-mask"><span data-d="0" class="label">02 — Cómo funciona, paso a paso</span></div>
+      <h2>
+        <span class="line-mask"><span data-d="1">El sistema corre</span></span>
+        <span class="line-mask"><span data-d="2"><span class="accent">por ti.</span></span></span>
+      </h2>
+      <p class="howto-sub reveal" data-d="3">
+        Mientras tú duermes, comes con tu familia o atiendes a otro cliente, esto pasa automáticamente. Cuatro pasos, en este orden. <span style="color: var(--ink); font-style: normal; font-size: 0.85rem; font-family: 'Inter Tight', sans-serif;">Si algo no te gusta o quieres ajustar algo, me dices y lo cambiamos.</span>
+      </p>
+    </div>
+    
+    <div class="howto-grid">
+      <div class="howto-step reveal" data-d="3">
+        <div class="howto-step-num">01</div>
+        <div class="when">Día 1 — siempre activo</div>
+        <h3>Lanzamos anuncios en Facebook e Instagram.</h3>
+        <p>En español, dirigidos a hispanos en NY que tuvieron un accidente reciente. La gente que tú quieres atender — no perfiles random.</p>
+        <div class="howto-step-tag us">Sistema IA de REMAKE</div>
+      </div>
+      
+      <div class="howto-step reveal" data-d="4">
+        <div class="howto-step-num">02</div>
+        <div class="when">Cuando hacen click</div>
+        <h3>Llegan a tu página personalizada.</h3>
+        <p>Diseñada para construir confianza en 5 segundos. La página que viste — esa es solo un ejemplo. La tuya tendrá tu información real.</p>
+        <div class="howto-step-tag us">Sistema IA de REMAKE</div>
+      </div>
+      
+      <div class="howto-step reveal" data-d="5">
+        <div class="howto-step-num">03</div>
+        <div class="when">Al instante, 24/7</div>
+        <h3>Sofia, tu asistente, les responde.</h3>
+        <p>En su idioma. Les pregunta qué pasó, si tienen seguro, dónde fue el accidente. Califica si es un buen caso para ti.</p>
+        <div class="howto-step-tag us">IA entrenada por nosotros</div>
+      </div>
+      
+      <div class="howto-step reveal" data-d="6">
+        <div class="howto-step-num">04</div>
+        <div class="when">Te llega ya filtrado</div>
+        <h3>Recibes el WhatsApp del caso.</h3>
+        <p>Solo los buenos. Tú los llamas, los conectas con el abogado correcto, y cierras tu comisión por referral.</p>
+        <div class="howto-step-tag you">Aquí entras tú</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 3: FORMULARIO ===== -->
+<section class="slide" data-num="03">
+  <div class="form-slide">
+    <div class="form-text">
+      <div class="line-mask"><span data-d="0" class="label">03 — Un detalle importante</span></div>
+      <h2>
+        <span class="line-mask"><span data-d="1">La página que viste</span></span>
+        <span class="line-mask"><span data-d="2">es un <span class="accent">ejemplo.</span></span></span>
+      </h2>
+      <p class="form-intro reveal" data-d="3">
+        Para que la tuya quede perfecta — con tu nombre, tu historia, tus áreas legales, tu zona — necesitamos tu información.
+      </p>
+      <p class="reveal" data-d="4">
+        Te vamos a enviar un formulario simple. Toma 10 minutos llenarlo. Con eso construimos tu página real, configuramos a Sofia para que hable de TI específicamente, y armamos los anuncios para tu zona.
+      </p>
+      <div class="form-cta reveal" data-d="5">
+        <div class="form-cta-label">El siguiente paso</div>
+        <div class="form-cta-text">Si te interesa, te mando el formulario. Sin compromiso, sin pago anticipado.</div>
+      </div>
+    </div>
+    
+    <div class="form-image">
+      <div class="img-wrap">
+        <div class="img-inner">
+          <div class="img-frame ph-cream">
+            <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1200&q=80&fm=jpg&fit=crop" class="real-img kb" alt="Form on paper" loading="lazy" onerror="this.style.display='none'">
+            <div class="img-bg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 4: TRABAJO EN EQUIPO ===== -->
+<section class="slide" data-num="04">
+  <div class="equipo">
+    <div class="equipo-head">
+      <div class="line-mask"><span data-d="0" class="label">04 — Esto es trabajo en equipo</span></div>
+      <h2>
+        <span class="line-mask"><span data-d="1">Nosotros traemos.</span></span>
+        <span class="line-mask"><span data-d="2"><span class="accent">Tú cierras.</span></span></span>
+      </h2>
+      <p class="equipo-sub reveal" data-d="3">
+        Sin tu llamada de seguimiento, ningún caso se cierra. Sin nuestros anuncios, no llega ningún caso. Nos necesitamos.
+      </p>
+    </div>
+    
+    <div class="equipo-grid">
+      <div class="equipo-col dark reveal" data-d="3">
+        <div class="equipo-label">REMAKE</div>
+        <h3>Traemos los casos.</h3>
+        <ul class="equipo-list">
+          <li>Anuncios en Facebook e Instagram</li>
+          <li>Tu página web siempre activa</li>
+          <li>Sofia respondiendo 24/7 en español</li>
+          <li>Calificación de cada lead</li>
+          <li>Reporte cada lunes en video</li>
+        </ul>
+      </div>
+      
+      <div class="equipo-col light reveal" data-d="4">
+        <div class="equipo-label">Tú, Dave</div>
+        <h3>Cierras los casos.</h3>
+        <ul class="equipo-list">
+          <li>Llamas a los leads calificados</li>
+          <li>Los conectas con el abogado</li>
+          <li>Construyes la relación</li>
+          <li>Cobras tu comisión por referral</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 5: NÚMEROS REALES ===== -->
+<section class="slide" data-num="05">
+  <div class="numeros">
+    <div class="numeros-head">
+      <div>
+        <div class="line-mask"><span data-d="0" class="label">05 — Qué esperar realmente</span></div>
+        <h2>
+          <span class="line-mask"><span data-d="1">Esto es</span></span>
+          <span class="line-mask"><span data-d="2">lo <span class="accent">realista.</span></span></span>
+        </h2>
+      </div>
+      <div class="numeros-aside reveal" data-d="3">
+        Con $400 USD/mes de pauta. Números conservadores basados en clientes reales del nicho legal hispano.
+      </div>
+    </div>
+    
+    <div class="numeros-table">
+      <div class="numeros-row header">
+        <div>Período</div>
+        <div>Leads totales</div>
+        <div>Calificados</div>
+        <div>Referrals cerrados</div>
+      </div>
+      
+      <div class="numeros-row reveal" data-d="3">
+        <div class="numeros-period">Mes 1</div>
+        <div class="numeros-metric" data-label="Leads">35–70<small>personas interesadas</small></div>
+        <div class="numeros-metric" data-label="Calificados">12–25<small>buen caso real</small></div>
+        <div class="numeros-metric" data-label="Cerrados">1–3<small>tu comisión</small></div>
+      </div>
+      
+      <div class="numeros-row reveal" data-d="4">
+        <div class="numeros-period">Mes 2</div>
+        <div class="numeros-metric" data-label="Leads">50–90<small>sistema afinado</small></div>
+        <div class="numeros-metric" data-label="Calificados">18–32<small>mejor calidad</small></div>
+        <div class="numeros-metric" data-label="Cerrados">3–6<small>tu comisión</small></div>
+      </div>
+      
+      <div class="numeros-row reveal" data-d="5">
+        <div class="numeros-period">Mes 3+</div>
+        <div class="numeros-metric" data-label="Leads">60–100<small>volumen estable</small></div>
+        <div class="numeros-metric" data-label="Calificados">22–38<small>alta calidad</small></div>
+        <div class="numeros-metric" data-label="Cerrados">5–10<small>tu comisión</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 6: ELIGE TU PLAN INICIAL ===== -->
+<section class="slide" data-num="06">
+  <div class="opciones">
+    <div class="opciones-head">
+      <div>
+        <div class="line-mask"><span data-d="0" class="label">06 — Elige cómo arrancamos</span></div>
+        <h2>
+          <span class="line-mask"><span data-d="1">Dos formas</span></span>
+          <span class="line-mask"><span data-d="2">de <span class="accent">empezar.</span></span></span>
+        </h2>
+      </div>
+      <div class="opciones-aside reveal" data-d="3">
+        Una agencia normal te cobraría <span style="color: var(--ink); font-weight: 500;">$1,500–$2,000 USD/mes</span> por esto. Por ser cercano, te tengo una propuesta distinta.
+      </div>
+    </div>
+    
+    <div class="opciones-grid">
+      <div class="opcion reveal" data-d="3">
+        <div class="opcion-meta">
+          <span class="opcion-letter">A</span>
+          <span class="opcion-tag">Validación</span>
+        </div>
+        <h3>Probar el sistema.</h3>
+        
+        <div class="opcion-prices">
+          <div class="opcion-price-item">
+            <span class="opcion-price-label">Pauta</span>
+            <span class="opcion-price-value">$200</span>
+          </div>
+          <div class="opcion-price-item">
+            <span class="opcion-price-label">Admin RMK</span>
+            <span class="opcion-price-value">$200</span>
+          </div>
+        </div>
+        
+        <div class="opcion-total">
+          <span class="opcion-total-label">Pagas a fin de mes</span>
+          <span class="opcion-total-value">$400 USD</span>
+        </div>
+        
+        <div class="opcion-results">
+          <div class="opcion-result-line">
+            <span>Leads mes 1</span>
+            <strong>20–40</strong>
+          </div>
+          <div class="opcion-result-line">
+            <span>Calificados</span>
+            <strong>6–12</strong>
+          </div>
+          <div class="opcion-result-line">
+            <span>Referrals esperados</span>
+            <strong>1–2</strong>
+          </div>
+        </div>
+      </div>
+      
+      <div class="opcion featured reveal" data-d="4">
+        <div class="opcion-badge">Recomendada</div>
+        <div class="opcion-meta">
+          <span class="opcion-letter">B</span>
+          <span class="opcion-tag">Crecimiento</span>
+        </div>
+        <h3>Volumen real desde el día 1.</h3>
+        
+        <div class="opcion-prices">
+          <div class="opcion-price-item">
+            <span class="opcion-price-label">Pauta</span>
+            <span class="opcion-price-value">$400</span>
+          </div>
+          <div class="opcion-price-item">
+            <span class="opcion-price-label">Admin RMK</span>
+            <span class="opcion-price-value">$200</span>
+          </div>
+        </div>
+        
+        <div class="opcion-total">
+          <span class="opcion-total-label">Pagas a fin de mes</span>
+          <span class="opcion-total-value">$600 USD</span>
+        </div>
+        
+        <div class="opcion-results">
+          <div class="opcion-result-line">
+            <span>Leads mes 1</span>
+            <strong>35–70</strong>
+          </div>
+          <div class="opcion-result-line">
+            <span>Calificados</span>
+            <strong>12–25</strong>
+          </div>
+          <div class="opcion-result-line">
+            <span>Referrals esperados</span>
+            <strong>1–3</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 7: CRONOGRAMA DE PAGOS — claro y gráfico ===== -->
+<section class="slide" data-num="07">
+  <div class="cronograma">
+    <div class="cronograma-head">
+      <div class="line-mask"><span data-d="0" class="label">07 — Cómo se cobra mes a mes</span></div>
+      <h2>
+        <span class="line-mask"><span data-d="1">El precio sube</span></span>
+        <span class="line-mask"><span data-d="2">a medida que <span class="accent">crece tu volumen.</span></span></span>
+      </h2>
+      <p class="cronograma-sub reveal" data-d="3">
+        Empezamos pequeño con la opción B ($600). Cuando estés generando más casos, escalamos. <strong style="color: var(--ink); font-weight: 500;">Se paga siempre a fin de mes</strong> — nunca por adelantado.
+      </p>
+    </div>
+    
+    <div class="timeline">
+      <div class="timeline-cell reveal" data-d="3">
+        <div class="timeline-period">Mes 1–2</div>
+        <div class="timeline-tag">Validación</div>
+        <h3>Probamos y afinamos.</h3>
+        
+        <div class="timeline-numbers">
+          <div class="timeline-number-row">
+            <span class="timeline-number-label">Pauta</span>
+            <span class="timeline-number-value">$400</span>
+          </div>
+          <div class="timeline-number-row">
+            <span class="timeline-number-label">Admin RMK</span>
+            <span class="timeline-number-value">$200<span class="struck">$500 normal</span></span>
+          </div>
+        </div>
+        
+        <div class="timeline-total">
+          <span class="timeline-total-label">Tú pagas</span>
+          <span class="timeline-total-value">$600</span>
+        </div>
+        
+        <div class="timeline-discount">60% off admin</div>
+      </div>
+      
+      <div class="timeline-cell reveal" data-d="4">
+        <div class="timeline-period">Mes 3–4</div>
+        <div class="timeline-tag">Escalada</div>
+        <h3>Subimos volumen.</h3>
+        
+        <div class="timeline-numbers">
+          <div class="timeline-number-row">
+            <span class="timeline-number-label">Pauta</span>
+            <span class="timeline-number-value">$600</span>
+          </div>
+          <div class="timeline-number-row">
+            <span class="timeline-number-label">Admin RMK</span>
+            <span class="timeline-number-value">$350<span class="struck">$700 normal</span></span>
+          </div>
+        </div>
+        
+        <div class="timeline-total">
+          <span class="timeline-total-label">Tú pagas</span>
+          <span class="timeline-total-value">$950</span>
+        </div>
+        
+        <div class="timeline-discount">50% off admin</div>
+      </div>
+      
+      <div class="timeline-cell featured reveal" data-d="5">
+        <div class="timeline-period">Mes 5+</div>
+        <div class="timeline-tag">Operación full</div>
+        <h3>Sistema completo.</h3>
+        
+        <div class="timeline-numbers">
+          <div class="timeline-number-row">
+            <span class="timeline-number-label">Pauta</span>
+            <span class="timeline-number-value">$800</span>
+          </div>
+          <div class="timeline-number-row">
+            <span class="timeline-number-label">Admin RMK</span>
+            <span class="timeline-number-value">$500<span class="struck">$1,000 normal</span></span>
+          </div>
+        </div>
+        
+        <div class="timeline-total">
+          <span class="timeline-total-label">Tú pagas</span>
+          <span class="timeline-total-value">$1,300</span>
+        </div>
+        
+        <div class="timeline-discount">50% off de por vida</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 8: EL REGALO (comparación con agencias) ===== -->
+<section class="slide" data-num="08">
+  <div class="regalo">
+    <div class="regalo-head">
+      <div class="line-mask"><span data-d="0" class="label">08 — Lo que NO pagas</span></div>
+      <h2>
+        <span class="line-mask"><span data-d="1">El setup completo</span></span>
+        <span class="line-mask"><span data-d="2">va por <span class="accent">mi cuenta.</span></span></span>
+      </h2>
+      <p class="regalo-sub reveal" data-d="3">
+        Para que dimensiones el regalo, esto es lo que cuesta montar el mismo sistema en otras agencias:
+      </p>
+    </div>
+    
+    <div class="compare">
+      <div class="compare-cell reveal" data-d="3">
+        <div class="compare-label">Agencia USA</div>
+        <div class="compare-name">HubSpot / Salesforce setup</div>
+        <div class="compare-price">$8,000</div>
+        <div class="compare-price-currency">USD setup</div>
+        <p class="compare-desc">CRM + landing + integraciones. Sin asistente IA personalizado.</p>
+      </div>
+      
+      <div class="compare-cell reveal" data-d="4">
+        <div class="compare-label">Agencia LATAM</div>
+        <div class="compare-name">Estándar Bogotá / Miami</div>
+        <div class="compare-price">$3,500</div>
+        <div class="compare-price-currency">USD setup</div>
+        <p class="compare-desc">Página + pixel + campañas iniciales. Sin asistente IA.</p>
+      </div>
+      
+      <div class="compare-cell reveal" data-d="5">
+        <div class="compare-label">Freelancer</div>
+        <div class="compare-name">Mid-level developer</div>
+        <div class="compare-price">$2,000</div>
+        <div class="compare-price-currency">USD setup</div>
+        <p class="compare-desc">Solo la página + un bot básico. Sin estrategia ni anuncios.</p>
+      </div>
+      
+      <div class="compare-cell featured reveal" data-d="6">
+        <div class="compare-label">Tú con <span class="rmk-mark" style="font-weight: 600; letter-spacing: 0.2em;">REMAKE</span></div>
+        <div class="compare-name">Todo incluido</div>
+        <div class="compare-price no-strike">$0</div>
+        <div class="compare-price-currency">setup completo</div>
+        <p class="compare-desc">Página + pixel + Sofia IA + campañas + automatizaciones + integración WhatsApp. Mi regalo a ti como fundador.</p>
+      </div>
+    </div>
+    
+    <div class="regalo-footer reveal" data-d="6">
+      <p class="regalo-footer-text">
+        Te estoy regalando entre <span class="highlight">$2,000 y $8,000 USD</span> de montaje. Solo te pido que pagues la pauta y el admin desde el mes 1 — que es lo único que de verdad cuesta correr el sistema. Y todo se paga a fin de mes, no por adelantado.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 9: CONTRATO Y RESPALDO ===== -->
+<section class="slide" data-num="09">
+  <div class="contrato">
+    <div class="contrato-text">
+      <div class="contrato-brand-line">
+        <span class="label" style="margin: 0;">09 — Respaldo</span>
+        <span>·</span>
+        <strong>REMAKE</strong>
+      </div>
+      <h2>
+        <span class="line-mask"><span data-d="1">Esto se hace</span></span>
+        <span class="line-mask"><span data-d="2">por <span class="accent">contrato.</span></span></span>
+      </h2>
+      <p class="contrato-intro reveal" data-d="3">
+        No es un trato entre amigos. Es un acuerdo formal con <strong>REMAKE</strong>, mi agencia con 12 años, 60+ clientes y operación legal en Colombia y Canadá.
+      </p>
+      <ul class="contrato-list reveal" data-d="4">
+        <li>Todo queda por escrito: precios, fases, qué incluye, qué no</li>
+        <li>Trabajamos desde Colombia — mano de obra calificada a mitad del costo de USA</li>
+        <li>Empresa registrada con 12 años de operación, no un freelancer que desaparece</li>
+        <li>Si no funciona en mes 2, cláusula de salida sin penalidades</li>
+        <li>Reporte cada lunes en video con métricas reales — no marketing humo</li>
+        <li>Tu información y la de tus leads protegida bajo nuestra política de datos</li>
+      </ul>
+    </div>
+    
+    <div class="contrato-image">
+      <div class="img-wrap">
+        <div class="img-inner">
+          <div class="img-frame ph-stone">
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80&fm=jpg&fit=crop" class="real-img kb" alt="Contract handshake" loading="lazy" onerror="this.style.display='none'">
+            <div class="img-bg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 10: CIERRE + CTA ===== -->
+<section class="slide" data-num="10">
+  <div class="cierre">
+    <div class="cierre-text">
+      <div>
+        <div class="line-mask"><span data-d="0" class="label">10 — Próximo paso</span></div>
+        <p class="cierre-greeting reveal" data-d="1">Dave —</p>
+        <h2>
+          <span class="line-mask"><span data-d="2">Si te suena,</span></span>
+          <span class="line-mask"><span data-d="3">hagámoslo <span class="accent">esta semana.</span></span></span>
+        </h2>
+        
+        <p class="cierre-message reveal" data-d="4">
+          Mira tu página de ejemplo, dime qué piensas, y te mando el formulario y el contrato. En 7 días podemos estar lanzando tus primeros anuncios. Y si en algún momento sientes que algo no encaja — me llamas, lo conversamos, lo ajustamos. Esto lo construimos juntos.
+        </p>
+      </div>
+      
+      <div class="cierre-actions reveal" data-d="5">
+        <a href="https://dave-calderon.vercel.app/" target="_blank" class="cierre-action">
+          <span class="cierre-action-num">01</span>
+          <span class="cierre-action-content">
+            <span class="cierre-action-label">Mira tu página de ejemplo</span>
+            <span class="cierre-action-link">dave-calderon.vercel.app</span>
+          </span>
+          <span class="cierre-action-arrow">→</span>
+        </a>
+        
+        <a href="mailto:mateo.corredor@helloremake.com?subject=Dave%20-%20Quiero%20el%20formulario%20y%20contrato&body=Hola%20Mateo%2C%0A%0AVi%20la%20propuesta.%20Mánda me%20el%20formulario%20y%20el%20contrato%20para%20empezar.%0A%0ADave" class="cierre-action">
+          <span class="cierre-action-num">02</span>
+          <span class="cierre-action-content">
+            <span class="cierre-action-label">Pide formulario y contrato</span>
+            <span class="cierre-action-link">mateo.corredor@helloremake.com</span>
+          </span>
+          <span class="cierre-action-arrow">→</span>
+        </a>
+      </div>
+      
+      <div class="cierre-signature reveal" data-d="6">
+        <div>
+          <div class="cierre-signature-from">Mateo</div>
+          <div class="cierre-signature-role">Dueño · REMAKE</div>
+        </div>
+        <span class="cierre-meta">REMAKE © 2026</span>
+      </div>
+    </div>
+    
+    <div class="cierre-image">
+      <div class="img-wrap">
+        <div class="img-inner">
+          <div class="img-frame ph-rust">
+            <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&q=80&fm=jpg&fit=crop" class="real-img kb" alt="Handshake" loading="lazy" onerror="this.style.display='none'">
+            <div class="img-bg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const navNum = document.getElementById('navNum');
+const mNum = document.getElementById('mNum');
+const cursor = document.getElementById('cursor');
+
+document.addEventListener('mousemove', (e) => {
+  if (cursor) {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  }
+});
+
+document.querySelectorAll('a, button, .opcion, .timeline-cell, .compare-cell, .howto-step, .equipo-col, .numeros-row, .img-frame, .cierre-action').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor?.classList.add('expand'));
+  el.addEventListener('mouseleave', () => cursor?.classList.remove('expand'));
+});
+
+const scrollProgress = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = (window.scrollY / total) * 100;
+  if (scrollProgress) scrollProgress.style.width = pct + '%';
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+      const idx = Array.from(slides).indexOf(entry.target);
+      slides.forEach(s => s.classList.remove('active'));
+      entry.target.classList.add('active');
+      
+      const numStr = String(idx + 1).padStart(2, '0');
+      if (navNum) navNum.textContent = numStr;
+      if (mNum) mNum.textContent = numStr;
+      
+      if (entry.target.classList.contains('slide-dark')) {
+        document.body.classList.add('dark-active');
+      } else {
+        document.body.classList.remove('dark-active');
+      }
+    }
+  });
+}, { threshold: [0.3, 0.4, 0.5, 0.6, 0.7] });
+
+slides.forEach(slide => observer.observe(slide));
+
+window.addEventListener('load', () => {
+  slides[0].classList.add('active');
+});
+
+document.addEventListener('keydown', (e) => {
+  const current = document.querySelector('.slide.active');
+  const idx = Array.from(slides).indexOf(current);
+  
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+    e.preventDefault();
+    if (idx < slides.length - 1) slides[idx + 1].scrollIntoView({ behavior: 'smooth' });
+  }
+  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+    e.preventDefault();
+    if (idx > 0) slides[idx - 1].scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+document.getElementById('mPrev')?.addEventListener('click', () => {
+  const current = document.querySelector('.slide.active');
+  const idx = Array.from(slides).indexOf(current);
+  if (idx > 0) slides[idx - 1].scrollIntoView({ behavior: 'smooth' });
+});
+document.getElementById('mNext')?.addEventListener('click', () => {
+  const current = document.querySelector('.slide.active');
+  const idx = Array.from(slides).indexOf(current);
+  if (idx < slides.length - 1) slides[idx + 1].scrollIntoView({ behavior: 'smooth' });
+});
+</script>
+
+</body>
+</html>

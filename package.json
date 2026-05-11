@@ -1,0 +1,10 @@
+{
+  "name": "remake-propuestas",
+  "version": "1.0.0",
+  "description": "Propuestas personalizadas REMAKE - sitio estatico para alojar propuestas por cliente",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve public -p 3000",
+    "build": "echo 'Static site - no build needed'"
+  }
+}
