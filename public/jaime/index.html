@@ -1404,6 +1404,32 @@ body.dark-active .top-nav > * { color: var(--cream); }
   
   body.dark-active .mobile-nav .progress-text { color: rgba(255,255,255,0.55); }
 }
+
+/* ===== CHARTS (slide 7) ===== */
+.charts-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:2.8rem;align-items:center;}
+.chart-title{font-size:.72rem;letter-spacing:.14em;color:var(--ink-mute);font-weight:600;margin-bottom:1rem;text-transform:uppercase;}
+.chart-title span{text-transform:none;font-family:'Instrument Serif',serif;font-style:italic;color:var(--ink-light);letter-spacing:0;font-weight:400;font-size:.95rem;}
+.chart{width:100%;height:auto;overflow:visible;}
+.chart-grid-line{stroke:var(--line);stroke-width:1;}
+.chart-area{fill:var(--accent);opacity:0;transition:opacity 1.2s ease .9s;}
+.slide.active .chart-area{opacity:.12;}
+.chart-line{fill:none;stroke:var(--accent);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:480;stroke-dashoffset:480;transition:stroke-dashoffset 2s cubic-bezier(.22,1,.36,1) .25s;}
+.slide.active .chart-line{stroke-dashoffset:0;}
+.chart-dot{fill:var(--bg);stroke:var(--accent);stroke-width:2.5;opacity:0;transition:opacity .5s ease;}
+.slide.active .chart-dot{opacity:1;}
+.chart-xlabel{fill:var(--ink-light);font-size:11px;font-family:'Inter Tight',sans-serif;}
+.chart-foot{margin-top:1.1rem;font-size:.92rem;color:var(--ink-soft);}
+.chart-foot b{color:var(--ink);font-weight:600;}
+.bars{display:flex;align-items:flex-end;gap:1rem;}
+.bar-item{flex:1;display:flex;flex-direction:column;align-items:center;}
+.bar-track{width:100%;height:160px;display:flex;align-items:flex-end;}
+.bar{width:100%;background:var(--ink-light);border-radius:8px 8px 0 0;transform:scaleY(0);transform-origin:bottom;transition:transform 1.1s cubic-bezier(.22,1,.36,1);}
+.slide.active .bar{transform:scaleY(1);}
+.bar-green{background:var(--accent);}
+.bar-pct{font-weight:600;font-size:1.05rem;margin-top:.55rem;letter-spacing:-.01em;}
+.bar-name{font-size:.68rem;color:var(--ink-mute);text-transform:uppercase;letter-spacing:.05em;margin-top:.15rem;text-align:center;line-height:1.2;}
+@media (max-width:768px){ .charts-grid{grid-template-columns:1fr;gap:2rem;} .bar-track{height:130px;} }
+
 </style>
 </head>
 
@@ -1677,50 +1703,51 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 7: QUÉ ESPERAR ===== -->
+<!-- ===== SLIDE 7: LO QUE ESPERAMOS (graficas) ===== -->
 <section class="slide" data-num="07">
-  <div class="numeros">
-    <div class="numeros-head">
-      <div>
-        <div class="line-mask"><span data-d="0" class="label">07 — Qué vas a tener para noviembre</span></div>
-        <h2>
-          <span class="line-mask"><span data-d="1">Esto es</span></span>
-          <span class="line-mask"><span data-d="2">lo <span class="accent">realista.</span></span></span>
-        </h2>
+  <div style="display:grid; grid-template-rows:auto 1fr auto; gap:1.4rem; height:100%;">
+    <div class="howto-head">
+      <div class="line-mask"><span data-d="0" class="label">07 — Lo que esperamos que pase</span></div>
+      <h2>
+        <span class="line-mask"><span data-d="1">Cómo crece</span></span>
+        <span class="line-mask"><span data-d="2">tu <span class="accent">reconocimiento.</span></span></span>
+      </h2>
+    </div>
+
+    <div class="charts-grid">
+      <!-- GROWTH -->
+      <div class="reveal" data-d="3">
+        <div class="chart-title">Personas que te escriben <span>(acumulado · jun → nov)</span></div>
+        <svg class="chart" viewBox="0 0 400 218" preserveAspectRatio="xMidYMid meet">
+          <line class="chart-grid-line" x1="40" y1="195" x2="392" y2="195"/>
+          <path class="chart-area" d="M40,188 L108,173 L176,156 L244,125 L312,77 L380,29 L380,195 L40,195 Z"/>
+          <path class="chart-line" d="M40,188 L108,173 L176,156 L244,125 L312,77 L380,29"/>
+          <circle class="chart-dot" cx="40" cy="188" r="4.5" style="transition-delay:0.5s"/><circle class="chart-dot" cx="108" cy="173" r="4.5" style="transition-delay:0.75s"/><circle class="chart-dot" cx="176" cy="156" r="4.5" style="transition-delay:1.0s"/><circle class="chart-dot" cx="244" cy="125" r="4.5" style="transition-delay:1.3s"/><circle class="chart-dot" cx="312" cy="77" r="4.5" style="transition-delay:1.6s"/><circle class="chart-dot" cx="380" cy="29" r="4.5" style="transition-delay:1.95s"/>
+          <text class="chart-xlabel" x="40" y="211" text-anchor="middle">Jun</text>
+          <text class="chart-xlabel" x="108" y="211" text-anchor="middle">Jul</text>
+          <text class="chart-xlabel" x="176" y="211" text-anchor="middle">Ago</text>
+          <text class="chart-xlabel" x="244" y="211" text-anchor="middle">Sep</text>
+          <text class="chart-xlabel" x="312" y="211" text-anchor="middle">Oct</text>
+          <text class="chart-xlabel" x="380" y="211" text-anchor="middle">Nov</text>
+        </svg>
+        <div class="chart-foot">De ~150 a <b>~3.800 vecinos</b> escuchados antes de noviembre.</div>
       </div>
-      <div class="numeros-aside reveal" data-d="3">
-        Metas realistas, no promesas. Lo que importa: llegar a noviembre con la prueba de que la gente ya te conoce.
+
+      <!-- BARS -->
+      <div class="reveal" data-d="4">
+        <div class="chart-title">De quién se habla en Cota <span>(proyección)</span></div>
+        <div class="bars">
+          <div class="bar-item"><div class="bar-track"><div class="bar bar-green" style="height:96%; transition-delay:.2s;"></div></div><div class="bar-pct">42%</div><div class="bar-name">Jaime</div></div>
+          <div class="bar-item"><div class="bar-track"><div class="bar" style="height:62%; transition-delay:.35s;"></div></div><div class="bar-pct">27%</div><div class="bar-name">Maquinaria</div></div>
+          <div class="bar-item"><div class="bar-track"><div class="bar" style="height:44%; transition-delay:.5s;"></div></div><div class="bar-pct">19%</div><div class="bar-name">Otro<br>precandidato</div></div>
+          <div class="bar-item"><div class="bar-track"><div class="bar" style="height:28%; transition-delay:.65s;"></div></div><div class="bar-pct">12%</div><div class="bar-name">Resto</div></div>
+        </div>
+        <div class="chart-foot">Meta: ser <b>el nombre del que más se habla</b> al llegar noviembre.</div>
       </div>
     </div>
 
-    <div class="numeros-table">
-      <div class="numeros-row header">
-        <div>Período</div>
-        <div>Personas escuchadas</div>
-        <div>Dolores mapeados</div>
-        <div>Contenido publicado</div>
-      </div>
-
-      <div class="numeros-row reveal" data-d="3">
-        <div class="numeros-period">Mes 1</div>
-        <div class="numeros-metric" data-label="Personas">150–400<small>conversaciones reales</small></div>
-        <div class="numeros-metric" data-label="Dolores">40–80<small>quejas por vereda</small></div>
-        <div class="numeros-metric" data-label="Contenido">4 videos<small>+ muro vivo</small></div>
-      </div>
-
-      <div class="numeros-row reveal" data-d="4">
-        <div class="numeros-period">Mes 2–3</div>
-        <div class="numeros-metric" data-label="Personas">500–1.200<small>la rueda gira sola</small></div>
-        <div class="numeros-metric" data-label="Dolores">120–250<small>mapa tomando forma</small></div>
-        <div class="numeros-metric" data-label="Contenido">12 videos<small>hechos con la gente</small></div>
-      </div>
-
-      <div class="numeros-row reveal" data-d="5">
-        <div class="numeros-period">A noviembre</div>
-        <div class="numeros-metric" data-label="Personas">2.000–4.000<small>te reconocen</small></div>
-        <div class="numeros-metric" data-label="Dolores">mapa completo<small>por vereda</small></div>
-        <div class="numeros-metric" data-label="Contenido">el dossier<small>para pedir el aval</small></div>
-      </div>
+    <div class="reveal" data-d="5" style="font-family:'Instrument Serif',serif; font-style:italic; font-size:.95rem; color:var(--ink-mute);">
+      Proyección basada en municipios similares — son metas de trabajo, no promesas.
     </div>
   </div>
 </section>
