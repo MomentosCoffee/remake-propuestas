@@ -143,6 +143,13 @@ body.dark-active .top-nav > * { color: var(--cream); }
 }
 
 .slide.active .reveal { opacity: 1; transform: translateY(0); }
+/* — Pulido interacción + accesibilidad — */
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px;}
+.form-cta:active,button:active{transform:scale(.98);}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}
+  .reveal{opacity:1!important;transform:none!important;}
+}
 
 .line-mask { display: block; overflow: hidden; position: relative; }
 .line-mask > span {
