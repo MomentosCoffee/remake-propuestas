@@ -15,7 +15,7 @@
   --ink-soft: #1A1A1A;
   --ink-mute: #6B6B6B;
   --ink-light: #9B9A97;
-  --accent: #FF4D1A;
+  --accent: #2E9D4E;
   --green: #1F4D3A;
   --line: rgba(10,10,10,0.12);
   --dark: #0A0A0A;
@@ -997,7 +997,7 @@ body.dark-active .top-nav > * { color: var(--cream); }
 
 .timeline-cell.featured .timeline-discount {
   border-top-color: rgba(255,255,255,0.18);
-  color: #FFB89A;
+  color: #B7E4C7;
 }
 
 /* ===== SLIDE 8: REGALO (comparación) ===== */
@@ -1414,12 +1414,12 @@ body.dark-active .top-nav > * { color: var(--cream); }
 
 <div class="top-nav">
   <div class="nav-logo"><span class="rmk-mark">REMAKE</span> <span style="opacity: 0.5; font-weight: 400;">· para Jaime</span></div>
-  <div class="nav-meta"><span id="navNum">01</span> / 10</div>
+  <div class="nav-meta"><span id="navNum">01</span> / 12</div>
 </div>
 
 <div class="mobile-nav">
   <button id="mPrev">←</button>
-  <div class="progress-text"><span id="mNum">01</span> / 10</div>
+  <div class="progress-text"><span id="mNum">01</span> / 12</div>
   <button id="mNext">→</button>
 </div>
 
@@ -1448,7 +1448,7 @@ body.dark-active .top-nav > * { color: var(--cream); }
       <div class="img-wrap">
         <div class="img-inner">
           <div class="img-frame ph-sage">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/FINCA_LA_MANUELITA_-_panoramio.jpg" class="real-img kb" alt="Campo verde" loading="lazy" onerror="this.style.display='none'">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/FINCA_LA_MANUELITA_-_panoramio.jpg" class="real-img kb" alt="Paisaje de Cota" loading="lazy" onerror="this.style.display='none'">
             <div class="img-bg"></div>
           </div>
         </div>
@@ -1457,17 +1457,142 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 2: CÓMO FUNCIONA ===== -->
+<!-- ===== SLIDE 2: LA REALIDAD (datos + gente) ===== -->
 <section class="slide" data-num="02">
+  <div style="display:grid; grid-template-rows:auto auto 1fr; gap:1.75rem; height:100%;">
+    <div class="howto-head">
+      <div class="line-mask"><span data-d="0" class="label">02 — La realidad de Cota</span></div>
+      <h2>
+        <span class="line-mask"><span data-d="1">Antes de la idea,</span></span>
+        <span class="line-mask"><span data-d="2">los <span class="accent">datos.</span></span></span>
+      </h2>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+      <div class="reveal" data-d="3" style="padding:1.4rem 1.25rem; border-right:1px solid var(--line);">
+        <div style="font-size:clamp(1.6rem,2.8vw,2.4rem); font-weight:500; letter-spacing:-.03em; line-height:1; color:var(--ink);">46.260</div>
+        <div style="font-size:.85rem; color:var(--ink-soft); margin-top:.4rem;">habitantes de Cota</div>
+        <div style="font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-light); margin-top:.5rem;">DANE 2024</div>
+      </div>
+      <div class="reveal" data-d="4" style="padding:1.4rem 1.25rem; border-right:1px solid var(--line);">
+        <div style="font-size:clamp(1.6rem,2.8vw,2.4rem); font-weight:500; letter-spacing:-.03em; line-height:1; color:var(--ink);">~20.000</div>
+        <div style="font-size:.85rem; color:var(--ink-soft); margin-top:.4rem;">votos deciden la Alcaldía</div>
+        <div style="font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-light); margin-top:.5rem;">Registraduría 2023</div>
+      </div>
+      <div class="reveal" data-d="5" style="padding:1.4rem 1.25rem; border-right:1px solid var(--line);">
+        <div style="font-size:clamp(1.6rem,2.8vw,2.4rem); font-weight:500; letter-spacing:-.03em; line-height:1; color:var(--accent);">57%</div>
+        <div style="font-size:.85rem; color:var(--ink-soft); margin-top:.4rem;">lo tiene la maquinaria actual</div>
+        <div style="font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-light); margin-top:.5rem;">Balsero, 11.238 votos</div>
+      </div>
+      <div class="reveal" data-d="6" style="padding:1.4rem 1.25rem;">
+        <div style="font-size:clamp(1.6rem,2.8vw,2.4rem); font-weight:500; letter-spacing:-.03em; line-height:1; color:var(--ink);">#1</div>
+        <div style="font-size:.85rem; color:var(--ink-soft); margin-top:.4rem;">el cara a cara mueve más votos que la valla</div>
+        <div style="font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-light); margin-top:.5rem;">evidencia Gerber &amp; Green</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="label reveal" data-d="5" style="margin-bottom:.75rem;">A esta gente le hablas — la Cota de toda la vida</div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; height:42vh; min-height:230px;">
+        <div class="img-wrap reveal" data-d="5">
+          <div class="img-inner"><div class="img-frame ph-warm">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/CAMPESINA_FELIZ_DE_CUCUNUBA.jpg/1280px-CAMPESINA_FELIZ_DE_CUCUNUBA.jpg" class="real-img kb" alt="Campesina de Cundinamarca" loading="lazy" onerror="this.style.display='none'">
+            <div class="img-bg"></div>
+          </div></div>
+        </div>
+        <div class="img-wrap reveal" data-d="6">
+          <div class="img-inner"><div class="img-frame ph-rust">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Cafetero.jpg/1280px-Cafetero.jpg" class="real-img kb" alt="Campesino colombiano" loading="lazy" onerror="this.style.display='none'">
+            <div class="img-bg"></div>
+          </div></div>
+        </div>
+        <div class="img-wrap reveal" data-d="6">
+          <div class="img-inner"><div class="img-frame ph-cream">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Campesino_Colombiano.jpg/1280px-Campesino_Colombiano.jpg" class="real-img kb" alt="Campesino en su carreta" loading="lazy" onerror="this.style.display='none'">
+            <div class="img-bg"></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 3: REASON WHY — por qué / cómo / qué ===== -->
+<section class="slide" data-num="03">
   <div class="howto">
     <div class="howto-head">
-      <div class="line-mask"><span data-d="0" class="label">02 — Cómo funciona, paso a paso</span></div>
+      <div class="line-mask"><span data-d="0" class="label">03 — El reason why</span></div>
+      <h2>
+        <span class="line-mask"><span data-d="1">Por qué esto</span></span>
+        <span class="line-mask"><span data-d="2"><span class="accent">sí funciona.</span></span></span>
+      </h2>
+      <p class="howto-sub reveal" data-d="3">
+        Cota no se gana enfrentando la maquinaria de frente — se gana ocupando la silla que nadie ocupa: <span style="color: var(--ink); font-style: normal; font-size: 0.85rem; font-family: 'Inter Tight', sans-serif;">el que de verdad escucha.</span>
+      </p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid var(--line);">
+      <div class="reveal" data-d="3" style="padding:2rem 1.5rem; border-right:1px solid var(--line); border-bottom:1px solid var(--line); display:flex; flex-direction:column;">
+        <div style="font-family:'Instrument Serif',serif; font-style:italic; font-size:2.1rem; color:var(--accent); line-height:1; margin-bottom:1rem;">Por qué</div>
+        <p style="font-size:.92rem; color:var(--ink-soft); line-height:1.55;">La maquinaria tiene 11.238 votos; pelearlos de frente es perder. Pero hay fatiga con la "política con líos". <strong style="color:var(--ink);">Hay una silla vacía: el perfil limpio que escucha.</strong></p>
+      </div>
+      <div class="reveal" data-d="4" style="padding:2rem 1.5rem; border-right:1px solid var(--line); border-bottom:1px solid var(--line); display:flex; flex-direction:column;">
+        <div style="font-family:'Instrument Serif',serif; font-style:italic; font-size:2.1rem; color:var(--accent); line-height:1; margin-bottom:1rem;">Cómo</div>
+        <p style="font-size:.92rem; color:var(--ink-soft); line-height:1.55;">Con una máquina que recoge los dolores de la gente y les responde — todos los días, sin depender de actos masivos ni de que estés presente. <strong style="color:var(--ink);">Escucha organizada.</strong></p>
+      </div>
+      <div class="reveal" data-d="5" style="padding:2rem 1.5rem; border-bottom:1px solid var(--line); display:flex; flex-direction:column;">
+        <div style="font-family:'Instrument Serif',serif; font-style:italic; font-size:2.1rem; color:var(--accent); line-height:1; margin-bottom:1rem;">Qué</div>
+        <p style="font-size:.92rem; color:var(--ink-soft); line-height:1.55;">El muro <strong style="color:var(--ink);">"Cota se siente"</strong>: escucha + respuesta + datos por vereda. El reconocimiento de hoy se convierte en el aval de noviembre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 4: EL MURO ===== -->
+<section class="slide" data-num="04">
+  <div class="form-slide">
+    <div class="form-text">
+      <div class="line-mask"><span data-d="0" class="label">04 — El corazón de todo</span></div>
+      <h2>
+        <span class="line-mask"><span data-d="1">Un muro donde Cota</span></span>
+        <span class="line-mask"><span data-d="2">se ve a sí <span class="accent">misma.</span></span></span>
+      </h2>
+      <p class="form-intro reveal" data-d="3">
+        Cada problema que llega se ordena en tres columnas — y esa es, en una sola imagen, toda tu campaña.
+      </p>
+      <p class="reveal" data-d="4">
+        <strong style="color:var(--ink);">🔧 Se arregla</strong> lo que está mal. &nbsp;<strong style="color:var(--ink);">🔄 Se cambia</strong> lo que hay que hacer distinto. &nbsp;<strong style="color:var(--ink);">✅ Se mantiene</strong> lo bueno que ya hay. Reconoces lo bueno de la administración y muestras lo que tú sumas — sin atacar a nadie.
+      </p>
+      <div class="form-cta reveal" data-d="5">
+        <div class="form-cta-label">Y tu hoja de vida, ahí mismo</div>
+        <div class="form-cta-text">La gente ve quién eres y qué propones, mientras siente que la escuchas.</div>
+      </div>
+    </div>
+
+    <div class="form-image">
+      <div class="img-wrap">
+        <div class="img-inner">
+          <div class="img-frame ph-warm">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/BaptisterioCota.jpg/1280px-BaptisterioCota.jpg" class="real-img kb" alt="Gente en Cota" loading="lazy" onerror="this.style.display='none'">
+            <div class="img-bg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 5: CÓMO FUNCIONA ===== -->
+<section class="slide" data-num="05">
+  <div class="howto">
+    <div class="howto-head">
+      <div class="line-mask"><span data-d="0" class="label">05 — Cómo funciona, paso a paso</span></div>
       <h2>
         <span class="line-mask"><span data-d="1">La máquina trabaja</span></span>
         <span class="line-mask"><span data-d="2"><span class="accent">por ti.</span></span></span>
       </h2>
       <p class="howto-sub reveal" data-d="3">
-        Tú pones la cara y las propuestas. El sistema escucha a la gente, le responde y ordena todo — sin que tengas que estar pendiente. <span style="color: var(--ink); font-style: normal; font-size: 0.85rem; font-family: 'Inter Tight', sans-serif;">Cuatro pasos, en este orden.</span>
+        Tú pones la cara y las propuestas. El sistema escucha, responde y ordena — sin que tengas que estar pendiente. <span style="color: var(--ink); font-style: normal; font-size: 0.85rem; font-family: 'Inter Tight', sans-serif;">Cuatro pasos, en este orden.</span>
       </p>
     </div>
 
@@ -1476,7 +1601,7 @@ body.dark-active .top-nav > * { color: var(--cream); }
         <div class="howto-step-num">01</div>
         <div class="when">Todo el día, siempre activo</div>
         <h3>La gente cuenta su problema.</h3>
-        <p>Por WhatsApp, con un código QR en la calle y en redes. Sin miedo, anónimo o con nombre — la persona decide.</p>
+        <p>Por WhatsApp, con un código QR en la calle y en redes. Anónimo o con nombre — la persona decide.</p>
         <div class="howto-step-tag us">Sistema REMAKE</div>
       </div>
 
@@ -1484,14 +1609,14 @@ body.dark-active .top-nav > * { color: var(--cream); }
         <div class="howto-step-num">02</div>
         <div class="when">Al instante</div>
         <h3>La IA responde con tu propuesta.</h3>
-        <p>Le contesta con lo que tú propones para ESE problema, y lo clasifica: lo que se arregla, lo que se cambia, lo que se mantiene.</p>
+        <p>Le contesta con lo que propones para ESE problema y lo clasifica: se arregla, se cambia o se mantiene.</p>
         <div class="howto-step-tag us">IA entrenada por nosotros</div>
       </div>
 
       <div class="howto-step reveal" data-d="5">
         <div class="howto-step-num">03</div>
         <div class="when">Con un "sí" de la persona</div>
-        <h3>Se publica en el muro "Cota se siente".</h3>
+        <h3>Se publica en el muro.</h3>
         <p>Su problema queda visible y tu respuesta firmada al lado. Un filtro revisa que nada ofensivo salga — eso te protege.</p>
         <div class="howto-step-tag us">Sistema REMAKE</div>
       </div>
@@ -1507,45 +1632,11 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 3: EL MURO ===== -->
-<section class="slide" data-num="03">
-  <div class="form-slide">
-    <div class="form-text">
-      <div class="line-mask"><span data-d="0" class="label">03 — El corazón de todo</span></div>
-      <h2>
-        <span class="line-mask"><span data-d="1">Un muro donde Cota</span></span>
-        <span class="line-mask"><span data-d="2">se ve a sí <span class="accent">misma.</span></span></span>
-      </h2>
-      <p class="form-intro reveal" data-d="3">
-        "Cota se siente" es una página donde cada problema que llega se ordena en tres columnas — y esa es, en una imagen, toda tu campaña.
-      </p>
-      <p class="reveal" data-d="4">
-        <strong style="color:var(--ink);">🔧 Se arregla</strong> lo que está mal. &nbsp;<strong style="color:var(--ink);">🔄 Se cambia</strong> lo que hay que hacer distinto. &nbsp;<strong style="color:var(--ink);">✅ Se mantiene</strong> lo bueno que ya hay. Reconoces lo bueno de la administración y muestras lo que tú sumas — sin atacar a nadie.
-      </p>
-      <div class="form-cta reveal" data-d="5">
-        <div class="form-cta-label">Y tu hoja de vida, ahí mismo</div>
-        <div class="form-cta-text">La gente ve quién eres y qué propones, mientras siente que la escuchas.</div>
-      </div>
-    </div>
-
-    <div class="form-image">
-      <div class="img-wrap">
-        <div class="img-inner">
-          <div class="img-frame ph-warm">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/BaptisterioCota.jpg/1280px-BaptisterioCota.jpg" class="real-img kb" alt="Gente conversando" loading="lazy" onerror="this.style.display='none'">
-            <div class="img-bg"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SLIDE 4: TRABAJO EN EQUIPO ===== -->
-<section class="slide" data-num="04">
+<!-- ===== SLIDE 6: TRABAJO EN EQUIPO ===== -->
+<section class="slide" data-num="06">
   <div class="equipo">
     <div class="equipo-head">
-      <div class="line-mask"><span data-d="0" class="label">04 — Esto es trabajo en equipo</span></div>
+      <div class="line-mask"><span data-d="0" class="label">06 — Esto es trabajo en equipo</span></div>
       <h2>
         <span class="line-mask"><span data-d="1">Nosotros, la máquina.</span></span>
         <span class="line-mask"><span data-d="2"><span class="accent">Tú, la cara.</span></span></span>
@@ -1582,12 +1673,12 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 5: QUÉ ESPERAR ===== -->
-<section class="slide" data-num="05">
+<!-- ===== SLIDE 7: QUÉ ESPERAR ===== -->
+<section class="slide" data-num="07">
   <div class="numeros">
     <div class="numeros-head">
       <div>
-        <div class="line-mask"><span data-d="0" class="label">05 — Qué vas a tener para noviembre</span></div>
+        <div class="line-mask"><span data-d="0" class="label">07 — Qué vas a tener para noviembre</span></div>
         <h2>
           <span class="line-mask"><span data-d="1">Esto es</span></span>
           <span class="line-mask"><span data-d="2">lo <span class="accent">realista.</span></span></span>
@@ -1630,12 +1721,12 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 6: LAS DOS FASES ===== -->
-<section class="slide" data-num="06">
+<!-- ===== SLIDE 8: LAS DOS FASES ===== -->
+<section class="slide" data-num="08">
   <div class="opciones">
     <div class="opciones-head">
       <div>
-        <div class="line-mask"><span data-d="0" class="label">06 — La ruta completa</span></div>
+        <div class="line-mask"><span data-d="0" class="label">08 — La ruta completa</span></div>
         <h2>
           <span class="line-mask"><span data-d="1">Dos fases.</span></span>
           <span class="line-mask"><span data-d="2">Una <span class="accent">ruta.</span></span></span>
@@ -1677,11 +1768,11 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 7: PRECIO ===== -->
-<section class="slide" data-num="07">
+<!-- ===== SLIDE 9: PRECIO ===== -->
+<section class="slide" data-num="09">
   <div class="cronograma">
     <div class="cronograma-head">
-      <div class="line-mask"><span data-d="0" class="label">07 — La inversión, clara</span></div>
+      <div class="line-mask"><span data-d="0" class="label">09 — La inversión, clara</span></div>
       <h2>
         <span class="line-mask"><span data-d="1">Lo que cuesta tener</span></span>
         <span class="line-mask"><span data-d="2">la máquina <span class="accent">viva.</span></span></span>
@@ -1746,11 +1837,11 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 8: LO QUE VALE DE VERDAD ===== -->
-<section class="slide" data-num="08">
+<!-- ===== SLIDE 10: LO QUE VALE DE VERDAD ===== -->
+<section class="slide" data-num="10">
   <div class="regalo">
     <div class="regalo-head">
-      <div class="line-mask"><span data-d="0" class="label">08 — Por qué 3 millones es una ganga</span></div>
+      <div class="line-mask"><span data-d="0" class="label">10 — Por qué 3 millones es una ganga</span></div>
       <h2>
         <span class="line-mask"><span data-d="1">Montar esto cuesta</span></span>
         <span class="line-mask"><span data-d="2">hasta <span class="accent">15 millones.</span></span></span>
@@ -1802,12 +1893,12 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 9: RESPALDO Y BLINDAJE ===== -->
-<section class="slide" data-num="09">
+<!-- ===== SLIDE 11: RESPALDO Y BLINDAJE ===== -->
+<section class="slide" data-num="11">
   <div class="contrato">
     <div class="contrato-text">
       <div class="contrato-brand-line">
-        <span class="label" style="margin: 0;">09 — Respaldo y blindaje</span>
+        <span class="label" style="margin: 0;">11 — Respaldo y blindaje</span>
         <span>·</span>
         <strong>REMAKE</strong>
       </div>
@@ -1832,7 +1923,7 @@ body.dark-active .top-nav > * { color: var(--cream); }
       <div class="img-wrap">
         <div class="img-inner">
           <div class="img-frame ph-stone">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Panorama%2C_paisaje_y_horizonte%2C_Municipio_de_Cota.jpg/1280px-Panorama%2C_paisaje_y_horizonte%2C_Municipio_de_Cota.jpg" class="real-img kb" alt="Acuerdo" loading="lazy" onerror="this.style.display='none'">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Panorama%2C_paisaje_y_horizonte%2C_Municipio_de_Cota.jpg/1280px-Panorama%2C_paisaje_y_horizonte%2C_Municipio_de_Cota.jpg" class="real-img kb" alt="Valle de Cota" loading="lazy" onerror="this.style.display='none'">
             <div class="img-bg"></div>
           </div>
         </div>
@@ -1841,12 +1932,12 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 10: CIERRE + CTA ===== -->
-<section class="slide" data-num="10">
+<!-- ===== SLIDE 12: CIERRE + CTA ===== -->
+<section class="slide" data-num="12">
   <div class="cierre">
     <div class="cierre-text">
       <div>
-        <div class="line-mask"><span data-d="0" class="label">10 — Próximo paso</span></div>
+        <div class="line-mask"><span data-d="0" class="label">12 — Próximo paso</span></div>
         <p class="cierre-greeting reveal" data-d="1">Jaime —</p>
         <h2>
           <span class="line-mask"><span data-d="2">Si te suena,</span></span>
@@ -1891,7 +1982,7 @@ body.dark-active .top-nav > * { color: var(--cream); }
       <div class="img-wrap">
         <div class="img-inner">
           <div class="img-frame ph-rust">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Amanecer_en_Cota_Cundinamarca.jpg/1280px-Amanecer_en_Cota_Cundinamarca.jpg" class="real-img kb" alt="Gente de Cota" loading="lazy" onerror="this.style.display='none'">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Amanecer_en_Cota_Cundinamarca.jpg/1280px-Amanecer_en_Cota_Cundinamarca.jpg" class="real-img kb" alt="Amanecer en Cota" loading="lazy" onerror="this.style.display='none'">
             <div class="img-bg"></div>
           </div>
         </div>
