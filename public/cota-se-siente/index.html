@@ -136,6 +136,28 @@ a:focus-visible,button:focus-visible,.chip:focus-visible,[tabindex]:focus-visibl
   *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}
   .mo .hero,.mo .pasos,.mo .section,.mo .invite{opacity:1!important;transform:none!important;}
 }
+
+/* ===== PRUEBALO (demo en vivo) ===== */
+.try{background:var(--green-dark);color:#EAF3EC;}
+.try .kicker{color:#9FD3AE;}
+.try h2{font-size:clamp(1.8rem,3.6vw,2.7rem);font-weight:500;letter-spacing:-.02em;color:#fff;margin-top:.5rem;line-height:1.04;}
+.try h2 .se{color:#fff;}
+.try .lead{color:#BFD9C7;margin-top:.7rem;max-width:52ch;font-size:1.02rem;}
+.try-box{background:#fff;border-radius:22px;padding:1.5rem;margin-top:1.9rem;max-width:760px;box-shadow:0 24px 60px rgba(0,0,0,.22);}
+.try-row{display:flex;gap:.7rem;}
+.try-input{flex:1;border:1px solid var(--line);border-radius:100px;padding:.9rem 1.25rem;font-family:inherit;font-size:1rem;color:var(--ink);outline:none;min-width:0;}
+.try-input:focus{border-color:var(--green);}
+.try-send{background:var(--green);color:#fff;border:none;border-radius:100px;padding:0 1.5rem;font-family:inherit;font-weight:600;font-size:.95rem;cursor:pointer;white-space:nowrap;}
+.try-egs{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.85rem;}
+.try-eg{background:transparent;border:1px solid var(--line);border-radius:100px;color:var(--ink-mute);font-family:inherit;font-size:.78rem;padding:.38rem .85rem;cursor:pointer;transition:all .2s;}
+.try-eg:hover{border-color:var(--green);color:var(--green);}
+.try-out{margin-top:1.2rem;border-top:1px solid var(--line);padding-top:1.15rem;display:none;}
+.try-out.show{display:block;animation:pop .35s ease;}
+.try-out .tag{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.24rem .65rem;border-radius:100px;margin-bottom:.55rem;}
+.try-out .who{font-size:.66rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem;}
+.try-out .ans{font-size:1.08rem;color:var(--ink);line-height:1.55;min-height:1.6em;}
+.try-note{color:#9FD3AE;font-family:'Instrument Serif',serif;font-style:italic;font-size:.85rem;margin-top:1.1rem;}
+@media (max-width:560px){ .try-row{flex-direction:column;} .try-send{padding:.85rem;} }
 </style>
 </head>
 <body>
@@ -184,6 +206,34 @@ a:focus-visible,button:focus-visible,.chip:focus-visible,[tabindex]:focus-visibl
       <span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
       <div><b>3 · Aparece en el muro</b><p>Tu mensaje y mi respuesta quedan visibles para todos.</p></div>
     </div>
+  </div>
+</section>
+
+<!-- PRUEBALO -->
+<section class="section try">
+  <div class="wrap">
+    <div class="kicker">En vivo</div>
+    <h2>Pruébalo tú mismo. <span class="se">Escríbele al sistema.</span></h2>
+    <p class="lead">Así le responderá a cada vecino de Cota, al instante. Escribe un problema y mira qué pasa.</p>
+    <div class="try-box">
+      <div class="try-row">
+        <input class="try-input" id="tryInput" type="text" placeholder="Ej: en mi vereda no hay agua estable…" autocomplete="off">
+        <button class="try-send" id="trySend">Enviar →</button>
+      </div>
+      <div class="try-egs">
+        <button class="try-eg">No hay agua en La Moya</button>
+        <button class="try-eg">El trancón para Bogotá</button>
+        <button class="try-eg">Hay que cuidar el Majuy</button>
+        <button class="try-eg">Las parcelaciones</button>
+        <button class="try-eg">Empleo para los de Cota</button>
+      </div>
+      <div class="try-out" id="tryOut">
+        <span class="tag" id="tryTag"></span>
+        <div class="who">Jaime responde</div>
+        <div class="ans" id="tryAns"></div>
+      </div>
+    </div>
+    <p class="try-note">Demo en vivo — el sistema real responde por WhatsApp igual de rápido.</p>
   </div>
 </section>
 
@@ -351,5 +401,31 @@ chips.forEach(chip => chip.addEventListener('click', () => {
 })();
 </script>
 
+<script>
+(function(){
+  var T = {
+    agua:{kw:['agua','acueducto','sed','vertimiento','lluvia'],b:'arregla',bl:'Se arregla',a:'Agua potable estable para las veredas y control de los vertimientos. El agua no es un favor, es un derecho.'},
+    movilidad:{kw:['movilidad','trancon','trancón','trafico','tráfico','bogota','bogotá','via','vía','transporte','bus','ruta','salida'],b:'arregla',bl:'Se arregla',a:'Plan de movilidad regional y rutas veredales con horarios reales. Tu tiempo vale.'},
+    majuy:{kw:['majuy','cerro','rio','río','rios','ríos','ambiente','ambiental','naturaleza','paramo','páramo'],b:'mantiene',bl:'Se mantiene',a:'Proteger el Majuy y los ríos. Esa ha sido mi bandera desde el primer día y no se negocia.'},
+    campo:{kw:['campo','campesino','agro','cultivo','cosecha','espinaca','lechuga','siembra','finca'],b:'cambia',bl:'Se cambia',a:'Apoyo al campesino y a los mercados locales. El campo es el futuro de Cota, no su pasado.'},
+    vivienda:{kw:['parcelacion','parcelación','parcelaciones','parcela','construccion','construcción','pot','vivienda','urbaniz','edificio'],b:'cambia',bl:'Se cambia',a:'Ordenar el POT para que Cota crezca sin dejar de ser Cota. El campo no se vende.'},
+    seguridad:{kw:['seguridad','robo','inseguridad','camara','cámara','policia','policía','ladron','ladrón','atraco'],b:'cambia',bl:'Se cambia',a:'Seguridad con tecnología y más presencia en las veredas y los barrios. Coordinada, no improvisada.'},
+    transparencia:{kw:['transparencia','corrupcion','corrupción','contrato','contratacion','contratación','plata','presupuesto','roban'],b:'cambia',bl:'Se cambia',a:'Contratación abierta y veeduría ciudadana. Si la plata es de Cota, Cota tiene derecho a verla.'},
+    resguardo:{kw:['resguardo','muisca','indigena','indígena','autonomia','autonomía','territorio','ancestral'],b:'mantiene',bl:'Se mantiene',a:'Mesa de concertación real y respeto al resguardo. Aliado de siempre, no de temporada.'},
+    empleo:{kw:['empleo','trabajo','desempleo','empresa','industrial','industria'],b:'arregla',bl:'Se arregla',a:'Que la riqueza industrial de Cota deje empleo cotense. La plata que se genera aquí, se queda aquí.'},
+    convivencia:{kw:['convivencia','vecinos','nuevos','comunidad','integracion','integración','condominio','condominios'],b:'arregla',bl:'Se arregla',a:'Programas que unan a las dos Cotas. Una sola comunidad, con espacio para todos.'}
+  };
+  var DEF = {b:'arregla', bl:'Lo llevo a mi mesa', a:'Gracias por contarme. Lo anoto, lo estudio con mi equipo y te respondo con una propuesta concreta para tu vereda. En Cota, lo que se escucha, se trabaja.'};
+  var input=document.getElementById('tryInput'), out=document.getElementById('tryOut'), tag=document.getElementById('tryTag'), ans=document.getElementById('tryAns'), send=document.getElementById('trySend');
+  if(!input) return;
+  var timer=null;
+  function classify(t){ t=t.toLowerCase(); var best=null, score=0; for(var k in T){ var s=0; T[k].kw.forEach(function(w){ if(t.indexOf(w)>-1) s++; }); if(s>score){score=s;best=k;} } return score>0?T[best]:DEF; }
+  function type(el,text){ clearInterval(timer); el.textContent=''; var i=0; timer=setInterval(function(){ el.textContent=text.slice(0,++i); if(i>=text.length) clearInterval(timer); },16); }
+  function run(){ var v=input.value.trim(); if(!v) return; var r=classify(v); tag.textContent=r.bl; tag.className='tag b-'+r.b; out.classList.add('show'); ans.textContent='escribiendo…'; setTimeout(function(){ type(ans,r.a); },550); }
+  send.addEventListener('click',run);
+  input.addEventListener('keydown',function(e){ if(e.key==='Enter') run(); });
+  document.querySelectorAll('.try-eg').forEach(function(b){ b.addEventListener('click',function(){ input.value=b.textContent; run(); }); });
+})();
+</script>
 </body>
 </html>
