@@ -472,6 +472,43 @@ body.dark-active .top-nav > * { color: var(--cream); }
 .cierre-grad-quote { position: relative; z-index: 2; font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1.4rem, 2.4vw, 2rem); color: #fff; line-height: 1.3; max-width: 92%; }
 @media (max-width: 768px) { .cierre-grad { min-height: 32vh; padding: 1.8rem; } }
 
+/* ===== SLIDE 7: EN VIVO (demo animada) ===== */
+.demo { display: grid; grid-template-columns: 1fr 0.82fr; gap: 3rem; height: 100%; align-items: center; }
+@media (max-width: 768px) { .demo { grid-template-columns: 1fr; gap: 1.5rem; } }
+.demo-vals { list-style: none; margin-top: 1.4rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.demo-vals li { position: relative; padding-left: 1.3rem; font-size: 0.95rem; color: var(--ink-soft); line-height: 1.4; }
+.demo-vals li::before { content: ''; position: absolute; left: 0; top: 0.5em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.demo-vals li b { font-weight: 600; color: var(--ink); }
+.demo-phone { display: flex; justify-content: center; }
+.phone { width: clamp(268px, 30vw, 318px); height: clamp(380px, 62vh, 540px); background: #0b1020; border-radius: 34px; padding: 9px; box-shadow: 0 30px 70px rgba(10,20,50,0.28); border: 1px solid rgba(10,10,10,0.15); display: flex; flex-direction: column; overflow: hidden; position: relative; }
+.phone-notch { position: absolute; top: 15px; left: 50%; transform: translateX(-50%); width: 84px; height: 6px; border-radius: 6px; background: rgba(255,255,255,0.28); z-index: 3; }
+.phone-head { display: flex; align-items: center; gap: 0.55rem; padding: 1.15rem 0.9rem 0.7rem; background: linear-gradient(120deg, #18336E, #F64A00); border-radius: 26px 26px 12px 12px; }
+.phone-head .chat-avatar { width: 30px; height: 30px; font-size: 0.72rem; }
+.phone-head .chat-who b { font-size: 0.82rem; } .phone-head .chat-who span { font-size: 0.64rem; }
+.phone-body { flex: 1; background: #E7E0D6; padding: 0.8rem 0.7rem; overflow: hidden; display: flex; flex-direction: column; gap: 0.4rem; }
+.msg { max-width: 82%; padding: 0.5rem 0.7rem; border-radius: 14px; font-size: 0.79rem; line-height: 1.35; opacity: 0; transform: translateY(8px); animation: msgIn 0.35s var(--ease) forwards; word-wrap: break-word; }
+@keyframes msgIn { to { opacity: 1; transform: none; } }
+.msg.them { background: #fff; color: #16233f; align-self: flex-start; border-bottom-left-radius: 4px; }
+.msg.us { background: #16233f; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+.typing { align-self: flex-start; background: #fff; border-radius: 14px; padding: 0.55rem 0.75rem; display: inline-flex; gap: 4px; }
+.typing span { width: 6px; height: 6px; border-radius: 50%; background: #9aa2ad; animation: blink 1.2s infinite; }
+.typing span:nth-child(2) { animation-delay: 0.2s; } .typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes blink { 0%, 60%, 100% { opacity: 0.3; } 30% { opacity: 1; } }
+
+/* precio en la tarjeta de la oferta */
+.gift-price { display: flex; align-items: baseline; gap: 0.4rem; margin: 0.1rem 0 0.05rem; }
+.gift-price .pv { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(1.5rem, 2.4vw, 2rem); letter-spacing: -0.03em; color: #fff; }
+.gift-price .pu { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.72); font-weight: 600; }
+.gift-pricenote { font-size: 0.63rem; letter-spacing: 0.05em; color: rgba(255,255,255,0.55); text-transform: uppercase; font-weight: 500; margin-bottom: 0.7rem; }
+.gift-list { list-style: none; margin-top: auto; display: flex; flex-direction: column; gap: 0.4rem; }
+.gift-list li { position: relative; padding-left: 1.1rem; font-size: 0.81rem; line-height: 1.35; color: rgba(255,255,255,0.82); }
+.gift-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.gift-list li b { color: #fff; font-weight: 600; }
+
+/* lockup AMI en el nav */
+.nav-logo .ami-mark { font-weight: 700; letter-spacing: 0.16em; color: var(--ink); }
+body.dark-active .nav-logo .ami-mark { color: var(--cream); }
+
 .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--grad); z-index: 200; transition: width 0.1s linear; width: 0%; }
 
 .mobile-nav { display: none; }
@@ -490,10 +527,12 @@ body.dark-active .top-nav > * { color: var(--cream); }
   .sede { min-height: 160px; padding-top: 1.4rem; padding-bottom: 1.4rem; }
   .gift { min-height: 200px; padding-top: 1.7rem; padding-bottom: 1.7rem; }
   .reto { gap: 1.6rem; }
-  .flow, .always, .oferta, .prueba { gap: 1.5rem; }
+  .flow, .always, .oferta, .prueba, .demo { gap: 1.5rem; }
   .head-sub { margin-top: 0.7rem; }
   .head h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
   .bignum .n { font-size: clamp(3.6rem, 9vw, 7.5rem); }
+  .phone { height: clamp(330px, 54vh, 450px); }
+  .demo-vals { margin-top: 1rem; gap: 0.45rem; }
 }
 </style>
 </head>
@@ -504,13 +543,13 @@ body.dark-active .top-nav > * { color: var(--cream); }
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <div class="top-nav">
-  <div class="nav-logo"><span class="rmk-mark">REMAKE</span><span class="grad-dot"></span><span style="opacity: 0.5; font-weight: 400;">para AMI</span></div>
-  <div class="nav-meta"><span id="navNum">01</span> / 08</div>
+  <div class="nav-logo"><span class="rmk-mark">REMAKE</span><span class="grad-dot"></span><span class="ami-mark">AMI</span> <span style="opacity: 0.5; font-weight: 400;">Clínica Odontológica</span></div>
+  <div class="nav-meta"><span id="navNum">01</span> / 09</div>
 </div>
 
 <div class="mobile-nav">
   <button id="mPrev">←</button>
-  <div class="progress-text"><span id="mNum">01</span> / 08</div>
+  <div class="progress-text"><span id="mNum">01</span> / 09</div>
   <button id="mNext">→</button>
 </div>
 
@@ -729,54 +768,88 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 7: LA OFERTA ===== -->
+<!-- ===== SLIDE 7: EN VIVO (demo animada) ===== -->
 <section class="slide" data-num="07">
+  <div class="demo">
+    <div class="demo-text">
+      <div class="line-mask"><span data-d="0" class="label">07 — En vivo</span></div>
+      <h2>
+        <span class="line-mask"><span data-d="1">Míralo</span></span>
+        <span class="line-mask"><span data-d="2">en <span class="accent">acción.</span></span></span>
+      </h2>
+      <p class="head-sub reveal" data-d="3">Así responde y agenda — en segundos, sin que nadie del consultorio conteste.</p>
+      <ul class="demo-vals reveal" data-d="4">
+        <li><b>Responde al instante</b>, de día y de madrugada</li>
+        <li><b>Agenda y reprograma</b> sola, en la sede correcta</li>
+        <li><b>Detecta urgencias</b> y las prioriza</li>
+        <li>Y todo lo <b>revisa a mano nuestro equipo humano</b></li>
+      </ul>
+    </div>
+    <div class="demo-phone reveal" data-d="4">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-head">
+          <div class="chat-avatar">AMI</div>
+          <div class="chat-who"><b>Asistente AMI</b><span>en línea · 24/7</span></div>
+        </div>
+        <div class="phone-body" id="chatBody"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 8: LA OFERTA ===== -->
+<section class="slide" data-num="08">
   <div class="oferta">
     <div class="head">
-      <div class="line-mask"><span data-d="0" class="label">07 — La oferta · por el reencuentro</span></div>
+      <div class="line-mask"><span data-d="0" class="label">08 — La oferta · por el reencuentro</span></div>
       <h2>
-        <span class="line-mask"><span data-d="1">3 regalos para</span></span>
-        <span class="line-mask"><span data-d="2">volver a <span class="accent">trabajar juntos.</span></span></span>
+        <span class="line-mask"><span data-d="1">Solo pagas el bot.</span></span>
+        <span class="line-mask"><span data-d="2">La web va <span class="accent">de regalo.</span></span></span>
       </h2>
     </div>
 
     <div class="gifts">
       <div class="gift reveal" data-d="3">
         <div class="gift-num">01</div>
-        <div class="gift-tag">Regalo</div>
-        <h3>Rediseño de tu web</h3>
+        <div class="gift-tag">De regalo</div>
+        <h3>Tu web nueva</h3>
         <span class="gift-pill">Gratis</span>
-        <p>Web nueva de AMI, moderna y lista para las 3 sedes. Sin costo.</p>
+        <p>Rediseñada y lista para las 3 sedes. Por los años que trabajamos juntos.</p>
       </div>
       <div class="gift featured reveal" data-d="4">
-        <div class="gift-num">02</div>
-        <div class="gift-tag">El corazón</div>
-        <h3>El asistente para las 3 sedes</h3>
-        <span class="gift-pill">Montado y operado por nosotros</span>
-        <p>Atiende y agenda 24/7 en Chía, Zipaquirá y Bogotá. Ustedes no tocan nada.</p>
+        <div class="gift-tag">Lo único que pagas</div>
+        <h3>El asistente · 3 sedes</h3>
+        <div class="gift-price"><span class="pv">$1.200.000</span><span class="pu">COP / mes</span></div>
+        <div class="gift-pricenote">Precio lleno, sin descuento · solo el bot</div>
+        <ul class="gift-list">
+          <li>Atiende y agenda 24/7 en las 3 sedes</li>
+          <li>Detecta urgencias y las prioriza</li>
+          <li><b>Revisado a mano por nuestro equipo humano</b></li>
+        </ul>
       </div>
       <div class="gift reveal" data-d="5">
-        <div class="gift-num">03</div>
-        <div class="gift-tag">Regalo</div>
+        <div class="gift-num">02</div>
+        <div class="gift-tag">De regalo</div>
         <h3>Un mes de prueba</h3>
-        <span class="gift-pill">Sin compromiso</span>
-        <p>Lo pones a andar, ves los números reales de AMI, y decides con calma.</p>
+        <span class="gift-pill">Para verlo en acción</span>
+        <p>Lo ves funcionando con pacientes reales antes de decidir. Sin compromiso.</p>
       </div>
     </div>
 
     <div class="oferta-foot reveal" data-d="5">
-      <div class="note">Sin precio aquí — el número lo armamos juntos en la reunión, según tus 3 sedes.</div>
+      <div class="note">No es un bot suelto: nuestro equipo humano lo revisa y lo ajusta. La web y el mes de prueba van de regalo.</div>
       <a href="https://wa.me/15875854143?text=Hola%20Mateo%2C%20soy%20Eduardo%20de%20AMI.%20Armemos%20los%20n%C3%BAmeros%20para%20las%203%20sedes." target="_blank" class="cta-btn">Armemos los números para tus 3 sedes <span class="a">→</span></a>
     </div>
   </div>
 </section>
 
-<!-- ===== SLIDE 8: CIERRE ===== -->
-<section class="slide" data-num="08">
+<!-- ===== SLIDE 9: CIERRE ===== -->
+<section class="slide" data-num="09">
   <div class="cierre">
     <div class="cierre-text">
       <div>
-        <div class="line-mask"><span data-d="0" class="label">08 — El siguiente paso</span></div>
+        <div class="line-mask"><span data-d="0" class="label">09 — El siguiente paso</span></div>
         <p class="cierre-greeting reveal" data-d="1">Eduardo —</p>
         <h2>
           <span class="line-mask"><span data-d="2">Trabajemos</span></span>
@@ -896,6 +969,49 @@ document.getElementById('mNext')?.addEventListener('click', () => {
   const idx = Array.from(slides).indexOf(current);
   if (idx < slides.length - 1) slides[idx + 1].scrollIntoView({ behavior: 'smooth' });
 });
+
+/* ===== Demo animada: conversación en bucle ===== */
+const chatScript = [
+  { who: 'them', t: 'Buenas 😣 se me partió una muela y me duele mucho' },
+  { who: 'us', t: 'Uy, lamento eso 🙏 Te ayudo ya mismo. ¿En cuál sede te queda mejor: Chía, Zipaquirá o Bogotá?' },
+  { who: 'them', t: 'Chía, cerca de mi casa' },
+  { who: 'us', t: 'Perfecto. Tengo mañana a las 8:30 a.m. con el Dr. Ramírez en Chía. ¿Te la agendo?' },
+  { who: 'them', t: 'Sí, por favor 🙌' },
+  { who: 'us', t: 'Lista ✅ Cita en Chía, mañana 8:30 a.m. Te llega recordatorio por aquí. ¡Cuídate esa muela! 🦷' }
+];
+
+function playChat() {
+  const body = document.getElementById('chatBody');
+  if (!body) return;
+  body.innerHTML = '';
+  let i = 0;
+  function add(m) {
+    const d = document.createElement('div');
+    d.className = 'msg ' + m.who;
+    d.textContent = m.t;
+    body.appendChild(d);
+    body.scrollTop = body.scrollHeight;
+  }
+  function step() {
+    if (i >= chatScript.length) {
+      setTimeout(() => { body.innerHTML = ''; i = 0; setTimeout(step, 700); }, 3800);
+      return;
+    }
+    const m = chatScript[i];
+    if (m.who === 'us') {
+      const tp = document.createElement('div');
+      tp.className = 'typing';
+      tp.innerHTML = '<span></span><span></span><span></span>';
+      body.appendChild(tp);
+      body.scrollTop = body.scrollHeight;
+      setTimeout(() => { tp.remove(); add(m); i++; setTimeout(step, 1500); }, 1150);
+    } else {
+      add(m); i++; setTimeout(step, 1000);
+    }
+  }
+  step();
+}
+playChat();
 </script>
 
 </body>
