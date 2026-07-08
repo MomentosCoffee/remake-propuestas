@@ -516,6 +516,32 @@ body.dark-active .top-nav > * { color: var(--cream); }
 /* ancla de precio (uno por sede) */
 .gift-anchor { font-size: 0.8rem; color: rgba(255,255,255,0.5); text-decoration: line-through; margin-bottom: 0.05rem; }
 
+/* ===== SLIDE 9: COMPARATIVO (¿es caro?) ===== */
+.vs { display: grid; grid-template-rows: auto 1fr auto; gap: 2rem; height: 100%; }
+.vs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); }
+@media (max-width: 768px) { .vs-grid { grid-template-columns: 1fr; } }
+.vs-card { padding: 2rem 1.6rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 0.55rem; transition: background 0.5s var(--ease); min-height: 300px; }
+.vs-card:last-child { border-right: none; }
+@media (max-width: 768px) { .vs-card { border-right: none; min-height: auto; padding: 1.6rem 0; } }
+.vs-card:hover { background: var(--bg-alt); }
+.vs-card.featured { background: var(--ink); color: var(--cream); }
+.vs-card.featured:hover { background: var(--ink); }
+.vs-label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; }
+.vs-card.featured .vs-label { color: rgba(255,255,255,0.62); }
+.vs-price { font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: -0.03em; font-size: clamp(1.75rem, 3vw, 2.4rem); line-height: 1; color: var(--ink); }
+.vs-card.featured .vs-price { color: #fff; }
+.vs-price small { font-size: 0.4em; font-weight: 500; letter-spacing: 0.03em; color: var(--ink-mute); }
+.vs-card.featured .vs-price small { color: rgba(255,255,255,0.6); }
+.vs-bar { height: 8px; border-radius: 8px; background: var(--bg-alt); overflow: hidden; margin: 0.35rem 0; }
+.vs-card.featured .vs-bar { background: rgba(255,255,255,0.15); }
+.vs-bar i { display: block; height: 100%; border-radius: 8px; background: var(--ink-mute); }
+.vs-card.featured .vs-bar i { background: var(--grad-bright); }
+.vs-note { font-size: 0.85rem; color: var(--ink-mute); line-height: 1.5; margin-top: auto; }
+.vs-card.featured .vs-note { color: rgba(255,255,255,0.8); }
+.vs-note b { color: var(--ink); font-weight: 600; }
+.vs-card.featured .vs-note b { color: #fff; }
+.vs-foot { font-size: 0.78rem; color: var(--ink-mute); line-height: 1.5; }
+
 .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--grad); z-index: 200; transition: width 0.1s linear; width: 0%; }
 
 .mobile-nav { display: none; }
@@ -534,12 +560,13 @@ body.dark-active .top-nav > * { color: var(--cream); }
   .sede { min-height: 160px; padding-top: 1.4rem; padding-bottom: 1.4rem; }
   .gift { min-height: 200px; padding-top: 1.7rem; padding-bottom: 1.7rem; }
   .reto { gap: 1.6rem; }
-  .flow, .always, .oferta, .prueba, .demo { gap: 1.5rem; }
+  .flow, .always, .oferta, .prueba, .demo, .vs { gap: 1.5rem; }
   .head-sub { margin-top: 0.7rem; }
   .head h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
   .bignum .n { font-size: clamp(3.6rem, 9vw, 7.5rem); }
   .phone { height: clamp(330px, 54vh, 450px); }
   .demo-vals { margin-top: 1rem; gap: 0.45rem; }
+  .vs-card { min-height: 170px; padding-top: 1.5rem; padding-bottom: 1.5rem; }
 }
 </style>
 </head>
@@ -551,12 +578,12 @@ body.dark-active .top-nav > * { color: var(--cream); }
 
 <div class="top-nav">
   <div class="nav-logo"><span class="rmk-mark">REMAKE</span><span class="grad-dot"></span><span class="ami-navmark"><img src="/ami/ami-logo.png" alt="Clínica AMI"></span> <span style="opacity: 0.5; font-weight: 400;">para Clínica AMI</span></div>
-  <div class="nav-meta"><span id="navNum">01</span> / 09</div>
+  <div class="nav-meta"><span id="navNum">01</span> / 10</div>
 </div>
 
 <div class="mobile-nav">
   <button id="mPrev">←</button>
-  <div class="progress-text"><span id="mNum">01</span> / 09</div>
+  <div class="progress-text"><span id="mNum">01</span> / 10</div>
   <button id="mNext">→</button>
 </div>
 
@@ -854,12 +881,49 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 9: CIERRE ===== -->
+<!-- ===== SLIDE 9: ¿ES CARO? (comparativo) ===== -->
 <section class="slide" data-num="09">
+  <div class="vs">
+    <div class="head">
+      <div class="line-mask"><span data-d="0" class="label">09 — ¿Es caro?</span></div>
+      <h2>
+        <span class="line-mask"><span data-d="1">Hazlo con gente</span></span>
+        <span class="line-mask"><span data-d="2">y cuesta <span class="accent">mucho más.</span></span></span>
+      </h2>
+      <p class="head-sub reveal" data-d="3">Una persona cubre 8 horas y una sede. Para estar 24/7 en las 3, necesitarías un equipo entero — por varias veces el precio.</p>
+    </div>
+
+    <div class="vs-grid">
+      <div class="vs-card reveal" data-d="3">
+        <div class="vs-label">Una recepcionista</div>
+        <div class="vs-price">$2.000.000 <small>/mes aprox.</small></div>
+        <div class="vs-bar"><i style="width:33%"></i></div>
+        <div class="vs-note">Con prestaciones. Cubre 8 horas y 1 sede, entre semana. De noche y en fin de semana, <b>nadie contesta.</b></div>
+      </div>
+      <div class="vs-card reveal" data-d="4">
+        <div class="vs-label">24/7 en las 3 sedes, con gente</div>
+        <div class="vs-price">$6.000.000+ <small>/mes aprox.</small></div>
+        <div class="vs-bar"><i style="width:100%"></i></div>
+        <div class="vs-note">Varias personas por turnos para cubrir día, noche y fin de semana. Y aun así, se cansan y se les escapan mensajes.</div>
+      </div>
+      <div class="vs-card featured reveal" data-d="5">
+        <div class="vs-label">REMAKE — todo el sistema</div>
+        <div class="vs-price">$1.800.000 <small>/mes</small></div>
+        <div class="vs-bar"><i style="width:30%"></i></div>
+        <div class="vs-note"><b>24/7 · las 3 sedes · nunca se cansa · recuerda a cada paciente · web gratis.</b> Y con Mateo y Juliana detrás.</div>
+      </div>
+    </div>
+
+    <p class="vs-foot reveal" data-d="5">Cifras aproximadas de nómina en Colombia (con prestaciones). <b style="color:var(--ink)">El asistente cuesta menos que una sola persona — y cubre muchísimo más.</b></p>
+  </div>
+</section>
+
+<!-- ===== SLIDE 10: CIERRE ===== -->
+<section class="slide" data-num="10">
   <div class="cierre">
     <div class="cierre-text">
       <div>
-        <div class="line-mask"><span data-d="0" class="label">09 — El siguiente paso</span></div>
+        <div class="line-mask"><span data-d="0" class="label">10 — El siguiente paso</span></div>
         <p class="cierre-greeting reveal" data-d="1">Eduardo —</p>
         <h2>
           <span class="line-mask"><span data-d="2">Trabajemos</span></span>
