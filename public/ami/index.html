@@ -505,9 +505,14 @@ body.dark-active .top-nav > * { color: var(--cream); }
 .gift-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
 .gift-list li b { color: #fff; font-weight: 600; }
 
-/* lockup AMI en el nav */
-.nav-logo .ami-mark { font-weight: 700; letter-spacing: 0.16em; color: var(--ink); }
-body.dark-active .nav-logo .ami-mark { color: var(--cream); }
+/* logo AMI (nav = solo la gota, recortada por CSS; hero = logo completo) */
+.ami-navmark { display: inline-flex; align-items: center; height: 26px; width: 28px; overflow: hidden; }
+.ami-navmark img { height: 26px; width: auto; max-width: none; }
+.cover-ami-logo { height: 46px; width: auto; margin-bottom: 0.8rem; display: block; }
+@media (max-width: 768px) { .cover-ami-logo { height: 38px; } }
+@media (min-width: 769px) and (max-height: 800px) { .cover-ami-logo { height: 38px; margin-bottom: 0.5rem; } }
+/* ancla de precio (uno por sede) */
+.gift-anchor { font-size: 0.8rem; color: rgba(255,255,255,0.5); text-decoration: line-through; margin-bottom: 0.05rem; }
 
 .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--grad); z-index: 200; transition: width 0.1s linear; width: 0%; }
 
@@ -543,7 +548,7 @@ body.dark-active .nav-logo .ami-mark { color: var(--cream); }
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <div class="top-nav">
-  <div class="nav-logo"><span class="rmk-mark">REMAKE</span><span class="grad-dot"></span><span class="ami-mark">AMI</span> <span style="opacity: 0.5; font-weight: 400;">Clínica Odontológica</span></div>
+  <div class="nav-logo"><span class="rmk-mark">REMAKE</span><span class="grad-dot"></span><span class="ami-navmark"><img src="/ami/ami-logo.png" alt="Clínica AMI"></span> <span style="opacity: 0.5; font-weight: 400;">para Clínica AMI</span></div>
   <div class="nav-meta"><span id="navNum">01</span> / 09</div>
 </div>
 
@@ -558,6 +563,7 @@ body.dark-active .nav-logo .ami-mark { color: var(--cream); }
   <div class="cover">
     <div class="cover-text">
       <div class="cover-meta-top">
+        <img src="/ami/ami-logo.png" alt="Clínica AMI — Odontología Integral" class="cover-ami-logo reveal" data-d="0">
         <div class="line-mask"><span data-d="0" class="l1">Eduardo —</span></div>
         <div class="line-mask"><span data-d="1" class="l2">Ya trabajamos juntos antes. Ahora traigo algo que atiende<br>a tus pacientes solo, en las 3 sedes.</span></div>
       </div>
@@ -819,9 +825,10 @@ body.dark-active .nav-logo .ami-mark { color: var(--cream); }
       </div>
       <div class="gift featured reveal" data-d="4">
         <div class="gift-tag">Lo único que pagas</div>
-        <h3>El asistente · 3 sedes</h3>
-        <div class="gift-price"><span class="pv">$1.200.000</span><span class="pu">COP / mes</span></div>
-        <div class="gift-pricenote">Precio lleno, sin descuento · solo el bot</div>
+        <h3>Un asistente · 3 sedes</h3>
+        <div class="gift-anchor">Uno por sede: $3.600.000/mes</div>
+        <div class="gift-price"><span class="pv">$1.800.000</span><span class="pu">COP / mes</span></div>
+        <div class="gift-pricenote">Las 3 sedes en un solo sistema · precio de reencuentro</div>
         <ul class="gift-list">
           <li>Atiende y agenda 24/7 en las 3 sedes</li>
           <li>Detecta urgencias y las prioriza</li>
