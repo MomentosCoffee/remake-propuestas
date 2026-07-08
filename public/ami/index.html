@@ -52,15 +52,17 @@ body {
 ::-webkit-scrollbar { width: 0; }
 
 .cursor {
-  position: fixed; width: 8px; height: 8px;
-  background: var(--ink); border-radius: 50%;
+  position: fixed; width: 18px; height: 18px;
+  background: var(--ink);
+  border: 2px solid rgba(255,255,255,0.92);
+  border-radius: 50%;
   pointer-events: none; z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width 0.4s var(--ease), height 0.4s var(--ease), background 0.4s;
-  mix-blend-mode: difference;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.4);
+  transition: width 0.25s var(--ease), height 0.25s var(--ease), background 0.25s, border-color 0.25s;
 }
 
-.cursor.expand { width: 60px; height: 60px; background: var(--cream); }
+.cursor.expand { width: 46px; height: 46px; background: rgba(246,74,0,0.22); border-color: var(--accent); }
 @media (max-width: 768px) { .cursor { display: none; } }
 
 .slide {
