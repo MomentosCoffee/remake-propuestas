@@ -483,6 +483,18 @@ body.dark-active .top-nav > * { color: var(--cream); }
   .mobile-nav .progress-text { font-size: 0.7rem; color: var(--ink-mute); padding: 0 0.5rem; display: flex; align-items: center; font-variant-numeric: tabular-nums; letter-spacing: 0.1em; font-weight: 500; }
   body.dark-active .mobile-nav .progress-text { color: rgba(255,255,255,0.55); }
 }
+
+/* Pantallas de poca altura (laptops): compactar para que ninguna línea se corte */
+@media (min-width: 769px) and (max-height: 820px) {
+  .slide { padding-top: 4.75rem; padding-bottom: 2.5rem; }
+  .sede { min-height: 160px; padding-top: 1.4rem; padding-bottom: 1.4rem; }
+  .gift { min-height: 200px; padding-top: 1.7rem; padding-bottom: 1.7rem; }
+  .reto { gap: 1.6rem; }
+  .flow, .always, .oferta, .prueba { gap: 1.5rem; }
+  .head-sub { margin-top: 0.7rem; }
+  .head h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
+  .bignum .n { font-size: clamp(3.6rem, 9vw, 7.5rem); }
+}
 </style>
 </head>
 
