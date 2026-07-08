@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAM Soluciones — Equipos para avicultura y agro en Colombia</title>
+<meta name="description" content="Equipos para avicultura y agro: sistemas de niple Lubing, transportadores de huevo, cerramientos y repuestos con despacho nacional. Visita técnica gratis.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ SAM SOLUCIONES — Rediseño propuesto por REMAKE ============
+   Demo: precios y datos de muestra — los reales se cargan desde su Shopify.
+======================================================================== */
+:root{
+  --paper:#F7F5EE;
+  --paper2:#EFECE2;
+  --ink:#141410;
+  --ink-soft:#33322B;
+  --mute:#6E6B5E;
+  --green:#237A30;         /* verde marca SAM, profundizado para AA */
+  --green-bright:#2E9D3C;  /* verde del logo */
+  --green-dark:#174F20;
+  --yolk:#F2A81D;          /* yema — acento avícola */
+  --yolk-soft:#FBEACB;
+  --line:rgba(20,20,16,.14);
+  --line-strong:rgba(20,20,16,.28);
+  --card:#FFFFFF;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,h4{font-family:'Archivo',sans-serif;line-height:1.02;letter-spacing:-.02em;color:var(--ink)}
+.mono{font-family:'IBM Plex Mono',monospace}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+@media(min-width:900px){.wrap{padding:0 48px}}
+
+/* ---------- labels & heads ---------- */
+.lbl{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--mute);
+}
+.lbl::before{content:'';width:9px;height:9px;background:var(--green-bright)}
+.sec{padding:5.5rem 0}
+@media(max-width:768px){.sec{padding:3.5rem 0}}
+.sec-head{margin-bottom:2.8rem}
+.sec-head h2{font-size:clamp(2rem,4.6vw,3.4rem);font-weight:900;text-transform:uppercase;margin-top:.9rem}
+.sec-head h2 em{font-style:normal;color:var(--green)}
+.sec-head p{margin-top:1rem;max-width:620px;color:var(--ink-soft);font-size:1.02rem}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .marquee-track{animation:none!important}
+}
+
+/* ---------- header ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:90;
+  background:rgba(247,245,238,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);transition:box-shadow .3s;
+}
+header.scrolled{box-shadow:0 6px 24px rgba(20,20,16,.08)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.brand-logo{background:#fff;border:1px solid var(--line);border-radius:10px;padding:5px 10px;display:flex;align-items:center}
+.brand-logo img{height:38px;width:auto}
+.brand-fallback{font-family:'Archivo';font-weight:900;font-size:1.4rem;color:var(--green);letter-spacing:-.02em}
+.nav-links{display:flex;gap:1.8rem;align-items:center}
+.nav-links a{
+  text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink-soft);
+  padding:.3rem 0;border-bottom:2px solid transparent;transition:color .25s,border-color .25s;
+}
+.nav-links a:hover{color:var(--green);border-color:var(--green)}
+.nav-cta{display:flex;align-items:center;gap:.7rem}
+.btn{
+  display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;cursor:pointer;
+  font-family:'Archivo';font-weight:700;font-size:.95rem;letter-spacing:.01em;
+  padding:.85rem 1.5rem;border-radius:10px;border:2px solid transparent;
+  transition:transform .25s var(--ease),background .25s,color .25s,border-color .25s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible{outline:3px solid var(--yolk);outline-offset:2px}
+.btn-solid{background:var(--green);color:#fff}
+.btn-solid:hover{background:var(--green-dark)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-ink:hover{background:#000}
+.btn-line{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn-line:hover{background:var(--ink);color:var(--paper)}
+.btn-yolk{background:var(--yolk);color:var(--ink)}
+.btn-yolk:hover{background:#E09912}
+.cart-btn{
+  position:relative;display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
+  background:#fff;border:1.5px solid var(--line-strong);border-radius:10px;
+  padding:.6rem 1rem;font-family:'Archivo';font-weight:700;font-size:.88rem;
+  transition:border-color .25s,transform .25s var(--ease);
+}
+.cart-btn:hover{border-color:var(--green);transform:translateY(-2px)}
+.cart-count{
+  min-width:22px;height:22px;border-radius:99px;background:var(--yolk);color:var(--ink);
+  font-family:'IBM Plex Mono';font-weight:600;font-size:.72rem;
+  display:flex;align-items:center;justify-content:center;padding:0 5px;
+}
+.cart-count.bump{animation:bump .4s var(--ease)}
+@keyframes bump{40%{transform:scale(1.35)}}
+.burger{display:none;background:none;border:none;cursor:pointer;padding:.4rem}
+.burger span{display:block;width:24px;height:2.5px;background:var(--ink);margin:5px 0;transition:.3s}
+@media(max-width:900px){
+  .nav-links{
+    display:none;position:absolute;top:72px;left:0;right:0;
+    background:var(--paper);border-bottom:1px solid var(--line);
+    flex-direction:column;gap:0;padding:.5rem 0;
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:.9rem 24px;width:100%;border-bottom:1px solid var(--line)}
+  .burger{display:block}
+  .nav-cta .btn{display:none}
+}
+
+/* ---------- hero ---------- */
+.hero{padding:10.5rem 0 4.5rem;position:relative}
+@media(max-width:768px){.hero{padding:7.5rem 0 3rem}}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:3.5rem;align-items:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:2.2rem}}
+.hero h1{
+  font-size:clamp(2.6rem,6vw,4.9rem);font-weight:900;text-transform:uppercase;
+  letter-spacing:-.025em;margin:1.1rem 0 1.3rem;
+}
+.hero h1 .g{color:var(--green)}
+.hero-sub{font-size:1.08rem;color:var(--ink-soft);max-width:520px;margin-bottom:1.8rem}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:1.6rem}
+.hero-chips{display:flex;flex-wrap:wrap;gap:.55rem}
+.chip{
+  font-family:'IBM Plex Mono';font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--line-strong);border-radius:99px;padding:.42rem .85rem;color:var(--ink-soft);background:#fff;
+}
+.chip b{color:var(--green)}
+.hero-visual{position:relative}
+.hero-img{
+  border-radius:18px;overflow:hidden;border:1px solid var(--line);
+  box-shadow:14px 14px 0 var(--yolk);
+}
+.hero-img img{width:100%;height:430px;object-fit:cover}
+@media(max-width:768px){.hero-img img{height:300px}.hero-img{box-shadow:8px 8px 0 var(--yolk)}}
+.spec-card{
+  position:absolute;left:-26px;bottom:34px;background:var(--ink);color:var(--paper);
+  border-radius:14px;padding:1rem 1.2rem;max-width:260px;
+  box-shadow:0 18px 44px rgba(20,20,16,.32);
+}
+@media(max-width:768px){.spec-card{left:10px;bottom:-18px;max-width:230px}}
+.spec-card .sc-ref{font-family:'IBM Plex Mono';font-size:.62rem;letter-spacing:.16em;color:var(--yolk);text-transform:uppercase;margin-bottom:.35rem}
+.spec-card .sc-t{font-family:'Archivo';font-weight:800;font-size:1rem;line-height:1.15;margin-bottom:.55rem}
+.spec-card .sc-row{display:flex;justify-content:space-between;font-size:.74rem;color:rgba(247,245,238,.75);padding:.18rem 0;border-top:1px dotted rgba(247,245,238,.25)}
+.spec-card .sc-row b{color:#fff;font-weight:600}
+
+/* ---------- stats ---------- */
+.stats{border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);background:var(--paper2)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+@media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+.stat{padding:1.6rem 1.2rem;border-right:1px solid var(--line);text-align:left}
+.stat:last-child{border-right:none}
+@media(max-width:768px){.stat:nth-child(2){border-right:none}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+.stat .n{font-family:'Archivo';font-weight:900;font-size:clamp(1.6rem,3vw,2.3rem);letter-spacing:-.02em}
+.stat .n span{color:var(--green)}
+.stat .k{font-family:'IBM Plex Mono';font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:.2rem}
+
+/* ---------- marquee ---------- */
+.marquee{
+  overflow:hidden;background:var(--ink);padding:.95rem 0;position:relative;
+  border-top:6px solid transparent;border-bottom:6px solid transparent;
+  border-image:repeating-linear-gradient(-45deg,var(--yolk) 0 14px,var(--ink) 14px 28px) 6;
+}
+.marquee-track{display:flex;gap:2.6rem;white-space:nowrap;animation:mq 34s linear infinite;width:max-content}
+@keyframes mq{to{transform:translateX(-50%)}}
+.marquee span{
+  font-family:'Archivo';font-weight:800;font-size:1rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper);
+  display:inline-flex;align-items:center;gap:2.6rem;
+}
+.marquee span i{font-style:normal;color:var(--yolk)}
+
+/* ---------- sistemas ---------- */
+.sys{display:grid;gap:1.4rem}
+.sys-row{
+  display:grid;grid-template-columns:120px 1fr 1.05fr;gap:2.2rem;align-items:center;
+  background:var(--card);border:1px solid var(--line);border-radius:18px;padding:2rem;
+  transition:transform .35s var(--ease),box-shadow .35s,border-color .35s;
+}
+.sys-row:hover{transform:translateY(-4px);box-shadow:0 22px 48px rgba(20,20,16,.1);border-color:var(--green)}
+@media(max-width:900px){.sys-row{grid-template-columns:1fr;gap:1.2rem;padding:1.4rem}}
+.sys-num{
+  font-family:'Archivo';font-weight:900;font-size:4.4rem;line-height:1;
+  color:transparent;-webkit-text-stroke:2px var(--green-bright);
+}
+@media(max-width:900px){.sys-num{font-size:2.6rem}}
+.sys-body .mono-ref{font-family:'IBM Plex Mono';font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:.4rem}
+.sys-body h3{font-size:1.6rem;font-weight:800;text-transform:uppercase;margin-bottom:.6rem}
+.sys-body p{color:var(--ink-soft);font-size:.95rem;margin-bottom:1rem;max-width:420px}
+.specs{list-style:none;margin-bottom:1.3rem}
+.specs li{display:flex;align-items:baseline;font-size:.85rem;color:var(--ink-soft);padding:.3rem 0}
+.specs li .k{font-family:'IBM Plex Mono';font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.specs li .dots{flex:1;border-bottom:2px dotted var(--line);margin:0 .6rem;transform:translateY(-4px)}
+.specs li .v{font-weight:600;color:var(--ink)}
+.sys-img{border-radius:14px;overflow:hidden;border:1px solid var(--line);height:280px;background:#fff}
+.sys-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.sys-row:hover .sys-img img{transform:scale(1.04)}
+@media(max-width:900px){.sys-img{height:210px;order:-1}}
+
+/* ---------- tienda ---------- */
+#tienda{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.filters{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2rem}
+.filter{
+  font-family:'Archivo';font-weight:700;font-size:.85rem;cursor:pointer;
+  border:1.5px solid var(--line-strong);background:transparent;border-radius:99px;
+  padding:.55rem 1.2rem;color:var(--ink-soft);transition:all .25s;
+}
+.filter:hover{border-color:var(--green)}
+.filter.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+@media(max-width:1020px){.prod-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.prod-grid{grid-template-columns:1fr}}
+.prod{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s;
+}
+.prod:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(20,20,16,.12);border-color:var(--green)}
+.prod-img{height:190px;background:#fff;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.prod-img img{width:100%;height:100%;object-fit:cover}
+.prod-stock{
+  position:absolute;top:10px;left:10px;display:inline-flex;align-items:center;gap:.35rem;
+  background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:99px;
+  font-family:'IBM Plex Mono';font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:.28rem .6rem;color:var(--ink-soft);
+}
+.prod-stock::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green-bright)}
+.prod-body{padding:1.1rem 1.1rem 1.2rem;display:flex;flex-direction:column;flex:1}
+.prod-ref{font-family:'IBM Plex Mono';font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:.3rem}
+.prod-name{font-family:'Archivo';font-weight:800;font-size:1.02rem;line-height:1.2;margin-bottom:.7rem;min-height:2.4em}
+.prod-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+.prod-price{font-family:'Archivo';font-weight:900;font-size:1.15rem;letter-spacing:-.01em}
+.prod-price small{display:block;font-family:'IBM Plex Mono';font-weight:500;font-size:.58rem;letter-spacing:.1em;color:var(--mute);text-transform:uppercase}
+.add-btn{
+  font-family:'Archivo';font-weight:700;font-size:.82rem;cursor:pointer;
+  background:var(--green);color:#fff;border:none;border-radius:9px;padding:.65rem 1rem;
+  transition:background .25s,transform .25s var(--ease);white-space:nowrap;
+}
+.add-btn:hover{background:var(--green-dark);transform:translateY(-2px)}
+.add-btn:focus-visible{outline:3px solid var(--yolk);outline-offset:2px}
+.tienda-note{
+  margin-top:2rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;
+  border-top:1px solid var(--line-strong);padding-top:1.4rem;
+}
+.tienda-note p{font-size:.9rem;color:var(--mute);max-width:560px}
+.tienda-note p b{color:var(--ink)}
+
+/* ---------- carrito drawer ---------- */
+.backdrop{
+  position:fixed;inset:0;background:rgba(20,20,16,.5);z-index:98;
+  opacity:0;pointer-events:none;transition:opacity .35s;
+}
+.backdrop.show{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(430px,100%);z-index:99;
+  background:var(--paper);border-left:1px solid var(--line-strong);
+  transform:translateX(100%);transition:transform .45s var(--ease);
+  display:flex;flex-direction:column;
+}
+.drawer.open{transform:none}
+.drawer-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.3rem 1.4rem;border-bottom:1px solid var(--line-strong);
+}
+.drawer-head h3{font-size:1.15rem;font-weight:900;text-transform:uppercase}
+.drawer-close{background:none;border:1.5px solid var(--line-strong);border-radius:9px;width:38px;height:38px;cursor:pointer;font-size:1.1rem;line-height:1;transition:border-color .25s}
+.drawer-close:hover{border-color:var(--ink)}
+.drawer-items{flex:1;overflow-y:auto;padding:1rem 1.4rem}
+.d-item{display:grid;grid-template-columns:64px 1fr auto;gap:.9rem;align-items:center;padding:.9rem 0;border-bottom:1px solid var(--line)}
+.d-item img{width:64px;height:64px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:#fff}
+.d-item .di-n{font-family:'Archivo';font-weight:700;font-size:.88rem;line-height:1.2}
+.d-item .di-p{font-family:'IBM Plex Mono';font-size:.72rem;color:var(--mute);margin-top:.15rem}
+.qty{display:inline-flex;align-items:center;gap:.5rem;margin-top:.45rem}
+.qty button{width:26px;height:26px;border-radius:7px;border:1.5px solid var(--line-strong);background:#fff;cursor:pointer;font-weight:700;line-height:1;transition:border-color .2s}
+.qty button:hover{border-color:var(--green)}
+.qty b{font-family:'IBM Plex Mono';font-size:.85rem;min-width:18px;text-align:center}
+.di-total{font-family:'Archivo';font-weight:800;font-size:.95rem;text-align:right}
+.di-rm{background:none;border:none;color:var(--mute);font-size:.7rem;cursor:pointer;text-decoration:underline;margin-top:.3rem}
+.di-rm:hover{color:#B3261E}
+.drawer-empty{text-align:center;color:var(--mute);padding:3rem 1rem;font-size:.95rem}
+.drawer-foot{border-top:1px solid var(--line-strong);padding:1.2rem 1.4rem;background:var(--paper2)}
+.d-sub{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem}
+.d-sub .k{font-family:'IBM Plex Mono';font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.d-sub .v{font-family:'Archivo';font-weight:900;font-size:1.5rem}
+.d-note{font-size:.75rem;color:var(--mute);margin-bottom:.9rem}
+.d-wa{width:100%;justify-content:center}
+
+/* ---------- proceso ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+@media(max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+.step{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.4rem;
+  transition:transform .3s var(--ease),border-color .3s;
+}
+.step:hover{transform:translateY(-4px);border-color:var(--green)}
+.step .s-num{font-family:'Archivo';font-weight:900;font-size:2.2rem;color:transparent;-webkit-text-stroke:1.6px var(--green-bright);line-height:1;margin-bottom:.8rem}
+.step .s-tag{display:inline-block;font-family:'IBM Plex Mono';font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;background:var(--yolk-soft);color:#8A5B00;border-radius:99px;padding:.3rem .65rem;margin-bottom:.7rem}
+.step h3{font-size:1.12rem;font-weight:800;margin-bottom:.5rem}
+.step p{font-size:.88rem;color:var(--ink-soft)}
+
+/* ---------- respaldo (dark) ---------- */
+.dark{background:var(--ink);color:var(--paper)}
+.dark .lbl{color:rgba(247,245,238,.55)}
+.dark .sec-head h2{color:var(--paper)}
+.dark .sec-head h2 em{color:var(--yolk)}
+.dark .sec-head p{color:rgba(247,245,238,.75)}
+.resp-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center}
+@media(max-width:900px){.resp-grid{grid-template-columns:1fr;gap:2rem}}
+.resp-list{list-style:none;border-top:1px solid rgba(247,245,238,.2)}
+.resp-list li{display:grid;grid-template-columns:34px 1fr;gap:.9rem;padding:1.05rem 0;border-bottom:1px solid rgba(247,245,238,.2);align-items:baseline}
+.resp-list li b{color:#fff}
+.resp-list li .ck{color:var(--yolk);font-family:'Archivo';font-weight:900;font-size:1.1rem}
+.resp-list li p{color:rgba(247,245,238,.78);font-size:.94rem}
+.resp-quote{
+  background:rgba(247,245,238,.06);border:1px solid rgba(247,245,238,.18);border-radius:18px;padding:2rem;
+}
+.resp-quote .q{font-family:'Archivo';font-weight:700;font-size:1.3rem;line-height:1.35;color:#fff;margin-bottom:1.2rem}
+.resp-quote .q i{color:var(--yolk);font-style:normal}
+.resp-quote .who{font-family:'IBM Plex Mono';font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(247,245,238,.6)}
+.resp-img{border-radius:14px;overflow:hidden;margin-top:1.4rem;border:1px solid rgba(247,245,238,.18)}
+.resp-img img{width:100%;height:200px;object-fit:cover}
+
+/* ---------- atención ---------- */
+.aten{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+@media(max-width:900px){.aten{grid-template-columns:1fr;gap:1.8rem}}
+.aten h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:900;text-transform:uppercase;margin-top:.9rem}
+.aten h2 em{font-style:normal;color:var(--green)}
+.aten p{margin-top:1rem;color:var(--ink-soft);max-width:480px}
+.aten-card{
+  background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.6rem;
+  box-shadow:0 24px 60px rgba(20,20,16,.1);
+}
+.chatline{display:flex;gap:.7rem;margin-bottom:.8rem;align-items:flex-end}
+.chatline .av{width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Archivo';font-weight:800;font-size:.72rem;flex-shrink:0}
+.bub{background:var(--paper2);border-radius:14px;border-bottom-left-radius:4px;padding:.65rem .9rem;font-size:.88rem;max-width:85%}
+.bub.me{background:var(--green);color:#fff;margin-left:auto;border-radius:14px;border-bottom-right-radius:4px}
+.chat-hint{font-family:'IBM Plex Mono';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);text-align:center;margin-top:1rem}
+
+/* ---------- cotizar ---------- */
+#cotizar{background:var(--paper2);border-top:1px solid var(--line)}
+.quote-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:3rem;align-items:start}
+@media(max-width:900px){.quote-grid{grid-template-columns:1fr}}
+.qform{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:2rem}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:600px){.f-row{grid-template-columns:1fr}}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-family:'IBM Plex Mono';font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:.4rem}
+.field input,.field select,.field textarea{
+  width:100%;background:var(--paper);border:1.5px solid var(--line-strong);border-radius:10px;
+  padding:.8rem .9rem;font-family:'Inter';font-size:.95rem;color:var(--ink);transition:border-color .25s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--green)}
+.field textarea{resize:vertical;min-height:90px}
+.qform .btn{width:100%;justify-content:center;margin-top:.4rem}
+.q-alt{font-size:.82rem;color:var(--mute);text-align:center;margin-top:.9rem}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:var(--paper);padding:3.5rem 0 2rem}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.foot-grid{grid-template-columns:1fr}}
+.foot-brand .fb-name{font-family:'Archivo';font-weight:900;font-size:1.5rem;color:#fff}
+.foot-brand .fb-name span{color:var(--green-bright)}
+.foot-brand p{color:rgba(247,245,238,.65);font-size:.88rem;margin-top:.7rem;max-width:280px}
+.foot-col h4{font-family:'IBM Plex Mono';font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--yolk);margin-bottom:1rem}
+.foot-col a{display:block;color:rgba(247,245,238,.78);text-decoration:none;font-size:.9rem;padding:.28rem 0;transition:color .2s}
+.foot-col a:hover{color:#fff}
+.foot-base{border-top:1px solid rgba(247,245,238,.15);padding-top:1.4rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8rem;font-family:'IBM Plex Mono';font-size:.68rem;letter-spacing:.08em;color:rgba(247,245,238,.5)}
+.foot-base a{color:var(--yolk);text-decoration:none}
+
+/* ---------- flotantes ---------- */
+.wa-fab{
+  position:fixed;right:20px;bottom:20px;z-index:80;width:58px;height:58px;border-radius:50%;
+  background:#25D366;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 12px 30px rgba(20,20,16,.28);transition:transform .3s var(--ease);
+}
+.wa-fab:hover{transform:scale(1.08)}
+.wa-fab svg{width:30px;height:30px;fill:#fff}
+.demo-badge{
+  position:fixed;left:16px;bottom:16px;z-index:80;
+  background:var(--ink);color:var(--paper);border-radius:99px;
+  font-family:'IBM Plex Mono';font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.5rem .9rem;opacity:.88;
+}
+.demo-badge b{color:var(--yolk)}
+@media(max-width:600px){.demo-badge{display:none}}
+
+/* toast */
+.toast{
+  position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);z-index:100;
+  background:var(--ink);color:var(--paper);border-radius:12px;padding:.8rem 1.3rem;
+  font-family:'Archivo';font-weight:700;font-size:.88rem;opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .3s var(--ease);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast b{color:var(--yolk)}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#" class="brand" aria-label="SAM Soluciones — inicio">
+      <span class="brand-logo">
+        <img src="https://samsoluciones.com/cdn/shop/files/2._Logo_full_color-negro.png" alt="SAM Soluciones Agropecuarias Maestras"
+             onerror="this.parentElement.innerHTML='<span class=brand-fallback>SAM</span>'">
+      </span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#sistemas">Sistemas</a>
+      <a href="#tienda">Repuestos</a>
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#respaldo">Respaldo</a>
+      <a href="#cotizar">Cotizar</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="cart-btn" id="cartOpen" aria-label="Abrir carrito de compras">
+        Carrito <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <a href="#cotizar" class="btn btn-solid">Visita técnica gratis</a>
+      <button class="burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="lbl rv">Soluciones Agropecuarias Maestras · Colombia</span>
+      <h1 class="rv">El campo no para.<br><span class="g">Tu granja tampoco.</span></h1>
+      <p class="hero-sub rv">Equipos para avicultura y agro — sistemas de bebida Lubing, transporte de huevo y cerramientos. Instalados, con repuestos a un clic y un equipo que conoce tu granja.</p>
+      <div class="hero-ctas rv">
+        <a href="#cotizar" class="btn btn-solid">Cotiza tu sistema</a>
+        <a href="#tienda" class="btn btn-line">Comprar repuestos →</a>
+      </div>
+      <div class="hero-chips rv">
+        <span class="chip"><b>✓</b> Visita técnica gratis</span>
+        <span class="chip"><b>✓</b> Instalación incluida</span>
+        <span class="chip"><b>✓</b> Despacho nacional</span>
+      </div>
+    </div>
+    <div class="hero-visual rv">
+      <div class="hero-img">
+        <img src="https://cdn.shopify.com/s/files/1/0708/8416/3653/files/EnSamSoluciones_51.jpg" alt="Pollitos bebiendo en sistema de niple Lubing" loading="eager"
+             onerror="this.style.background='linear-gradient(135deg,#237A30,#F2A81D)';this.style.opacity='.9'">
+      </div>
+      <div class="spec-card">
+        <div class="sc-ref">Sistema en operación</div>
+        <div class="sc-t">Bebederos de Niple Lubing</div>
+        <div class="sc-row"><span>Origen</span><b>Lubing · Alemania</b></div>
+        <div class="sc-row"><span>Uso</span><b>Pollo · Ponedora · Pavo</b></div>
+        <div class="sc-row"><span>Repuestos</span><b>Siempre en stock</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<div class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat rv"><div class="n">8 <span>líneas</span></div><div class="k">de equipos para tu granja</div></div>
+    <div class="stat rv"><div class="n">50+ <span>refs</span></div><div class="k">en catálogo con despacho</div></div>
+    <div class="stat rv"><div class="n">24/7</div><div class="k">atención por WhatsApp</div></div>
+    <div class="stat rv"><div class="n">100<span>%</span></div><div class="k">repuestos originales</div></div>
+  </div>
+</div>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Sistemas de Niple Lubing <i>✚</i> Transportador de Huevo <i>✚</i> Cerramientos <i>✚</i> Bebederos <i>✚</i> Comederos <i>✚</i> Suspensión <i>✚</i> Repuestos y accesorios <i>✚</i> Otros equipos <i>✚</i></span>
+    <span>Sistemas de Niple Lubing <i>✚</i> Transportador de Huevo <i>✚</i> Cerramientos <i>✚</i> Bebederos <i>✚</i> Comederos <i>✚</i> Suspensión <i>✚</i> Repuestos y accesorios <i>✚</i> Otros equipos <i>✚</i></span>
+  </div>
+</div>
+
+<!-- ================= SISTEMAS ================= -->
+<section class="sec" id="sistemas">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lbl rv">01 / Sistemas completos</span>
+      <h2 class="rv">Tres sistemas.<br>Una granja <em>imparable.</em></h2>
+      <p class="rv">Los sistemas grandes no se compran a ciegas: se diseñan para tu galpón. Por eso van con visita técnica gratis y cotización a tu medida.</p>
+    </div>
+    <div class="sys">
+      <div class="sys-row rv">
+        <div class="sys-num">01</div>
+        <div class="sys-body">
+          <div class="mono-ref">REF SNL · Línea alemana Lubing</div>
+          <h3>Sistema de Niple Lubing</h3>
+          <p>Agua limpia y constante para cada ave, sin desperdicio y sin trabajo manual. La línea de bebida más confiable del mercado.</p>
+          <ul class="specs">
+            <li><span class="k">Aves</span><span class="dots"></span><span class="v">Pollo · Ponedora · Pavo</span></li>
+            <li><span class="k">Incluye</span><span class="dots"></span><span class="v">Niples, reguladores, tubería</span></li>
+            <li><span class="k">Instalación</span><span class="dots"></span><span class="v">Incluida</span></li>
+          </ul>
+          <a href="#cotizar" class="btn btn-ink" data-sys="Sistema de Niple Lubing">Cotizar este sistema →</a>
+        </div>
+        <div class="sys-img"><img src="https://cdn.shopify.com/s/files/1/0708/8416/3653/files/EnSamSoluciones_51.jpg" alt="Sistema de bebederos de niple Lubing" loading="lazy" onerror="this.parentElement.style.background='var(--paper2)'"></div>
+      </div>
+
+      <div class="sys-row rv">
+        <div class="sys-num">02</div>
+        <div class="sys-body">
+          <div class="mono-ref">REF TH · Recolección automática</div>
+          <h3>Transportador de Huevo</h3>
+          <p>El huevo viaja solo del galpón a la clasificadora — con curvas, sin quiebres y sin cuadrillas recogiendo a mano.</p>
+          <ul class="specs">
+            <li><span class="k">Tipo</span><span class="dots"></span><span class="v">Recto y con curvas</span></li>
+            <li><span class="k">Beneficio</span><span class="dots"></span><span class="v">Menos quiebre, menos mano de obra</span></li>
+            <li><span class="k">Repuestos</span><span class="dots"></span><span class="v">Bandas, poleas, guayas en stock</span></li>
+          </ul>
+          <a href="#cotizar" class="btn btn-ink" data-sys="Transportador de Huevo">Cotizar este sistema →</a>
+        </div>
+        <div class="sys-img"><img src="https://cdn.shopify.com/s/files/1/0708/8416/3653/files/EnSamSoluciones_62.jpg" alt="Transportador de huevos con curvas en operación" loading="lazy" onerror="this.parentElement.style.background='var(--paper2)'"></div>
+      </div>
+
+      <div class="sys-row rv">
+        <div class="sys-num">03</div>
+        <div class="sys-body">
+          <div class="mono-ref">REF CR · Control de ambiente</div>
+          <h3>Cerramientos</h3>
+          <p>Clima controlado dentro del galpón: cortinas y cerramientos que protegen tus aves del frío, el viento y los cambios bruscos.</p>
+          <ul class="specs">
+            <li><span class="k">Sistema</span><span class="dots"></span><span class="v">Manual y automatizado</span></li>
+            <li><span class="k">Complementos</span><span class="dots"></span><span class="v">Ventiladores, foggers, Turbo Fence</span></li>
+            <li><span class="k">Diseño</span><span class="dots"></span><span class="v">A la medida de tu galpón</span></li>
+          </ul>
+          <a href="#cotizar" class="btn btn-ink" data-sys="Cerramientos">Cotizar este sistema →</a>
+        </div>
+        <div class="sys-img"><img src="https://cdn.shopify.com/s/files/1/0708/8416/3653/files/EnSamSoluciones_47.jpg" alt="Cerramiento Turbo Fence para galpón avícola" loading="lazy" onerror="this.parentElement.style.background='var(--paper2)'"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIENDA ================= -->
+<section class="sec" id="tienda">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lbl rv">02 / Tienda de repuestos</span>
+      <h2 class="rv">Repuestos a un clic,<br><em>sin esperar a que algo falle.</em></h2>
+      <p class="rv">Pide hoy y despachamos a todo el país. El mismo repuesto original que instalamos nosotros — en tu granja, no en una promesa.</p>
+    </div>
+
+    <div class="filters rv" role="group" aria-label="Filtrar repuestos">
+      <button class="filter on" data-f="all">Todos</button>
+      <button class="filter" data-f="bebida">Bebida · Niples</button>
+      <button class="filter" data-f="huevo">Transporte de huevo</button>
+      <button class="filter" data-f="clima">Clima y otros</button>
+    </div>
+
+    <div class="prod-grid" id="prodGrid"><!-- productos por JS --></div>
+
+    <div class="tienda-note rv">
+      <p><b>¿No ves tu repuesto?</b> Tenemos más de 50 referencias en catálogo. Escríbenos por WhatsApp con la foto de la pieza y te la conseguimos.</p>
+      <a href="#" class="btn btn-yolk wa-link" data-msg="Hola SAM 👋 Busco un repuesto que no vi en la tienda:">Buscar mi repuesto</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESO ================= -->
+<section class="sec" id="proceso">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lbl rv">03 / Cómo trabajamos</span>
+      <h2 class="rv">De la visita<br>a la granja <em>andando.</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step rv">
+        <div class="s-num">01</div>
+        <span class="s-tag">Gratis</span>
+        <h3>Visita técnica</h3>
+        <p>Vamos a tu granja, medimos tu galpón y entendemos tu operación. Sin costo y sin compromiso.</p>
+      </div>
+      <div class="step rv">
+        <div class="s-num">02</div>
+        <span class="s-tag">A tu medida</span>
+        <h3>Diseño y cotización</h3>
+        <p>Te proponemos el sistema exacto para tu producción — ni más, ni menos. Números claros.</p>
+      </div>
+      <div class="step rv">
+        <div class="s-num">03</div>
+        <span class="s-tag">Incluida</span>
+        <h3>Instalación y arranque</h3>
+        <p>Nuestro equipo instala, prueba y deja todo andando. Tú sigues produciendo mientras tanto.</p>
+      </div>
+      <div class="step rv">
+        <div class="s-num">04</div>
+        <span class="s-tag">De por vida</span>
+        <h3>Soporte y repuestos</h3>
+        <p>Repuestos originales a un clic y un equipo que responde cuando lo necesitas. No te dejamos solo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESPALDO (dark) ================= -->
+<section class="sec dark" id="respaldo">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lbl rv">04 / El respaldo</span>
+      <h2 class="rv">Equipos serios,<br>para gente <em>del campo.</em></h2>
+    </div>
+    <div class="resp-grid">
+      <ul class="resp-list rv">
+        <li><span class="ck">✓</span><p><b>Repuestos originales Lubing</b> — la línea alemana de bebida más usada en avicultura seria.</p></li>
+        <li><span class="ck">✓</span><p><b>Instalación con nuestro propio equipo</b> — no subcontratamos tu granja.</p></li>
+        <li><span class="ck">✓</span><p><b>Despacho a todo el país</b> — tu repuesto sale hoy, no la otra semana.</p></li>
+        <li><span class="ck">✓</span><p><b>Asesoría de verdad</b> — te decimos qué necesitas, no lo más caro del catálogo.</p></li>
+      </ul>
+      <div class="resp-quote rv">
+        <p class="q">"Un sistema bien instalado se paga solo: <i>menos huevo quebrado, menos agua perdida y menos gente haciendo lo que la máquina hace mejor.</i>"</p>
+        <div class="who">SAM Soluciones · Soluciones Agropecuarias Maestras</div>
+        <div class="resp-img">
+          <img src="https://cdn.shopify.com/s/files/1/0708/8416/3653/files/EnSamSoluciones_62.jpg" alt="Huevos en transportador automático" loading="lazy" onerror="this.parentElement.style.display='none'">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ATENCIÓN ================= -->
+<section class="sec">
+  <div class="wrap aten">
+    <div>
+      <span class="lbl rv">05 / Siempre disponibles</span>
+      <h2 class="rv">Te respondemos<br><em>a la hora que sea.</em></h2>
+      <p class="rv">En el campo las cosas no fallan en horario de oficina. Escríbenos por WhatsApp de día, de noche o un domingo — te contesta un equipo que conoce tu granja y tu sistema.</p>
+      <div class="hero-ctas rv" style="margin-top:1.6rem">
+        <a href="#" class="btn btn-solid wa-link" data-msg="Hola SAM 👋 Tengo una pregunta sobre mi granja:">Escríbenos por WhatsApp</a>
+      </div>
+    </div>
+    <div class="aten-card rv">
+      <div class="chatline"><div class="av">SAM</div><div class="bub">¡Hola! 👋 ¿Cómo va la granja? ¿En qué te ayudamos hoy?</div></div>
+      <div class="chatline"><div class="bub me">Se me está goteando una línea de niples en el galpón 3 😩</div></div>
+      <div class="chatline"><div class="av">SAM</div><div class="bub">Tranquilo, eso se arregla. ¿Me mandas una foto del niple? Seguro es el sello — lo tenemos en stock y te lo despachamos hoy mismo 🙌</div></div>
+      <div class="chat-hint">Atención real · todos los días · 24/7</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COTIZAR ================= -->
+<section class="sec" id="cotizar">
+  <div class="wrap quote-grid">
+    <div>
+      <span class="lbl rv">06 / Cotiza tu sistema</span>
+      <h2 class="rv" style="font-size:clamp(1.9rem,4vw,3rem);font-weight:900;text-transform:uppercase;margin-top:.9rem">Armemos los números<br>de <em style="font-style:normal;color:var(--green)">tu granja.</em></h2>
+      <p class="rv" style="margin-top:1rem;color:var(--ink-soft);max-width:440px">Cuéntanos qué necesitas y te visitamos gratis. En la visita medimos, diseñamos y te damos un precio claro — sin letra pequeña.</p>
+      <ul class="specs rv" style="margin-top:1.5rem;max-width:420px">
+        <li><span class="k">Visita técnica</span><span class="dots"></span><span class="v">Gratis</span></li>
+        <li><span class="k">Cotización</span><span class="dots"></span><span class="v">A tu medida</span></li>
+        <li><span class="k">Respuesta</span><span class="dots"></span><span class="v">El mismo día</span></li>
+      </ul>
+    </div>
+    <form class="qform rv" id="quoteForm">
+      <div class="f-row">
+        <div class="field"><label for="qn">Tu nombre</label><input id="qn" name="nombre" type="text" placeholder="¿Cómo te llamas?" required></div>
+        <div class="field"><label for="qt">WhatsApp</label><input id="qt" name="tel" type="tel" placeholder="300 000 0000" required></div>
+      </div>
+      <div class="f-row">
+        <div class="field"><label for="qd">Departamento</label><input id="qd" name="depto" type="text" placeholder="Ej: Cundinamarca"></div>
+        <div class="field"><label for="qs">Sistema que te interesa</label>
+          <select id="qs" name="sistema">
+            <option>Sistema de Niple Lubing</option>
+            <option>Transportador de Huevo</option>
+            <option>Cerramientos</option>
+            <option>Bebederos / Comederos</option>
+            <option>Repuestos</option>
+            <option>Aún no sé — asesórenme</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label for="qa">Tamaño de tu granja (aves aprox.)</label><input id="qa" name="aves" type="text" placeholder="Ej: 10.000 aves"></div>
+      <div class="field"><label for="qm">Cuéntanos de tu proyecto</label><textarea id="qm" name="msg" placeholder="Ej: quiero automatizar la bebida en 2 galpones…"></textarea></div>
+      <button type="submit" class="btn btn-solid">Pedir mi visita técnica gratis →</button>
+      <p class="q-alt">Te llega directo a nuestro WhatsApp. Sin spam, sin vueltas.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="fb-name">SAM <span>Soluciones</span></div>
+        <p>Soluciones Agropecuarias Maestras. Equipos para avicultura y agro, con instalación, repuestos y soporte en toda Colombia.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Sistemas</h4>
+        <a href="#sistemas">Niple Lubing</a>
+        <a href="#sistemas">Transportador de Huevo</a>
+        <a href="#sistemas">Cerramientos</a>
+        <a href="#tienda">Bebederos y comederos</a>
+      </div>
+      <div class="foot-col">
+        <h4>Tienda</h4>
+        <a href="#tienda">Repuestos y accesorios</a>
+        <a href="#tienda">Niples y reguladores</a>
+        <a href="#tienda">Bandas y poleas</a>
+        <a href="#cotizar">Cotizar un sistema</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contacto</h4>
+        <a href="#" class="wa-link" data-msg="Hola SAM 👋">WhatsApp 24/7</a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 SAM Soluciones · Colombia</span>
+      <span>Sitio propuesto por <a href="https://remake-ai-web.vercel.app" target="_blank" rel="noopener">REMAKE</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= CARRITO ================= -->
+<div class="backdrop" id="backdrop"></div>
+<aside class="drawer" id="drawer" aria-label="Carrito de compras">
+  <div class="drawer-head">
+    <h3>Tu pedido</h3>
+    <button class="drawer-close" id="cartClose" aria-label="Cerrar carrito">✕</button>
+  </div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot">
+    <div class="d-sub"><span class="k">Subtotal</span><span class="v" id="cartTotal">$ 0</span></div>
+    <p class="d-note">El envío se confirma con tu ciudad al cerrar el pedido.</p>
+    <a href="#" class="btn btn-solid d-wa" id="checkoutWa">Finalizar pedido por WhatsApp →</a>
+  </div>
+</aside>
+
+<a href="#" class="wa-fab wa-link" data-msg="Hola SAM 👋 Vengo de la página web:" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.2c1.9 1 4 1.6 6.3 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3zm6.6 17c-.3.8-1.6 1.5-2.2 1.6-.6.1-1.3.2-3.7-.8-3.1-1.3-5.1-4.4-5.3-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .5-.1.7.5l1 2.4c.1.2.1.4 0 .6l-.4.7-.6.6c-.2.2-.4.4-.2.7.2.4 1 1.7 2.2 2.7 1.5 1.3 2.8 1.7 3.2 1.9.4.2.6.1.8-.1l1.3-1.5c.3-.3.5-.3.8-.2l2.6 1.2c.4.2.7.3.8.5.1.1.1.9-.2 1.6z"/></svg>
+</a>
+
+<span class="demo-badge"><b>DEMO</b> · Rediseño propuesto por REMAKE</span>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ====== CONFIG DEMO ======
+   Nº de WhatsApp: por ahora el de REMAKE para la demo — se cambia por el de SAM al entregar.
+   Precios: DE MUESTRA (su tienda hoy está en $0) — se cargan los reales desde su Shopify. */
+const WA = '15875854143';
+const CDN = 'https://cdn.shopify.com/s/files/1/0708/8416/3653/files/';
+
+/* ---------- catálogo (productos e imágenes REALES de samsoluciones.com) ---------- */
+const PRODUCTS = [
+  {id:'top-niple',   ref:'NL-054', name:'TOP-Niple Lubing',            price:18900,  img:CDN+'EnSamSoluciones_54.jpg', cat:'bebida'},
+  {id:'twin-lock',   ref:'NL-TWL', name:'Niple Twin-Lock',             price:21500,  img:CDN+'TwinLock..png',          cat:'bebida'},
+  {id:'combiniple',  ref:'NL-055', name:'TOP-Combiniple amarillo',     price:19800,  img:CDN+'EnSamSoluciones_55.jpg', cat:'bebida'},
+  {id:'reg-eflush',  ref:'RG-059', name:'Regulador de presión E-Flush',price:385000, img:CDN+'EnSamSoluciones_59.jpg', cat:'bebida'},
+  {id:'reg-inicio',  ref:'RG-057', name:'Regulador inicio de línea',   price:295000, img:CDN+'EnSamSoluciones_57.jpg', cat:'bebida'},
+  {id:'polea',       ref:'TH-068', name:'Polea transportador',         price:45000,  img:CDN+'EnSamSoluciones_68.jpg', cat:'huevo'},
+  {id:'guaya',       ref:'TH-065', name:'Guaya para transportador',    price:38000,  img:CDN+'EnSamSoluciones_65.jpg', cat:'huevo'},
+  {id:'tensor',      ref:'TH-070', name:'Tensor',                      price:28000,  img:CDN+'EnSamSoluciones_70.jpg', cat:'huevo'},
+  {id:'sello',       ref:'TH-069', name:'Sello',                       price:8500,   img:CDN+'EnSamSoluciones_69.jpg', cat:'huevo'},
+  {id:'fogger',      ref:'CL-040', name:'Fogger de enfriamiento',      price:64000,  img:CDN+'EnSamSoluciones_40.jpg', cat:'clima'},
+  {id:'ventilador',  ref:'CL-038', name:'Ventilador de galpón',        price:890000, img:CDN+'EnSamSoluciones_38.jpg', cat:'clima'},
+  {id:'dosatron',    ref:'CL-037', name:'Dosificador Dosatron',        price:1450000,img:CDN+'EnSamSoluciones_37.jpg', cat:'clima'},
+];
+
+const fmt = new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0});
+const $ = s=>document.querySelector(s);
+
+/* ---------- render productos ---------- */
+const grid = $('#prodGrid');
+function renderProducts(f='all'){
+  grid.innerHTML = PRODUCTS.filter(p=>f==='all'||p.cat===f).map(p=>`
+    <article class="prod rv in" data-cat="${p.cat}">
+      <div class="prod-img">
+        <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='var(--paper2)'">
+        <span class="prod-stock">En stock</span>
+      </div>
+      <div class="prod-body">
+        <div class="prod-ref">REF ${p.ref}</div>
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-foot">
+          <div class="prod-price">${fmt.format(p.price)}<small>COP · unidad</small></div>
+          <button class="add-btn" data-add="${p.id}" aria-label="Agregar ${p.name} al carrito">Agregar</button>
+        </div>
+      </div>
+    </article>`).join('');
+}
+renderProducts();
+
+/* filtros */
+document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.filter').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  renderProducts(b.dataset.f);
+}));
+
+/* ---------- carrito ---------- */
+let cart = {};
+try{ cart = JSON.parse(localStorage.getItem('samCart')||'{}'); }catch(e){ cart={}; }
+const save = ()=>localStorage.setItem('samCart',JSON.stringify(cart));
+const count = ()=>Object.values(cart).reduce((a,b)=>a+b,0);
+const total = ()=>Object.entries(cart).reduce((a,[id,q])=>{const p=PRODUCTS.find(x=>x.id===id);return a+(p?p.price*q:0)},0);
+
+function syncCartUI(){
+  const c = $('#cartCount');
+  c.textContent = count();
+  $('#cartTotal').textContent = fmt.format(total());
+  const box = $('#drawerItems');
+  const items = Object.entries(cart).filter(([id,q])=>q>0);
+  if(!items.length){ box.innerHTML = '<div class="drawer-empty">Tu carrito está vacío.<br>Los repuestos de tu granja te esperan 🐣</div>'; return; }
+  box.innerHTML = items.map(([id,q])=>{
+    const p = PRODUCTS.find(x=>x.id===id); if(!p) return '';
+    return `<div class="d-item">
+      <img src="${p.img}" alt="" onerror="this.style.visibility='hidden'">
+      <div>
+        <div class="di-n">${p.name}</div>
+        <div class="di-p">REF ${p.ref} · ${fmt.format(p.price)} c/u</div>
+        <div class="qty">
+          <button data-dec="${id}" aria-label="Quitar uno">−</button><b>${q}</b><button data-inc="${id}" aria-label="Agregar uno">+</button>
+        </div>
+      </div>
+      <div>
+        <div class="di-total">${fmt.format(p.price*q)}</div>
+        <button class="di-rm" data-rm="${id}">Quitar</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+syncCartUI();
+
+function toast(msg){
+  const t = $('#toast'); t.innerHTML = msg; t.classList.add('show');
+  clearTimeout(t._h); t._h = setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+document.addEventListener('click',e=>{
+  const add = e.target.closest('[data-add]');
+  if(add){
+    const id = add.dataset.add;
+    cart[id] = (cart[id]||0)+1; save(); syncCartUI();
+    $('#cartCount').classList.remove('bump'); void $('#cartCount').offsetWidth; $('#cartCount').classList.add('bump');
+    const p = PRODUCTS.find(x=>x.id===id);
+    toast(`<b>✓</b> ${p.name} agregado`);
+  }
+  const inc = e.target.closest('[data-inc]'); if(inc){ cart[inc.dataset.inc]++; save(); syncCartUI(); }
+  const dec = e.target.closest('[data-dec]'); if(dec){ const k=dec.dataset.dec; cart[k]=Math.max(0,cart[k]-1); if(!cart[k])delete cart[k]; save(); syncCartUI(); }
+  const rm  = e.target.closest('[data-rm]');  if(rm){ delete cart[rm.dataset.rm]; save(); syncCartUI(); }
+});
+
+/* drawer */
+const drawer=$('#drawer'), backdrop=$('#backdrop');
+const openCart=()=>{drawer.classList.add('open');backdrop.classList.add('show');document.body.style.overflow='hidden'};
+const closeCart=()=>{drawer.classList.remove('open');backdrop.classList.remove('show');document.body.style.overflow=''};
+$('#cartOpen').addEventListener('click',openCart);
+$('#cartClose').addEventListener('click',closeCart);
+backdrop.addEventListener('click',closeCart);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCart()});
+
+/* checkout por WhatsApp */
+$('#checkoutWa').addEventListener('click',e=>{
+  e.preventDefault();
+  const items = Object.entries(cart).filter(([,q])=>q>0);
+  if(!items.length){ toast('Tu carrito está vacío'); return; }
+  let msg = 'Hola SAM 👋 Quiero hacer este pedido desde la web:%0A%0A';
+  items.forEach(([id,q])=>{ const p=PRODUCTS.find(x=>x.id===id); msg+=`• ${q}× ${p.name} (REF ${p.ref}) — ${fmt.format(p.price*q)}%0A`; });
+  msg += `%0A*Total: ${fmt.format(total())}*%0A%0AMi ciudad para el envío es: `;
+  window.open(`https://wa.me/${WA}?text=${msg}`,'_blank');
+});
+
+/* enlaces WhatsApp genéricos */
+document.querySelectorAll('.wa-link').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(a.dataset.msg||'Hola SAM 👋')}`,'_blank');
+}));
+
+/* preselección de sistema al cotizar */
+document.querySelectorAll('[data-sys]').forEach(a=>a.addEventListener('click',()=>{ $('#qs').value = a.dataset.sys; }));
+
+/* formulario cotización → WhatsApp */
+$('#quoteForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const f = e.target;
+  const msg = `Hola SAM 👋 Quiero mi visita técnica gratis:%0A%0A`+
+    `• Nombre: ${encodeURIComponent(f.nombre.value)}%0A`+
+    `• WhatsApp: ${encodeURIComponent(f.tel.value)}%0A`+
+    `• Departamento: ${encodeURIComponent(f.depto.value||'—')}%0A`+
+    `• Sistema: ${encodeURIComponent(f.sistema.value)}%0A`+
+    `• Tamaño granja: ${encodeURIComponent(f.aves.value||'—')}%0A`+
+    `• Proyecto: ${encodeURIComponent(f.msg.value||'—')}`;
+  window.open(`https://wa.me/${WA}?text=${msg}`,'_blank');
+  toast('<b>✓</b> Abriendo WhatsApp con tu solicitud…');
+});
+
+/* ---------- header + menú móvil ---------- */
+const hdr=$('#hdr');
+window.addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>10),{passive:true});
+$('#burger').addEventListener('click',()=>$('#navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>$('#navLinks').classList.remove('open')));
+
+/* ---------- reveal ---------- */
+const io = new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.14});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
