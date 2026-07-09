@@ -419,6 +419,18 @@ body.dark-active .top-nav > * { color: var(--cream); }
 .flow-foot { margin-top: 0.3rem; font-size: 0.9rem; color: var(--ink-mute); }
 .flow-foot b { color: var(--ink); font-weight: 600; }
 
+/* ===== SLIDE: PAQUETE COMPLETO (cantidades) ===== */
+.pack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.6rem; }
+.pack-item { border: 1px solid var(--line); border-radius: 16px; padding: 1.4rem 1.3rem; background: var(--bg-alt); display: flex; flex-direction: column; gap: 0.5rem; }
+.pack-item.opt { background: transparent; border-style: dashed; }
+.pack-qty { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.85rem; line-height: 1; color: var(--accent); }
+.pack-item h3 { font-size: 1.05rem; color: var(--ink); margin: 0; }
+.pack-item p { font-size: 0.92rem; color: var(--ink-mute); line-height: 1.45; margin: 0; }
+.pack-tag { display: inline-block; align-self: flex-start; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--accent); }
+.pack-foot { margin-top: 1.3rem; font-size: 0.95rem; color: var(--ink-mute); line-height: 1.5; }
+.pack-foot b { color: var(--ink); }
+@media (max-width: 768px) { .pack-grid { grid-template-columns: 1fr; } }
+
 /* ===== SLIDE 7: LA OFERTA (3 regalos) ===== */
 .oferta { display: grid; grid-template-rows: auto 1fr auto; gap: 2rem; height: 100%; }
 .gifts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); }
@@ -583,7 +595,7 @@ body.dark-active .top-nav > * { color: var(--cream); }
 
 <div class="mobile-nav">
   <button id="mPrev">←</button>
-  <div class="progress-text"><span id="mNum">01</span> / 10</div>
+  <div class="progress-text"><span id="mNum">01</span> / 11</div>
   <button id="mNext">→</button>
 </div>
 
@@ -595,7 +607,7 @@ body.dark-active .top-nav > * { color: var(--cream); }
         <img src="/ami/ami-logo.png" alt="Clínica AMI — Odontología Integral" class="cover-ami-logo reveal" data-d="0" style="align-self:flex-start">
 
         <div class="line-mask"><span data-d="0" class="l1">Eduardo —</span></div>
-        <div class="line-mask"><span data-d="1" class="l2">Ya trabajamos juntos antes. Volvemos con algo que cuida a<br>tus pacientes y le da un respiro a tu equipo.</span></div>
+        <div class="line-mask"><span data-d="1" class="l2">Ya trabajamos juntos antes. Volvemos con el sistema completo:<br>te traemos pacientes nuevos y atendemos a cada uno.</span></div>
       </div>
 
       <h1 class="cover-title">
@@ -834,13 +846,63 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 8: LA OFERTA ===== -->
+<!-- ===== SLIDE 8: EL PAQUETE COMPLETO (crecer) ===== -->
 <section class="slide" data-num="08">
+  <div class="flow">
+    <div class="head">
+      <div class="line-mask"><span data-d="0" class="label">08 — El paquete completo</span></div>
+      <h2>
+        <span class="line-mask"><span data-d="1">No solo atendemos.</span></span>
+        <span class="line-mask"><span data-d="2">También te <span class="accent">llenamos la agenda.</span></span></span>
+      </h2>
+      <p class="head-sub reveal" data-d="3">Redes, contenido y pauta para que lleguen pacientes nuevos — y el asistente no deja escapar ni uno. Todo lo hacemos nosotros; tú solo apruebas.</p>
+    </div>
+
+    <div>
+      <div class="pack-grid">
+        <div class="pack-item reveal" data-d="3">
+          <span class="pack-tag">Redes</span>
+          <h3>Instagram + Facebook, al día</h3>
+          <p>Manejamos tus redes: publicamos, respondemos y cuidamos cómo se ve AMI.</p>
+        </div>
+        <div class="pack-item reveal" data-d="3">
+          <div class="pack-qty">12 + 4</div>
+          <h3>Contenido al mes</h3>
+          <p>12 publicaciones y 4 reels cada mes, diseñados por nosotros. Tú los apruebas.</p>
+        </div>
+        <div class="pack-item reveal" data-d="4">
+          <span class="pack-tag">Pauta gestionada</span>
+          <h3>Anuncios en Meta</h3>
+          <p>Campañas para atraer pacientes a tus 3 sedes. La inversión va aparte, directo a Meta.</p>
+        </div>
+        <div class="pack-item reveal" data-d="4">
+          <div class="pack-qty">3 / mes</div>
+          <h3>Tu web, al día</h3>
+          <p>Banners nuevos, promos e información nueva — hasta 3 cambios cada mes.</p>
+        </div>
+        <div class="pack-item opt reveal" data-d="5">
+          <span class="pack-tag">Si quieres</span>
+          <h3>2 blogs al mes</h3>
+          <p>Escribimos y subimos blogs para que te encuentren en Google. Opcional, cuando lo quieras.</p>
+        </div>
+        <div class="pack-item reveal" data-d="5">
+          <div class="pack-qty">1 / mes</div>
+          <h3>Reporte + reunión</h3>
+          <p>Un informe y una reunión al mes, con una persona de REMAKE a cargo de tu cuenta.</p>
+        </div>
+      </div>
+      <p class="pack-foot reveal" data-d="5">La pauta (la plata de los anuncios) va aparte, directo a Meta. <b>No prometemos un número mágico de pacientes — trabajamos para llenarte la agenda, y el asistente atiende a cada uno que llegue.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 9: LA OFERTA ===== -->
+<section class="slide" data-num="09">
   <div class="oferta">
     <div class="head">
-      <div class="line-mask"><span data-d="0" class="label">08 — La oferta · por el reencuentro</span></div>
+      <div class="line-mask"><span data-d="0" class="label">09 — La oferta · por el reencuentro</span></div>
       <h2>
-        <span class="line-mask"><span data-d="1">Solo pagas el bot.</span></span>
+        <span class="line-mask"><span data-d="1">Todo el sistema, un solo equipo.</span></span>
         <span class="line-mask"><span data-d="2">La web va <span class="accent">de regalo.</span></span></span>
       </h2>
     </div>
@@ -854,15 +916,16 @@ body.dark-active .top-nav > * { color: var(--cream); }
         <p>Rediseñada y lista para las 3 sedes. Por los años que trabajamos juntos.</p>
       </div>
       <div class="gift featured reveal" data-d="4">
-        <div class="gift-tag">Lo único que pagas</div>
-        <h3>Un asistente · 3 sedes</h3>
-        <div class="gift-anchor">Uno por sede: $3.600.000/mes</div>
-        <div class="gift-price"><span class="pv">$1.800.000</span><span class="pu">COP / mes</span></div>
+        <div class="gift-tag">Todo incluido</div>
+        <h3>Tu marketing + tu asistente</h3>
+        <div class="gift-anchor">Contratarlo por separado: $8.000.000+/mes</div>
+        <div class="gift-price"><span class="pv">$2.900.000</span><span class="pu">COP / mes</span></div>
         <div class="gift-pricenote">Las 3 sedes en un solo sistema · precio de reencuentro</div>
         <ul class="gift-list">
-          <li>Atiende y agenda 24/7 en las 3 sedes</li>
-          <li>Detecta urgencias y las prioriza</li>
-          <li><b>Revisado a mano por nuestro equipo humano</b></li>
+          <li>Asistente que atiende y agenda 24/7 en las 3 sedes</li>
+          <li>Redes + 12 posts y 4 reels al mes + pauta gestionada</li>
+          <li>Tu web al día · reporte y reunión cada mes</li>
+          <li><b>Todo revisado a mano por nuestro equipo humano</b></li>
         </ul>
       </div>
       <div class="gift reveal" data-d="5">
@@ -881,16 +944,16 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 9: ¿ES CARO? (comparativo) ===== -->
-<section class="slide" data-num="09">
+<!-- ===== SLIDE 10: ¿ES CARO? (comparativo) ===== -->
+<section class="slide" data-num="10">
   <div class="vs">
     <div class="head">
-      <div class="line-mask"><span data-d="0" class="label">09 — ¿Es caro?</span></div>
+      <div class="line-mask"><span data-d="0" class="label">10 — ¿Es caro?</span></div>
       <h2>
         <span class="line-mask"><span data-d="1">Hazlo con gente</span></span>
         <span class="line-mask"><span data-d="2">y cuesta <span class="accent">mucho más.</span></span></span>
       </h2>
-      <p class="head-sub reveal" data-d="3">Una persona cubre 8 horas y una sede. Para estar 24/7 en las 3, necesitarías un equipo entero — por varias veces el precio.</p>
+      <p class="head-sub reveal" data-d="3">Contenido, pauta, redes y atención 24/7 en las 3 sedes. Hacerlo con gente es un equipo entero — y cuesta varias veces más.</p>
     </div>
 
     <div class="vs-grid">
@@ -901,36 +964,36 @@ body.dark-active .top-nav > * { color: var(--cream); }
         <div class="vs-note">Con prestaciones. Cubre 8 horas y 1 sede, entre semana. De noche y en fin de semana, <b>nadie contesta.</b></div>
       </div>
       <div class="vs-card reveal" data-d="4">
-        <div class="vs-label">24/7 en las 3 sedes, con gente</div>
-        <div class="vs-price">$6.000.000+ <small>/mes aprox.</small></div>
+        <div class="vs-label">Marketing + atención, con gente</div>
+        <div class="vs-price">$8.000.000+ <small>/mes aprox.</small></div>
         <div class="vs-bar"><i style="width:100%"></i></div>
-        <div class="vs-note">Varias personas por turnos para cubrir día, noche y fin de semana. Y aun así, se cansan y se les escapan mensajes.</div>
+        <div class="vs-note">Community manager + quien maneje la pauta + varias personas por turnos para atender 24/7 las 3 sedes. Y aun así, se cansan y se les escapan mensajes.</div>
       </div>
       <div class="vs-card featured reveal" data-d="5">
         <div class="vs-label">REMAKE — todo el sistema</div>
-        <div class="vs-price">$1.800.000 <small>/mes</small></div>
-        <div class="vs-bar"><i style="width:30%"></i></div>
-        <div class="vs-note"><b>24/7 · las 3 sedes · nunca se cansa · recuerda a cada paciente · web gratis.</b> Y con Mateo y Juliana detrás.</div>
+        <div class="vs-price">$2.900.000 <small>/mes</small></div>
+        <div class="vs-bar"><i style="width:36%"></i></div>
+        <div class="vs-note"><b>Marketing + asistente 24/7 · las 3 sedes · web gratis · nunca se cansa · recuerda a cada paciente.</b> Y con Mateo y Juliana detrás.</div>
       </div>
     </div>
 
-    <p class="vs-foot reveal" data-d="5">Cifras aproximadas de nómina en Colombia (con prestaciones). <b style="color:var(--ink)">El asistente cuesta menos que una sola persona — y cubre muchísimo más.</b></p>
+    <p class="vs-foot reveal" data-d="5">Cifras aproximadas de nómina en Colombia (con prestaciones). <b style="color:var(--ink)">Todo el sistema cuesta menos que armar el equipo — y no se cansa ni se le escapa nadie.</b></p>
   </div>
 </section>
 
-<!-- ===== SLIDE 10: CIERRE ===== -->
-<section class="slide" data-num="10">
+<!-- ===== SLIDE 11: CIERRE ===== -->
+<section class="slide" data-num="11">
   <div class="cierre">
     <div class="cierre-text">
       <div>
-        <div class="line-mask"><span data-d="0" class="label">10 — El siguiente paso</span></div>
+        <div class="line-mask"><span data-d="0" class="label">11 — El siguiente paso</span></div>
         <p class="cierre-greeting reveal" data-d="1">Eduardo —</p>
         <h2>
           <span class="line-mask"><span data-d="2">Trabajemos</span></span>
           <span class="line-mask"><span data-d="3">juntos, <span class="accent">otra vez.</span></span></span>
         </h2>
         <p class="cierre-message reveal" data-d="4">
-          Ya nos conocemos, y eso hace todo más fácil. Ahora traigo algo que atiende a tus pacientes solo, en las 3 sedes, a toda hora — montado y operado por nosotros. Agendemos una llamada y armamos los números.
+          Ya nos conocemos, y eso hace todo más fácil. Ahora traigo el sistema completo: te traemos pacientes nuevos y atendemos a cada uno en las 3 sedes, a toda hora — montado y operado por nosotros. Agendemos una llamada y armamos los números.
         </p>
       </div>
 
