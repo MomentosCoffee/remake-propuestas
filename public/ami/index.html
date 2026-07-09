@@ -76,7 +76,7 @@ body {
   scroll-snap-align: start;
 }
 
-@media (max-width: 768px) { .slide { padding: 5rem var(--pad-x) 6rem; } }
+@media (max-width: 768px) { .slide { padding: 5rem var(--pad-x) 6rem; min-height: 100dvh; } body { scroll-snap-type: y proximity; } }
 
 .slide.slide-dark { background: var(--ink); color: var(--cream); }
 .slide.slide-dark h1, .slide.slide-dark h2, .slide.slide-dark h3 { color: var(--cream); }
