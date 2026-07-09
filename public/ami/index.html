@@ -569,7 +569,9 @@ body.dark-active .top-nav > * { color: var(--cream); }
 .vs-card.featured .vs-note b { color: #fff; }
 .vs-foot { font-size: 0.78rem; color: var(--ink-mute); line-height: 1.5; }
 
-.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--grad); z-index: 200; transition: width 0.1s linear; width: 0%; }
+.scroll-progress-track { position: fixed; top: 0; left: 0; right: 0; height: 4px; background: rgba(10,10,10,0.08); z-index: 199; }
+body.dark-active .scroll-progress-track { background: rgba(255,255,255,0.12); }
+.scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--grad); z-index: 200; transition: width 0.15s linear; width: 0%; box-shadow: 0 0 10px rgba(246,74,0,0.45); border-radius: 0 3px 3px 0; }
 
 .mobile-nav { display: none; }
 @media (max-width: 768px) {
@@ -601,6 +603,7 @@ body.dark-active .top-nav > * { color: var(--cream); }
 <body>
 
 <div class="cursor" id="cursor"></div>
+<div class="scroll-progress-track"></div>
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <div class="top-nav">
