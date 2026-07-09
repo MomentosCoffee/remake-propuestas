@@ -431,6 +431,21 @@ body.dark-active .top-nav > * { color: var(--cream); }
 .pack-foot b { color: var(--ink); }
 @media (max-width: 768px) { .pack-grid { grid-template-columns: 1fr; } }
 
+/* ===== SLIDE: PAUTA + BENCHMARK (2 opciones) ===== */
+.bench-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1.6rem; }
+.bench-card { border: 1px solid var(--line); border-radius: 18px; padding: 1.9rem 1.7rem; background: var(--bg-alt); }
+.bench-card.featured { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.bench-k { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin-bottom: 0.8rem; }
+.bench-n { font-family: 'Fraunces', serif; font-weight: 400; font-size: 2.1rem; line-height: 1; }
+.bench-n small { font-size: 0.85rem; color: var(--ink-mute); }
+.bench-card.featured .bench-n small { color: rgba(255,255,255,0.6); }
+.bench-est { font-size: 1.1rem; font-weight: 600; margin: 1.1rem 0 0.2rem; }
+.bench-est span { display: block; font-size: 0.82rem; font-weight: 400; color: var(--ink-mute); margin-top: 0.2rem; }
+.bench-card.featured .bench-est span { color: rgba(255,255,255,0.72); }
+.bench-card p { font-size: 0.9rem; color: var(--ink-mute); margin-top: 0.9rem; line-height: 1.45; }
+.bench-card.featured p { color: rgba(255,255,255,0.72); }
+@media (max-width: 768px) { .bench-grid { grid-template-columns: 1fr; } }
+
 /* ===== SLIDE 7: LA OFERTA (3 regalos) ===== */
 .oferta { display: grid; grid-template-rows: auto 1fr auto; gap: 2rem; height: 100%; }
 .gifts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); }
@@ -590,12 +605,12 @@ body.dark-active .top-nav > * { color: var(--cream); }
 
 <div class="top-nav">
   <div class="nav-logo"><span class="rmk-mark">REMAKE</span><span class="grad-dot"></span><span class="ami-navmark"><img src="/ami/ami-logo.png" alt="Clínica AMI"></span> <span style="opacity: 0.5; font-weight: 400;">para Clínica AMI</span></div>
-  <div class="nav-meta"><span id="navNum">01</span> / 11</div>
+  <div class="nav-meta"><span id="navNum">01</span> / 12</div>
 </div>
 
 <div class="mobile-nav">
   <button id="mPrev">←</button>
-  <div class="progress-text"><span id="mNum">01</span> / 11</div>
+  <div class="progress-text"><span id="mNum">01</span> / 12</div>
   <button id="mNext">→</button>
 </div>
 
@@ -611,8 +626,8 @@ body.dark-active .top-nav > * { color: var(--cream); }
       </div>
 
       <h1 class="cover-title">
-        <span class="line-mask"><span data-d="2">Atendemos y agendamos</span></span>
-        <span class="line-mask"><span data-d="3">a cada paciente de AMI —</span></span>
+        <span class="line-mask"><span data-d="2">Más pacientes.</span></span>
+        <span class="line-mask"><span data-d="3">Y a cada uno, atendido —</span></span>
         <span class="line-mask"><span data-d="4">en tus 3 sedes,</span></span>
         <span class="line-mask"><span data-d="5" class="accent">a toda hora.</span></span>
       </h1>
@@ -896,11 +911,42 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 9: LA OFERTA ===== -->
+<!-- ===== SLIDE 9: LA PAUTA + BENCHMARK ===== -->
 <section class="slide" data-num="09">
+  <div class="flow">
+    <div class="head">
+      <div class="line-mask"><span data-d="0" class="label">09 — La pauta (aparte)</span></div>
+      <h2>
+        <span class="line-mask"><span data-d="1">La pauta va aparte.</span></span>
+        <span class="line-mask"><span data-d="2">Te decimos <span class="accent">cuánto invertir.</span></span></span>
+      </h2>
+      <p class="head-sub reveal" data-d="3">La inversión en anuncios es tuya y va directo a Meta — nosotros la gestionamos. Según cuánto quieras crecer, te recomendamos dos caminos (cifras estimadas para Colombia; las afinamos con datos reales antes de arrancar):</p>
+    </div>
+    <div>
+      <div class="bench-grid">
+        <div class="bench-card reveal" data-d="3">
+          <div class="bench-k">Opción A · Arranque</div>
+          <div class="bench-n">$700.000 <small>COP / mes</small></div>
+          <div class="bench-est">≈ 30–60 <span>conversaciones de pacientes nuevos al mes</span></div>
+          <p>Para empezar a llenar la agenda sin arriesgar mucho.</p>
+        </div>
+        <div class="bench-card featured reveal" data-d="4">
+          <div class="bench-k">Opción B · Crecimiento</div>
+          <div class="bench-n">$1.500.000 <small>COP / mes</small></div>
+          <div class="bench-est">≈ 70–130 <span>conversaciones de pacientes nuevos al mes</span></div>
+          <p>Para crecer más rápido en las 3 sedes.</p>
+        </div>
+      </div>
+      <p class="pack-foot reveal" data-d="5">Son <b>conversaciones de gente interesada</b> — el asistente las atiende y agenda. No prometemos un número de pacientes cerrados; sí ponemos todo el sistema a trabajar para lograrlo. <b>La plata de la pauta nunca pasa por nosotros: tú decides cuánto invertir.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 10: LA OFERTA ===== -->
+<section class="slide" data-num="10">
   <div class="oferta">
     <div class="head">
-      <div class="line-mask"><span data-d="0" class="label">09 — La oferta · por el reencuentro</span></div>
+      <div class="line-mask"><span data-d="0" class="label">10 — La oferta · por el reencuentro</span></div>
       <h2>
         <span class="line-mask"><span data-d="1">Todo el sistema, un solo equipo.</span></span>
         <span class="line-mask"><span data-d="2">La web va <span class="accent">de regalo.</span></span></span>
@@ -944,11 +990,11 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 10: ¿ES CARO? (comparativo) ===== -->
-<section class="slide" data-num="10">
+<!-- ===== SLIDE 11: ¿ES CARO? (comparativo) ===== -->
+<section class="slide" data-num="11">
   <div class="vs">
     <div class="head">
-      <div class="line-mask"><span data-d="0" class="label">10 — ¿Es caro?</span></div>
+      <div class="line-mask"><span data-d="0" class="label">11 — ¿Es caro?</span></div>
       <h2>
         <span class="line-mask"><span data-d="1">Hazlo con gente</span></span>
         <span class="line-mask"><span data-d="2">y cuesta <span class="accent">mucho más.</span></span></span>
@@ -981,12 +1027,12 @@ body.dark-active .top-nav > * { color: var(--cream); }
   </div>
 </section>
 
-<!-- ===== SLIDE 11: CIERRE ===== -->
-<section class="slide" data-num="11">
+<!-- ===== SLIDE 12: CIERRE ===== -->
+<section class="slide" data-num="12">
   <div class="cierre">
     <div class="cierre-text">
       <div>
-        <div class="line-mask"><span data-d="0" class="label">11 — El siguiente paso</span></div>
+        <div class="line-mask"><span data-d="0" class="label">12 — El siguiente paso</span></div>
         <p class="cierre-greeting reveal" data-d="1">Eduardo —</p>
         <h2>
           <span class="line-mask"><span data-d="2">Trabajemos</span></span>
