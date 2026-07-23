@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan de trabajo — REMAKE × Clínica AMI</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.className = 'js';</script>
+<style>
+:root {
+  --bg: #F2EFE8;
+  --bg-alt: #E8E4DA;
+  --ink: #0A0A0A;
+  --ink-soft: #1A1A1A;
+  --ink-mute: #6B6B6B;
+  --ink-light: #9B9A97;
+  --accent: #F64A00;
+  --blue: #18336E;
+  --beige: #E5C29B;
+  --green: #1F4D3A;
+  --line: rgba(10,10,10,0.12);
+  --dark: #0A0A0A;
+  --cream: #F2EFE8;
+  --grad: linear-gradient(118deg, #18336E 0%, #3A46A0 34%, #F64A00 78%, #E5C29B 100%);
+  --grad-bright: linear-gradient(118deg, #6EA0FF 0%, #F64A00 66%, #FFC89E 100%);
+  --pad-x: 4rem;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (max-width: 768px) { :root { --pad-x: 1.5rem; } }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: var(--bg); scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: 'Space Grotesk', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+/* ===== NAV ===== */
+.top-nav {
+  position: fixed; top: 0; left: 0; right: 0; height: 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--pad-x); z-index: 100;
+  background: rgba(242,239,232,0.92);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(10,10,10,0.06);
+  transition: background 0.5s var(--ease), color 0.5s var(--ease);
+}
+.nav-logo { display: flex; align-items: center; gap: 0.7rem; }
+.nav-logo img { height: 24px; width: auto; display: block; transition: opacity 0.4s; }
+.nav-logo .logo-black { opacity: 1; }
+.nav-logo .logo-white { opacity: 0; position: absolute; }
+.nav-logo .soft { font-weight: 400; font-size: 0.9rem; letter-spacing: 0.02em; color: var(--ink-mute); }
+.nav-meta { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; color: var(--ink-mute); }
+body.dark-active .top-nav { background: rgba(10,10,10,0.92); border-bottom-color: rgba(255,255,255,0.1); }
+body.dark-active .nav-logo .logo-black { opacity: 0; }
+body.dark-active .nav-logo .logo-white { opacity: 1; position: static; }
+body.dark-active .nav-logo .soft { color: rgba(255,255,255,0.6); }
+body.dark-active .nav-meta { color: rgba(255,255,255,0.6); }
+@media (max-width: 768px) { .top-nav { height: 3.5rem; padding: 0 1.25rem; } .nav-meta { font-size: 0.6rem; } .nav-logo .soft { display: none; } }
+
+.scroll-progress-track { position: fixed; top: 0; left: 0; right: 0; height: 4px; background: rgba(10,10,10,0.08); z-index: 199; }
+body.dark-active .scroll-progress-track { background: rgba(255,255,255,0.12); }
+.scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--grad); z-index: 200; width: 0%; box-shadow: 0 0 10px rgba(246,74,0,0.45); border-radius: 0 3px 3px 0; }
+
+/* ===== BLOQUES ===== */
+.block { position: relative; padding: 7rem var(--pad-x) 5rem; overflow: hidden; }
+.block.dark { background: var(--ink); color: var(--cream); }
+.block.dark h1, .block.dark h2, .block.dark h3 { color: var(--cream); }
+.block.dark p { color: rgba(255,255,255,0.82); }
+.block.dark .label { color: rgba(255,255,255,0.6); }
+.wrap { max-width: 1080px; margin: 0 auto; }
+
+h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 500; letter-spacing: -0.03em; line-height: 1; color: var(--ink); }
+.serif { font-family: 'Fraunces', serif; font-weight: 400; font-style: italic; letter-spacing: -0.01em; }
+.accent { font-family: 'Fraunces', serif; font-weight: 400; font-style: italic; color: var(--accent); }
+p { font-family: 'Space Grotesk', sans-serif; line-height: 1.5; color: var(--ink-soft); }
+
+.label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); display: block; margin-bottom: 1.4rem; }
+.h-title { font-size: clamp(2rem, 5vw, 3.6rem); }
+.h-sub { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1.1rem, 1.9vw, 1.55rem); color: var(--ink-mute); margin-top: 1.2rem; max-width: 720px; line-height: 1.4; }
+.block.dark .h-sub { color: rgba(255,255,255,0.8); }
+
+.js .reveal { opacity: 0; transform: translateY(34px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.js .reveal.in { opacity: 1; transform: none; }
+[data-d="1"] { transition-delay: 0.08s; } [data-d="2"] { transition-delay: 0.16s; }
+[data-d="3"] { transition-delay: 0.24s; } [data-d="4"] { transition-delay: 0.32s; }
+[data-d="5"] { transition-delay: 0.4s; } [data-d="6"] { transition-delay: 0.48s; }
+[data-d="7"] { transition-delay: 0.56s; } [data-d="8"] { transition-delay: 0.64s; }
+
+/* ===== PORTADA ===== */
+.cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 7rem; }
+.cover-logo { height: 42px; width: auto; align-self: flex-start; margin-bottom: 2rem; display: block; }
+@media (max-width: 768px) { .cover-logo { height: 34px; } }
+.cover-kicker { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.2rem; color: rgba(255,255,255,0.72); margin-bottom: 1.2rem; }
+.cover-title { font-weight: 500; letter-spacing: -0.035em; line-height: 1.02; font-size: clamp(2.2rem, 6vw, 4.6rem); }
+.cover-title .accent { display: inline; }
+.cover-sub { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1.15rem, 2.2vw, 1.7rem); color: rgba(255,255,255,0.82); margin-top: 1.8rem; max-width: 720px; line-height: 1.4; }
+.cover-foot { margin-top: 3rem; padding-top: 1.6rem; border-top: 1px solid rgba(255,255,255,0.16); display: flex; flex-wrap: wrap; gap: 2.5rem; }
+.cover-foot .cf { display: flex; flex-direction: column; gap: 0.3rem; }
+.cover-foot .cf .k { font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); font-weight: 600; }
+.cover-foot .cf .v { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.05rem; color: #fff; }
+
+/* ===== FLUJO VERTICAL (comunicación / migración) ===== */
+.flowv { margin-top: 2.4rem; max-width: 760px; display: flex; flex-direction: column; gap: 1rem; }
+.fstep { border: 1px solid var(--line); border-radius: 18px; padding: 1.8rem 1.8rem; display: flex; flex-direction: column; gap: 0.7rem; }
+.fstep.human { background: var(--bg-alt); }
+.fstep.bot { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.fstep.bot .fstep-k { color: rgba(255,255,255,0.6); } .fstep.bot p { color: rgba(255,255,255,0.82); }
+.fstep.bot h3 { color: #fff; }
+.fstep-badge { display: inline-flex; align-items: center; gap: 0.45rem; align-self: flex-start; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; padding: 0.32rem 0.75rem; border-radius: 99px; }
+.b-human { background: var(--accent); color: #fff; }
+.b-bot { background: rgba(255,255,255,0.14); color: #fff; }
+.b-supervise { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+.fstep-k { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; }
+.fstep h3 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; font-size: 1.55rem; line-height: 1.05; }
+.fstep p { font-size: 0.95rem; color: var(--ink-mute); line-height: 1.5; }
+.fstep ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.2rem; }
+.fstep li { position: relative; padding-left: 1.15rem; font-size: 0.92rem; line-height: 1.45; color: var(--ink-soft); }
+.fstep.bot li { color: rgba(255,255,255,0.82); }
+.fstep li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.fstep li b { color: var(--ink); font-weight: 600; } .fstep.bot li b { color: #fff; }
+.fdown { display: flex; justify-content: center; padding: 0.7rem 0; color: var(--accent); font-family: 'Fraunces', serif; font-style: italic; font-size: 1.9rem; line-height: 1; }
+.comm-note { margin-top: 2rem; font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1.1rem, 1.8vw, 1.5rem); color: var(--ink); line-height: 1.4; max-width: 860px; }
+.comm-note .hl { background: var(--ink); color: var(--cream); padding: 0 0.4rem; }
+
+/* ===== ENTREGABLES (cantidades) ===== */
+.pack-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2.2rem; }
+@media (max-width: 900px) { .pack-grid { grid-template-columns: repeat(2, 1fr); } }
+.pack-item { border: 1px solid var(--line); border-radius: 16px; padding: 1.4rem 1.3rem; background: var(--bg-alt); display: flex; flex-direction: column; gap: 0.4rem; min-height: 168px; }
+.pack-item.opt { background: transparent; border-style: dashed; }
+.pack-qty { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(2.2rem, 4vw, 3rem); line-height: 0.9; letter-spacing: -0.03em; color: var(--accent); font-variant-numeric: tabular-nums; }
+.pack-qty small { font-size: 0.85rem; font-weight: 500; color: var(--ink-mute); letter-spacing: 0; }
+.pack-item h3 { font-size: 1rem; color: var(--ink); margin: 0.2rem 0 0; }
+.pack-item p { font-size: 0.86rem; color: var(--ink-mute); line-height: 1.45; margin: 0; }
+.pack-tag { display: inline-block; align-self: flex-start; margin-top: auto; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
+.pack-tag.grey { color: var(--ink-light); }
+.pack-foot { margin-top: 1.8rem; padding: 1.2rem 1.4rem; border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 12px; background: #fffdfb; font-size: 0.95rem; color: var(--ink-soft); line-height: 1.5; }
+.pack-foot b { color: var(--accent); }
+
+/* ===== PAUTA (3 opciones) ===== */
+.pauta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.2rem; }
+@media (max-width: 768px) { .pauta-grid { grid-template-columns: 1fr; } }
+.pauta-card { border: 1px solid var(--line); border-radius: 18px; padding: 1.9rem 1.6rem; background: var(--bg); display: flex; flex-direction: column; gap: 0.6rem; }
+.pauta-card.mid { background: var(--bg-alt); }
+.pauta-k { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
+.pauta-card h3 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; font-size: 1.6rem; color: var(--ink); }
+.pauta-range { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.15rem; letter-spacing: -0.02em; color: var(--ink); }
+.pauta-range small { display: block; font-size: 0.72rem; font-weight: 500; color: var(--ink-mute); letter-spacing: 0.02em; margin-top: 0.15rem; text-transform: uppercase; }
+.pauta-card p { font-size: 0.9rem; color: var(--ink-mute); line-height: 1.5; }
+.pauta-note { margin-top: 1.8rem; padding: 1.4rem 1.6rem; border-radius: 16px; background: var(--ink); color: var(--cream); }
+.pauta-note b { color: #fff; }
+.pauta-note .pn-k { font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); font-weight: 700; display: block; margin-bottom: 0.6rem; }
+.pauta-note p { color: rgba(255,255,255,0.85); font-size: 1rem; line-height: 1.55; }
+
+/* ===== LÍMITES ===== */
+.limits { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2.5rem; margin-top: 2.2rem; }
+@media (max-width: 768px) { .limits { grid-template-columns: 1fr; } }
+.limit { display: grid; grid-template-columns: auto 1fr; gap: 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--line); align-items: start; }
+.limit .ln { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.5rem; color: var(--accent); line-height: 1; min-width: 2.5rem; }
+.limit .lt b { display: block; font-size: 0.98rem; color: var(--ink); font-weight: 600; margin-bottom: 0.2rem; }
+.limit .lt span { font-size: 0.88rem; color: var(--ink-mute); line-height: 1.45; }
+.limits-foot { margin-top: 1.8rem; padding: 1.2rem 1.4rem; border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 12px; background: #fffdfb; font-size: 0.95rem; color: var(--ink-soft); line-height: 1.5; }
+.limits-foot b { color: var(--accent); }
+
+/* ===== CRONOGRAMA (timeline · MESES) ===== */
+.tl { margin-top: 2.4rem; max-width: 860px; }
+.tl-item { border-left: 2px solid var(--accent); padding: 0 0 2.2rem 1.8rem; position: relative; margin-left: 6px; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item::before { content: ''; position: absolute; left: -7px; top: 2px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); }
+.tl-wk { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+.tl-t { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; font-size: 1.55rem; color: var(--ink); margin: 0.15rem 0 0.7rem; line-height: 1.05; }
+.tl-item ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+.tl-item li { position: relative; padding-left: 1.15rem; font-size: 0.94rem; color: var(--ink-soft); line-height: 1.45; }
+.tl-item li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px; border-radius: 50%; background: var(--ink-light); }
+.tl-item li b { color: var(--ink); font-weight: 600; }
+/* overrides para timeline en fondo oscuro */
+.block.dark .tl-t { color: #fff; }
+.block.dark .tl-item li { color: rgba(255,255,255,0.85); }
+.block.dark .tl-item li b { color: #fff; }
+.block.dark .tl-item li::before { background: rgba(255,255,255,0.4); }
+.tl-tag { display: inline-block; margin-top: 0.7rem; font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--accent); border: 1px solid rgba(246,74,0,0.4); border-radius: 99px; padding: 0.3rem 0.7rem; }
+
+/* ===== RITMO (reuniones / informes) ===== */
+.rhythm { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.2rem; }
+@media (max-width: 768px) { .rhythm { grid-template-columns: 1fr; } }
+.rhythm-card { border: 1px solid var(--line); border-radius: 18px; padding: 1.9rem 1.6rem; background: var(--bg-alt); display: flex; flex-direction: column; gap: 0.6rem; }
+.rhythm-card .rn { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(2.4rem, 4.5vw, 3.2rem); line-height: 0.85; letter-spacing: -0.03em; color: var(--accent); }
+.rhythm-card .rk { font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; margin-top: 0.2rem; }
+.rhythm-card h3 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; font-size: 1.35rem; color: var(--ink); }
+.rhythm-card p { font-size: 0.9rem; color: var(--ink-mute); line-height: 1.5; }
+.rhythm-note { margin-top: 1.8rem; padding: 1.1rem 1.4rem; border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 12px; background: #fffdfb; font-size: 0.93rem; color: var(--ink-soft); line-height: 1.5; }
+.rhythm-note b { color: var(--accent); }
+
+/* ===== ROLES ===== */
+.roles { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--line); margin-top: 2.2rem; }
+@media (max-width: 768px) { .roles { grid-template-columns: 1fr; } }
+.role { padding: 2rem 1.8rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.role:last-child { border-right: none; }
+@media (max-width: 768px) { .role { border-right: none; padding: 1.8rem 0; } }
+.role.remake { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.role-k { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; margin-bottom: 1.1rem; color: var(--accent); }
+.role h3 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; font-size: 1.9rem; margin-bottom: 1.2rem; color: var(--ink); }
+.role.remake h3 { color: #fff; }
+.role ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+.role li { position: relative; padding-left: 1.4rem; font-size: 0.95rem; line-height: 1.45; color: var(--ink-soft); }
+.role.remake li { color: rgba(255,255,255,0.85); }
+.role li::before { content: '→'; position: absolute; left: 0; font-family: 'Fraunces', serif; font-style: italic; color: var(--accent); }
+.role li b { color: var(--ink); font-weight: 600; }
+.role.remake li b { color: #fff; }
+.roles-note { margin-top: 1.8rem; font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1.15rem, 1.9vw, 1.55rem); color: var(--ink); line-height: 1.4; max-width: 820px; }
+.roles-note .hl { background: var(--accent); color: #fff; padding: 0 0.35rem; }
+
+/* ===== ACCESOS ===== */
+.access-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.2rem; }
+@media (max-width: 768px) { .access-grid { grid-template-columns: 1fr; } }
+.access-box { border: 1px solid var(--line); border-radius: 16px; padding: 1.6rem 1.5rem; }
+.access-box h3 { font-size: 1.05rem; margin-bottom: 1rem; color: var(--ink); }
+.access-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.access-box li { position: relative; padding-left: 1.2rem; font-size: 0.92rem; color: var(--ink-soft); line-height: 1.4; }
+.access-box li::before { content: ''; position: absolute; left: 0; top: 0.5em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.access-safe { margin-top: 1.6rem; padding: 1.1rem 1.4rem; border: 1px solid var(--line); border-left: 3px solid var(--green); border-radius: 12px; background: #fbfdfb; font-size: 0.92rem; color: var(--ink-soft); line-height: 1.5; }
+.access-safe b { color: var(--green); }
+
+/* ===== CIERRE ===== */
+.cierre { min-height: 88vh; display: flex; flex-direction: column; justify-content: center; }
+.cierre-logo { height: 34px; width: auto; align-self: flex-start; margin-bottom: 2rem; }
+.cierre-greeting { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1.2rem, 2vw, 1.7rem); color: rgba(255,255,255,0.7); margin-bottom: 1rem; }
+.cierre h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1; }
+.cierre-msg { margin-top: 1.6rem; font-size: 1rem; color: rgba(255,255,255,0.82); line-height: 1.6; max-width: 580px; }
+.cierre-contact { margin-top: 2.6rem; padding-top: 1.6rem; border-top: 1px solid rgba(255,255,255,0.16); display: flex; flex-wrap: wrap; gap: 2.5rem; }
+.cierre-contact .cc { display: flex; flex-direction: column; gap: 0.3rem; }
+.cierre-contact .cc .k { font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); font-weight: 600; }
+.cierre-contact .cc .v { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.15rem; color: #fff; }
+.cierre-sign { margin-top: 2.4rem; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 500; }
+
+/* ===== PRINT / PDF ===== */
+@media print {
+  @page { size: A4 portrait; margin: 0; }
+  html, body { background: #fff; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  .top-nav, .scroll-progress-track, .scroll-progress { display: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .block { padding: 15mm 14mm !important; page-break-after: always; page-break-inside: avoid; }
+  .block:last-of-type { page-break-after: auto; }
+  .cover, .cierre { min-height: auto; }
+  .pack-item, .fstep, .rhythm-card, .role, .access-box, .tl-item, .pauta-card { page-break-inside: avoid; }
+  .h-title, .cover-title, .cierre h2 { font-size: 2.3rem !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress-track"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<div class="top-nav">
+  <div class="nav-logo">
+    <img class="logo-black" src="rmk-black.png" alt="REMAKE">
+    <img class="logo-white" src="rmk-white.png" alt="REMAKE">
+    <span class="soft">para Clínica AMI</span>
+  </div>
+  <div class="nav-meta">Plan de trabajo</div>
+</div>
+
+<!-- ===== PORTADA ===== -->
+<section class="block dark">
+  <div class="wrap cover">
+    <img class="cover-logo reveal" data-d="1" src="rmk-white.png" alt="REMAKE">
+    <div class="cover-kicker reveal" data-d="2">Clínica AMI × REMAKE</div>
+    <h1 class="cover-title reveal" data-d="3">Este es el plan.<br>Así vamos a <span class="accent">trabajar juntos.</span></h1>
+    <p class="cover-sub reveal" data-d="4">Un mapa claro de lo que hacemos cada mes, cuándo se entrega cada cosa y cómo nos comunicamos. Con total transparencia, para que su equipo sepa exactamente qué esperar.</p>
+    <div class="cover-foot reveal" data-d="5">
+      <div class="cf"><span class="k">Documento</span><span class="v">Plan de trabajo · Scope</span></div>
+      <div class="cf"><span class="k">Para</span><span class="v">El equipo de AMI</span></div>
+      <div class="cf"><span class="k">Fecha</span><span class="v">Julio 2026</span></div>
+      <div class="cf"><span class="k">De</span><span class="v">REMAKE · Calgary</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 01 · CÓMO NOS COMUNICAMOS ===== -->
+<section class="block">
+  <div class="wrap">
+    <span class="label reveal" data-d="1">01 — Cómo nos comunicamos</span>
+    <h2 class="h-title reveal" data-d="2">Primero una persona.<br>Después, el <span class="accent">asistente.</span></h2>
+    <p class="h-sub reveal" data-d="3">Queremos que sea transparente desde el primer día: al inicio los acompaña el equipo de REMAKE, y una vez todo está montado, el asistente toma la operación del día a día — con el equipo de REMAKE siempre detrás, cuidando que todo salga bien.</p>
+
+    <div class="flowv">
+      <div class="fstep human reveal" data-d="3">
+        <span class="fstep-badge b-human">Mes 1</span>
+        <div class="fstep-k">Arranque · acompañamiento humano</div>
+        <h3>El equipo de REMAKE los acompaña</h3>
+        <p>Durante el arranque, el equipo de REMAKE es su contacto directo: recibe los accesos, coordina la puesta en marcha y aprueba con ustedes las primeras piezas antes de publicar.</p>
+      </div>
+
+      <div class="fstep bot reveal" data-d="4">
+        <span class="fstep-badge b-bot">Día a día</span>
+        <div class="fstep-k">Operación · el asistente</div>
+        <h3>El asistente entra a operar</h3>
+        <p>Una vez montado, el asistente cumple dos funciones:</p>
+        <ul>
+          <li><b>Para sus pacientes:</b> responde y agenda 24/7 por WhatsApp, en todas sus sedes.</li>
+          <li><b>Para ustedes, como empresa:</b> centraliza la información y el material que nos comparten, y apoya en la creación y publicación del contenido — funciona también como un asistente interno.</li>
+        </ul>
+      </div>
+
+      <div class="fstep reveal" data-d="5">
+        <span class="fstep-badge b-supervise">Siempre</span>
+        <div class="fstep-k">Supervisión continua</div>
+        <h3>El equipo de REMAKE supervisa</h3>
+        <p>En ningún momento quedan solos con el sistema. El equipo de REMAKE revisa cómo va el asistente, lo corrige y lo afina. Y cada mes hay una <b>reunión de seguimiento</b> para revisar el progreso, resolver dudas y coordinar los ajustes.</p>
+      </div>
+    </div>
+
+    <p class="comm-note reveal" data-d="6">En todo momento saben <span class="hl">quién les habla y por qué</span>: el equipo humano para arrancar, decidir y acompañar; el asistente para atender sin parar.</p>
+  </div>
+</section>
+
+<!-- ===== 02 · LO QUE RECIBEN CADA MES ===== -->
+<section class="block" style="background:var(--bg-alt)">
+  <div class="wrap">
+    <span class="label reveal" data-d="1">02 — Lo que reciben cada mes</span>
+    <h2 class="h-title reveal" data-d="2">Todo esto, <span class="accent">cada mes.</span></h2>
+    <p class="h-sub reveal" data-d="3">Números claros, sin sorpresas. Esto es lo que su equipo recibe mes a mes, creado y operado por REMAKE.</p>
+
+    <div class="pack-grid">
+      <div class="pack-item reveal" data-d="3">
+        <div class="pack-qty">16</div>
+        <h3>Publicaciones</h3>
+        <p>Diseñadas por REMAKE para Instagram y Facebook.</p>
+        <span class="pack-tag">Contenido</span>
+      </div>
+      <div class="pack-item reveal" data-d="3">
+        <div class="pack-qty">4</div>
+        <h3>Reels</h3>
+        <p>Video corto para mostrar la clínica y atraer pacientes.</p>
+        <span class="pack-tag">Contenido</span>
+      </div>
+      <div class="pack-item reveal" data-d="4">
+        <div class="pack-qty">12</div>
+        <h3>Historias</h3>
+        <p>Para mantener las redes activas toda la semana.</p>
+        <span class="pack-tag">Contenido</span>
+      </div>
+      <div class="pack-item reveal" data-d="4">
+        <div class="pack-qty">1</div>
+        <h3>Asistente 24/7</h3>
+        <p>Responde y agenda pacientes por WhatsApp, a toda hora.</p>
+        <span class="pack-tag">Atención</span>
+      </div>
+      <div class="pack-item reveal" data-d="5">
+        <div class="pack-qty">2 <small>hasta</small></div>
+        <h3>Blogs al mes</h3>
+        <p>Cuando los soliciten, para posicionarse en Google.</p>
+        <span class="pack-tag">Contenido</span>
+      </div>
+      <div class="pack-item reveal" data-d="5">
+        <div class="pack-qty">3 <small>hasta</small></div>
+        <h3>Cambios en la web</h3>
+        <p>Banners, promociones o información nueva, cada mes.</p>
+        <span class="pack-tag">Web</span>
+      </div>
+      <div class="pack-item reveal" data-d="6">
+        <div class="pack-qty">1+1</div>
+        <h3>Reporte + reunión</h3>
+        <p>Un informe y una reunión al mes para revisar cómo va todo.</p>
+        <span class="pack-tag">Seguimiento</span>
+      </div>
+      <div class="pack-item opt reveal" data-d="6">
+        <div class="pack-qty" style="color:var(--ink-light)">✦</div>
+        <h3>Pauta gestionada</h3>
+        <p>Creamos y optimizamos las campañas. La inversión en anuncios va aparte (ver siguiente sección).</p>
+        <span class="pack-tag grey">Va aparte</span>
+      </div>
+    </div>
+
+    <p class="pack-foot reveal" data-d="6"><b>Sobre el material:</b> si nos comparten fotos, videos o material de la clínica, creamos las piezas con su propio contenido. Si no cuentan con material, usamos un banco de imágenes con inteligencia artificial de muy alta calidad, siempre acorde a su marca.</p>
+  </div>
+</section>
+
+<!-- ===== 02b · LA PAUTA (3 opciones) ===== -->
+<section class="block">
+  <div class="wrap">
+    <span class="label reveal" data-d="1">02 · La pauta — inversión en anuncios</span>
+    <h2 class="h-title reveal" data-d="2">Ustedes definen cuánto invertir.<br>Nosotros les proyectamos el <span class="accent">alcance.</span></h2>
+    <p class="h-sub reveal" data-d="3">La pauta es la inversión en anuncios de Meta, y va aparte de la mensualidad. Aquí tres niveles de referencia para ayudarles a decidir cuánto destinar cada mes.</p>
+
+    <div class="pauta-grid">
+      <div class="pauta-card reveal" data-d="3">
+        <div class="pauta-k">Opción 1 · Inicial</div>
+        <h3>Presencia local</h3>
+        <div class="pauta-range">Inversión baja<small>Referencia · a definir con ustedes</small></div>
+        <p>Ideal para empezar: mantener presencia constante y atraer pacientes en las zonas cercanas a sus sedes.</p>
+      </div>
+      <div class="pauta-card mid reveal" data-d="4">
+        <div class="pauta-k">Opción 2 · Crecimiento</div>
+        <h3>Más zonas, más pacientes</h3>
+        <div class="pauta-range">Inversión media<small>Referencia · a definir con ustedes</small></div>
+        <p>Amplía el alcance a más zonas y públicos, con campañas de captación más activas y remarketing.</p>
+      </div>
+      <div class="pauta-card reveal" data-d="5">
+        <div class="pauta-k">Opción 3 · Aceleración</div>
+        <h3>Máximo alcance</h3>
+        <div class="pauta-range">Inversión alta<small>Referencia · a definir con ustedes</small></div>
+        <p>Para crecer con fuerza: mayor volumen de pacientes nuevos, varios formatos y públicos trabajando a la vez.</p>
+      </div>
+    </div>
+
+    <div class="pauta-note reveal" data-d="6">
+      <span class="pn-k">Cómo lo definimos juntos</span>
+      <p>Ustedes nos indican <b>cuánto quieren invertir al mes</b> en pauta (o un rango, entre un monto y otro). Con ese presupuesto y los <b>benchmarks del sector odontológico en Colombia</b>, les entregamos una proyección realista del alcance esperado. Así invierten con claridad, sabiendo qué resultados pueden esperar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 03 · LOS LÍMITES ===== -->
+<section class="block" style="background:var(--bg-alt)">
+  <div class="wrap">
+    <span class="label reveal" data-d="1">03 — Para que todo quede claro</span>
+    <h2 class="h-title reveal" data-d="2">El alcance, <span class="accent">sobre la mesa.</span></h2>
+    <p class="h-sub reveal" data-d="3">Preferimos ser claros desde el inicio sobre lo que incluye el plan y hasta dónde llega, para que la relación fluya con tranquilidad y confianza para ambas partes.</p>
+
+    <div class="limits">
+      <div class="limit reveal" data-d="3">
+        <div class="ln">3</div>
+        <div class="lt"><b>Rondas de ajustes al mes</b><span>Sobre el contenido: pueden solicitar hasta 3 rondas de ajustes antes de publicar cada pieza.</span></div>
+      </div>
+      <div class="limit reveal" data-d="3">
+        <div class="ln">2</div>
+        <div class="lt"><b>Blogs al mes</b><span>Los redactamos cuando los soliciten, hasta dos por mes.</span></div>
+      </div>
+      <div class="limit reveal" data-d="4">
+        <div class="ln">3</div>
+        <div class="lt"><b>Cambios en la web al mes</b><span>Ajustes de banners, promociones o información. Los cambios de mayor alcance se cotizan aparte.</span></div>
+      </div>
+      <div class="limit reveal" data-d="4">
+        <div class="ln">↔</div>
+        <div class="lt"><b>Redes: publicamos y redirigimos</b><span>Creamos y publicamos el contenido, y les redirigimos los mensajes que llegan. La respuesta directa a los pacientes la realiza su equipo.</span></div>
+      </div>
+    </div>
+
+    <p class="limits-foot reveal" data-d="5"><b>Importante:</b> los pacientes que escriben por redes y WhatsApp son atendidos y respondidos por el equipo de la clínica. REMAKE se encarga de crear el contenido, publicarlo y hacerles llegar cada mensaje recibido — para que ninguno se pierda.</p>
+  </div>
+</section>
+
+<!-- ===== 04 · EL CRONOGRAMA (MESES) ===== -->
+<section class="block dark">
+  <div class="wrap">
+    <span class="label reveal" data-d="1">04 — El cronograma</span>
+    <h2 class="h-title reveal" data-d="2">Mes a mes, <span class="accent">paso a paso.</span></h2>
+    <p class="h-sub reveal" data-d="3">Así se ve el camino de los primeros tres meses. El primero es de arranque y calentamiento; a partir de ahí, el sistema toma ritmo y va creciendo.</p>
+
+    <div class="tl">
+      <div class="tl-item reveal" data-d="3">
+        <div class="tl-wk">Mes 1 — Arranque y calentamiento</div>
+        <div class="tl-t">Conectamos, montamos y salimos al aire</div>
+        <ul>
+          <li>Conectamos las plataformas y revisamos que todo funcione: web, píxeles y seguimiento en orden.</li>
+          <li>Creamos los <b>primeros key visuals</b> y se los pasamos para su aprobación.</li>
+          <li>Con el visto bueno, <b>empezamos a publicar</b> el contenido.</li>
+          <li>Activamos la <b>pauta</b> y ponemos el <b>asistente</b> a responder, afinándolo sobre la marcha.</li>
+          <li><b>Entregables del mes:</b> 16 publicaciones · 4 reels · 12 historias · hasta 2 blogs · hasta 3 cambios web · asistente 24/7 · reporte + reunión.</li>
+        </ul>
+        <span class="tl-tag">Mes de calentamiento</span>
+      </div>
+      <div class="tl-item reveal" data-d="4">
+        <div class="tl-wk">Mes 2 — Constancia con mejor información</div>
+        <div class="tl-t">Repetimos el ritmo, ahora con datos</div>
+        <ul>
+          <li>Se <b>repiten los mismos entregables del mes 1</b>, sin excepción.</li>
+          <li>Ahora con mejor análisis: usamos la información del primer mes para afinar contenido y pauta.</li>
+          <li>Optimizamos lo que mejor funcionó y ajustamos lo que haga falta.</li>
+        </ul>
+      </div>
+      <div class="tl-item reveal" data-d="5">
+        <div class="tl-wk">Mes 3 — Crecimiento</div>
+        <div class="tl-t">Todo activo y afinado al 100%</div>
+        <ul>
+          <li>Se <b>repiten los mismos entregables</b>, con el sistema ya rodado.</li>
+          <li>Con todo activado y afinado, empezamos a mirar el <b>crecimiento de resultados</b>.</li>
+          <li>De aquí en adelante, el sistema corre en ritmo constante, mes a mes.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05 · REUNIONES, SEGUIMIENTO E INFORMES ===== -->
+<section class="block">
+  <div class="wrap">
+    <span class="label reveal" data-d="1">05 — Reuniones, seguimiento e informes</span>
+    <h2 class="h-title reveal" data-d="2">Siempre saben <span class="accent">cómo va.</span></h2>
+    <p class="h-sub reveal" data-d="3">Cada mes mantenemos un ritmo de comunicación claro y constante, para que en todo momento sepan cómo avanza el trabajo.</p>
+
+    <div class="rhythm">
+      <div class="rhythm-card reveal" data-d="3">
+        <div class="rn">1</div>
+        <div class="rk">al mes · de 1 a 2 horas</div>
+        <h3>Reunión de resultados</h3>
+        <p>Nos reunimos para revisar cómo avanzó el mes, resolver dudas, coordinar ajustes y planear lo que viene.</p>
+      </div>
+      <div class="rhythm-card reveal" data-d="4">
+        <div class="rn">1</div>
+        <div class="rk">al mes</div>
+        <h3>Informe de resultados</h3>
+        <p>Un reporte fácil de leer: cuántos mensajes atendió el asistente y cómo avanzan las redes y la pauta.</p>
+      </div>
+      <div class="rhythm-card reveal" data-d="5">
+        <div class="rn">24/7</div>
+        <div class="rk">siempre</div>
+        <h3>Atención continua</h3>
+        <p>El equipo de REMAKE y su IA atienden de forma continua: el asistente agenda y recuerda las citas, y el equipo está disponible para las novedades.</p>
+      </div>
+    </div>
+
+    <p class="rhythm-note reveal" data-d="6"><b>Nota:</b> el plan incluye una reunión mensual (de 1 a 2 horas). Si desean reuniones adicionales con el equipo de REMAKE, se coordinan con una tarifa aparte.</p>
+  </div>
+</section>
+
+<!-- ===== 06 · CÓMO TRABAJAMOS JUNTOS ===== -->
+<section class="block" style="background:var(--bg-alt)">
+  <div class="wrap">
+    <span class="label reveal" data-d="1">06 — Cómo trabajamos juntos</span>
+    <h2 class="h-title reveal" data-d="2">Un verdadero <span class="accent">trabajo en equipo.</span></h2>
+    <p class="h-sub reveal" data-d="3">El sistema funciona porque cada parte aporta lo suyo. Así se reparte el trabajo entre ustedes y REMAKE:</p>
+
+    <div class="roles">
+      <div class="role reveal" data-d="3">
+        <div class="role-k">Ustedes · AMI</div>
+        <h3>Deciden y atienden</h3>
+        <ul>
+          <li><b>Aprueban</b> el contenido y los cambios antes de publicar.</li>
+          <li>Nos <b>indican los ajustes</b> que necesiten (hasta 3 rondas al mes).</li>
+          <li>Nos comparten las <b>novedades</b> de la clínica (promociones, doctores, horarios).</li>
+          <li><b>Cierran a los pacientes:</b> la atención y la respuesta final las realiza su equipo.</li>
+        </ul>
+      </div>
+      <div class="role remake reveal" data-d="4">
+        <div class="role-k">REMAKE</div>
+        <h3>Creamos y operamos</h3>
+        <ul>
+          <li><b>Creamos</b> el contenido, la pauta y la web.</li>
+          <li><b>Publicamos</b> y mantenemos las redes activas.</li>
+          <li><b>Operamos</b> el asistente que atiende 24/7 y les redirigimos los mensajes.</li>
+          <li><b>Reportamos</b> cada mes y acompañamos de forma continua.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="roles-note reveal" data-d="5">Nosotros les <span class="hl">traemos y organizamos a los pacientes</span>. El cierre y la atención final siempre son de su equipo — ustedes conocen a sus pacientes mejor que nadie.</p>
+  </div>
+</section>
+
+<!-- ===== 07 · PARA EMPEZAR (accesos) ===== -->
+<section class="block">
+  <div class="wrap">
+    <span class="label reveal" data-d="1">07 — Para empezar</span>
+    <h2 class="h-title reveal" data-d="2">Lo que necesitamos <span class="accent">de ustedes.</span></h2>
+    <p class="h-sub reveal" data-d="3">Para poner todo en marcha necesitamos algunos accesos. Los solicitamos siempre como colaboradores — nunca les pedimos sus contraseñas.</p>
+
+    <div class="access-grid">
+      <div class="access-box reveal" data-d="3">
+        <h3>De la clínica</h3>
+        <ul>
+          <li>Un número de WhatsApp Business (o se los creamos, con un costo adicional)</li>
+          <li>Direcciones, horarios y doctores por sede</li>
+          <li>Su calendario de citas</li>
+          <li>Logo, fotos y material de marca que tengan</li>
+        </ul>
+      </div>
+      <div class="access-box reveal" data-d="4">
+        <h3>Accesos (como colaboradores)</h3>
+        <ul>
+          <li>Instagram y Facebook</li>
+          <li>Meta Business + cuenta publicitaria</li>
+          <li>La web (dominio y hosting)</li>
+          <li>Google del negocio, si lo tienen</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="access-safe reveal" data-d="5"><b>Su seguridad primero:</b> nunca manejamos sus contraseñas. Los agregamos a cada plataforma como colaboradores, y ustedes pueden retirar el acceso cuando lo deseen. La lista detallada la llevamos a la reunión de arranque.</p>
+  </div>
+</section>
+
+<!-- ===== CIERRE ===== -->
+<section class="block dark">
+  <div class="wrap cierre">
+    <img class="cierre-logo reveal" data-d="1" src="rmk-white.png" alt="REMAKE">
+    <div class="cierre-greeting reveal" data-d="1">Este es el plan.</div>
+    <h2 class="reveal" data-d="2">Ahora lo <span class="accent">caminamos juntos.</span></h2>
+    <p class="cierre-msg reveal" data-d="3">Este plan es el punto de partida. A partir de aquí, montamos y operamos todo el sistema para que su equipo pueda concentrarse en lo que mejor hace: cuidar a sus pacientes. Quedamos atentos a cualquier inquietud.</p>
+
+    <div class="cierre-contact reveal" data-d="4">
+      <div class="cc"><span class="k">Preparado por</span><span class="v">El equipo de REMAKE, para ustedes</span></div>
+      <div class="cc"><span class="k">Atención</span><span class="v">Humana de lunes a viernes · IA 24/7</span></div>
+    </div>
+
+    <div class="cierre-sign reveal" data-d="5">REMAKE · Calgary, Canadá · Plan de trabajo · Clínica AMI · Julio 2026</div>
+  </div>
+</section>
+
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+const prog = document.getElementById('scrollProgress');
+const darkBlocks = [...document.querySelectorAll('.block.dark')];
+function onScroll() {
+  const h = document.documentElement;
+  const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+  prog.style.width = pct + '%';
+  const navY = 32;
+  let dark = false;
+  darkBlocks.forEach(b => { const r = b.getBoundingClientRect(); if (r.top <= navY && r.bottom >= navY) dark = true; });
+  document.body.classList.toggle('dark-active', dark);
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
+</body>
+</html>
