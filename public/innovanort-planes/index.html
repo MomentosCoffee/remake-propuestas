@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Propuesta — REMAKE × Innovanort</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://images.pexels.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0A0A; --cream:#F2EFE8; --bg-alt:#E8E4DA; --accent:#F64A00;
+    --blue:#18336E; --beige:#E5C29B; --mute:#6B6B6B; --line:#D8D4C8;
+    --grad:linear-gradient(100deg,#18336E 0%,#F64A00 55%,#E5C29B 100%);
+    --pad-x:4.5rem; --eo:cubic-bezier(.23,1,.32,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Space Grotesk',system-ui,sans-serif;color:var(--ink);background:var(--cream);
+    scroll-snap-type:y mandatory;height:100vh;overflow-y:scroll;-webkit-font-smoothing:antialiased}
+  .slide{min-height:100vh;scroll-snap-align:start;padding:5.5rem var(--pad-x) 4rem;
+    display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+  .dark{background:var(--ink);color:var(--cream)}
+  .alt{background:var(--bg-alt)}
+  /* image slides */
+  .img{color:var(--cream);justify-content:flex-end;background-size:cover;background-position:center}
+  .img::before{content:'';position:absolute;inset:0;background:linear-gradient(175deg,rgba(10,10,10,.30) 0%,rgba(10,10,10,.55) 45%,rgba(10,10,10,.88) 100%);z-index:0}
+  .img>*{position:relative;z-index:1}
+  .label{font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem}
+  .img .label,.dark .label{color:var(--beige)}
+  h1{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(2.6rem,6.4vw,5.2rem);line-height:1.02;letter-spacing:-.02em}
+  h1 em{font-style:italic;color:var(--accent)}
+  h2{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(1.9rem,4.4vw,3.3rem);line-height:1.07;letter-spacing:-.02em;margin-bottom:1.2rem}
+  h2 em{font-style:italic;color:var(--accent)}
+  .lead{font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.6;max-width:52ch;color:#2a2a2a}
+  .dark .lead,.img .lead{color:#e2ded3}
+  .pull{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.7rem,4vw,3rem);line-height:1.22;max-width:20ch;letter-spacing:-.01em}
+  .pull em{color:var(--accent);font-style:italic}
+  .bar{height:3px;width:64px;background:var(--grad);border-radius:3px;margin:0 0 1.5rem}
+  .note{margin-top:1.5rem;font-size:.86rem;color:var(--mute);max-width:54ch;line-height:1.55}
+  .dark .note,.img .note{color:#a9a498}
+  /* nav */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1.1rem var(--pad-x);pointer-events:none;mix-blend-mode:difference}
+  .nav .wm{height:15px;width:auto}
+  .nav .wm path,.nav .wm polygon{fill:#fff}
+  .nav .count{font-size:.78rem;font-weight:600;letter-spacing:.14em;color:#fff;font-variant-numeric:tabular-nums}
+  .progress-track{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(0,0,0,.08);z-index:60}
+  .progress{height:100%;width:0;background:var(--grad);box-shadow:0 0 12px rgba(246,74,0,.5);transition:width .1s linear}
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.2rem;max-width:60rem}
+  .step{border-top:2px solid var(--ink);padding-top:.9rem}
+  .step .n{font-family:'Fraunces',serif;font-style:italic;font-size:1.5rem;color:var(--accent);display:block;margin-bottom:.3rem}
+  .step p{font-size:.95rem;line-height:1.5}
+  /* split */
+  .split{display:grid;grid-template-columns:1.05fr .95fr;gap:0;min-height:100vh}
+  .split .media{background-size:cover;background-position:center}
+  .split .body{padding:5.5rem var(--pad-x) 4rem;display:flex;flex-direction:column;justify-content:center;background:var(--ink);color:var(--cream)}
+  .split .li{display:flex;gap:.7rem;align-items:flex-start;font-size:1.02rem;line-height:1.45;padding:.35rem 0}
+  .split .li .dot{color:var(--accent);font-weight:700;flex:none}
+  .split .li b{font-weight:600}
+  /* planes */
+  .plans{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;margin-top:1.8rem;max-width:64rem;width:100%}
+  .plan{border:1px solid var(--line);border-radius:16px;padding:1.5rem 1.4rem;background:#fff;display:flex;flex-direction:column}
+  .plan.feat{background:var(--ink);color:var(--cream);border-color:var(--ink);position:relative;overflow:hidden}
+  .plan.feat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+  .plan .ptag{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+  .plan h3{font-family:'Fraunces',serif;font-weight:300;font-size:1.5rem;line-height:1.1;margin-bottom:.25rem}
+  .plan .psub{font-size:.83rem;color:var(--mute);margin-bottom:.9rem;line-height:1.35}
+  .plan.feat .psub{color:#b8b3a7}
+  .plan ul{list-style:none;display:flex;flex-direction:column;gap:.38rem;font-size:.88rem;line-height:1.35;flex:1}
+  .plan li{padding-left:1.1rem;position:relative}
+  .plan li::before{content:'—';color:var(--accent);position:absolute;left:0}
+  .pprice{font-family:'Fraunces',serif;font-weight:400;font-size:1.7rem;color:var(--accent);margin-top:1rem}
+  .pprice small{font-size:.74rem;color:var(--mute);font-family:'Space Grotesk';font-weight:500;display:block;margin-top:.15rem}
+  .plan.feat .pprice small{color:#b8b3a7}
+  .price-big{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(3rem,8vw,6rem);line-height:1;color:var(--accent)}
+  .price-big small{font-size:1.05rem;color:var(--cream);font-family:'Space Grotesk';font-weight:500}
+  .anchor{font-size:1.05rem;line-height:1.6;max-width:44ch;color:#e2ded3;margin-bottom:1.6rem}
+  .anchor s{color:#8a8578}
+  .cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:2rem;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;font-size:1.05rem;padding:.95rem 1.7rem;border-radius:99px;width:fit-content;transition:transform .16s var(--eo),box-shadow .2s ease;box-shadow:0 0 0 rgba(246,74,0,0)}
+  .cta:active{transform:scale(.97)}
+  @media(hover:hover){.cta:hover{box-shadow:0 8px 30px rgba(246,74,0,.32)}}
+  .foot-brand{position:absolute;bottom:1.5rem;left:var(--pad-x);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+  .dark .foot-brand,.img .foot-brand{color:#8a8578}
+  @media(max-width:768px){
+    :root{--pad-x:1.5rem}
+    body{scroll-snap-type:y proximity}
+    .slide{min-height:100dvh;padding:5rem var(--pad-x) 5rem}
+    .steps{grid-template-columns:1fr;gap:.9rem}
+    .plans{grid-template-columns:1fr;gap:1rem}
+    .split{grid-template-columns:1fr}
+    .split .media{min-height:38vh}
+    .split .body{min-height:62dvh;padding:2.5rem var(--pad-x)}
+    .lead,.pull,.note{max-width:none}
+    .cover-h{font-size:clamp(2.8rem,13vw,4.5rem)}
+  }
+  /* ===== PORTADA — title card minimalista/conceptual ===== */
+  .cover{justify-content:center}
+  .cover-lockup{display:flex;align-items:center;gap:1.1rem;margin-bottom:2.6rem;flex-wrap:wrap}
+  .cover-wm{height:24px;width:auto}
+  .cover-wm path,.cover-wm polygon{fill:var(--cream)}
+  .cover-x{font-family:'Fraunces',serif;font-style:italic;font-size:1.5rem;color:var(--accent);line-height:1}
+  .cover-client{font-family:'Space Grotesk',sans-serif;font-weight:500;letter-spacing:.2em;font-size:1rem;text-transform:uppercase;color:var(--cream)}
+  .cover-h{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(3rem,9.5vw,7.5rem);line-height:.96;letter-spacing:-.025em}
+  .cover-h em{font-style:italic;color:var(--accent)}
+  .cover-meta{margin-top:2.2rem;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:#8a8578}
+  /* ===== SPLASH — RMK que se dibuja + saludo + contador (identidad REMAKE al abrir) ===== */
+  #splash{position:fixed;inset:0;z-index:2147483647;background:#0B0B0D;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;opacity:1;transition:opacity .55s ease}
+  #splash.hide{opacity:0;pointer-events:none}
+  #splash .sp-mark{width:min(138px,38vw);height:auto;display:block;overflow:visible}
+  #splash .sp-mark path,#splash .sp-mark polygon{fill:transparent;stroke:#fff;stroke-width:3;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:spdraw 1s ease forwards,spink .45s ease 1.05s forwards}
+  #splash .sp-mark polygon:nth-of-type(1){animation-delay:.16s,1.2s}
+  #splash .sp-mark polygon:nth-of-type(2){animation-delay:.32s,1.36s}
+  @keyframes spdraw{to{stroke-dashoffset:0}}
+  @keyframes spink{to{fill:#fff;stroke-width:0}}
+  #splash .sp-greet{font-family:'Fraunces',Georgia,serif;font-style:italic;color:#fff;font-size:clamp(1.35rem,5vw,1.9rem);line-height:1.2;min-height:1.3em;letter-spacing:.01em}
+  #splash .sp-greet::after{content:'|';margin-left:1px;color:rgba(255,255,255,.5);animation:spcaret 1s steps(1) infinite}
+  @keyframes spcaret{50%{opacity:0}}
+  #splash .sp-count{position:fixed;left:0;right:0;bottom:32px;text-align:center;font-family:'Space Grotesk',system-ui,sans-serif;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.42)}
+  @media(prefers-reduced-motion:reduce){#splash .sp-mark path,#splash .sp-mark polygon{fill:#fff;stroke-width:0;stroke-dashoffset:0;animation:none}#splash .sp-greet::after{animation:none;opacity:0}}
+  /* ===== PDF / impresión ===== */
+  @media print{
+    @page{size:A4 landscape;margin:0}
+    #splash,.nav,.progress-track{display:none!important}
+    html,body{height:auto;overflow:visible;background:#fff;scroll-snap-type:none}
+    .slide{min-height:0;height:100vh;break-after:page;page-break-after:always;scroll-snap-align:none;overflow:hidden}
+    .slide *{opacity:1!important;transform:none!important}
+    .split{min-height:0;height:100vh}
+  }
+</style>
+</head>
+<body>
+<div id="splash" role="presentation" aria-hidden="true">
+  <svg class="sp-mark" viewBox="0 0 323.23 128.75" aria-hidden="true"><path pathLength="1" d="M68.21,70.51l15.8,27.96h-14.74l-22.35-39.06h11.45c3.46,0,6.46-1.19,8.96-3.7,2.6-2.54,3.86-5.66,3.86-9.26s-1.26-6.54-3.86-9.06c-2.5-2.52-5.49-3.8-8.96-3.8h-26.13l-7.44-13.06h33.58c7.04,0,13.1,2.54,18.1,7.61,5.01,5.15,7.52,11.2,7.52,18.31,0,5.46-1.45,10.32-4.53,14.71-2.99,4.39-6.74,7.51-11.27,9.35"/><polygon pathLength="1" points="119.31 20.65 158.32 59.56 197.22 20.65 197.22 98.47 184.4 98.47 184.4 51.98 158.32 77.94 119.31 38.75 119.31 20.65"/><polygon pathLength="1" points="272.62 49.15 273.06 48.73 301.29 20.54 282.96 20.54 259.31 44.05 259.29 44.07 243.79 59.47 231.99 71.21 231.99 89.75 253.05 68.71 282.96 98.51 301.29 98.51 262.3 59.47 272.62 49.15"/></svg>
+  <span class="sp-greet" id="spGreet">Hello</span>
+  <span class="sp-count" id="spCount">Cargando 0%</span>
+</div>
+<script>
+(function(){
+  var s=document.getElementById('splash'),g=document.getElementById('spGreet'),c=document.getElementById('spCount');if(!s)return;
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var words=['Hello','Hola','Bonjour','你好','Olá'];
+  var wi=0,ci=0,del=false,stopped=false,lbl='Cargando';
+  function tw(){ if(stopped)return; var wd=words[wi%words.length];
+    if(!del){ci++;g.textContent=wd.slice(0,ci);if(ci>=wd.length){del=true;setTimeout(tw,430);return;}}
+    else{ci--;g.textContent=wd.slice(0,ci);if(ci<=0){del=false;wi++;setTimeout(tw,140);return;}}
+    setTimeout(tw,del?28:55);
+  }
+  if(reduce){ if(g)g.textContent='Hola'; } else { tw(); }
+  var DUR=1900,t0=null,ready=false,done=false,tStart=Date.now(),MINH=1900,MAXH=4200;
+  function finish(){ if(done)return;done=true;stopped=true; if(c)c.textContent=lbl+' 100%'; s.classList.add('hide');setTimeout(function(){if(s&&s.parentNode)s.parentNode.removeChild(s);},650);}
+  function maybeHide(){ if(done)return; if(ready && (Date.now()-tStart)>=MINH){ finish(); } }
+  function mark(){ ready=true; maybeHide(); }
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(mark);}
+  window.addEventListener('load',mark);
+  setTimeout(mark,3000);
+  setTimeout(maybeHide,MINH);
+  setTimeout(finish,MAXH);
+  function step(ts){ if(done)return; if(t0==null)t0=ts;
+    var p=(ts-t0)/DUR, pct=Math.floor(p*100);
+    if(pct>99)pct=ready?100:99; if(pct<0)pct=0;
+    if(c)c.textContent=lbl+' '+pct+'%';
+    if(pct<100||!ready){ requestAnimationFrame(step); }
+  }
+  requestAnimationFrame(step);
+})();
+</script>
+<div class="progress-track"><div class="progress" id="prog"></div></div>
+<div class="nav">
+  <svg class="wm" viewBox="0 0 608.19 142.31" xmlns="http://www.w3.org/2000/svg" aria-label="REMAKE"><path d="M116.43,91.84h51.58v12.96h-51.58v-12.96ZM129.3,59.71h30.18v12.87h-43.06v-12.87h12.88ZM168.01,40.35h-51.58v-12.97h51.58v12.97Z"/><path d="M66.25,76.99l15.71,27.82h-14.66l-22.22-38.86h11.39c3.45,0,6.43-1.17,8.92-3.69,2.59-2.52,3.83-5.62,3.83-9.21s-1.24-6.49-3.83-9.02c-2.49-2.52-5.46-3.78-8.91-3.78h-26l-7.41-12.99h33.41c7,0,13.03,2.52,18.01,7.56,4.98,5.14,7.47,11.15,7.47,18.22,0,5.43-1.44,10.27-4.51,14.63-2.97,4.36-6.7,7.47-11.2,9.31"/><polygon points="202.54 27.38 241.35 66.09 280.05 27.38 280.05 104.8 267.28 104.8 267.28 58.54 241.35 84.39 202.54 45.38 202.54 27.38"/><path d="M530.15,91.88h51.65v12.97h-51.58v-1.07l-.07-11.9ZM543.09,59.76h30.06v12.87h-42.93v-12.87h12.87ZM581.8,27.43v12.97h-51.65l.07-12.97h51.58Z"/><polygon points="329.09 104.84 314.64 104.84 321.4 91.44 327.58 78.99 364.84 78.99 353.43 56.26 346.17 41.8 353.43 27.27 392.22 104.84 377.87 104.84 371.27 91.85 371.07 91.44 335.74 91.44 329.09 104.84"/><polygon points="467.15 55.75 467.58 55.32 495.67 27.27 477.43 27.27 453.89 50.66 453.87 50.68 438.45 66 438.46 66.01 426.71 77.69 426.71 96.13 447.68 75.2 477.43 104.84 495.67 104.84 456.88 66 467.15 55.75"/></svg>
+  <span class="count" id="count">01 / 09</span>
+</div>
+
+<!-- 01 · PORTADA -->
+<section class="slide dark cover">
+  <div class="cover-lockup">
+    <svg class="cover-wm" viewBox="0 0 608.19 142.31" aria-label="REMAKE"><path d="M116.43,91.84h51.58v12.96h-51.58v-12.96ZM129.3,59.71h30.18v12.87h-43.06v-12.87h12.88ZM168.01,40.35h-51.58v-12.97h51.58v12.97Z"/><path d="M66.25,76.99l15.71,27.82h-14.66l-22.22-38.86h11.39c3.45,0,6.43-1.17,8.92-3.69,2.59-2.52,3.83-5.62,3.83-9.21s-1.24-6.49-3.83-9.02c-2.49-2.52-5.46-3.78-8.91-3.78h-26l-7.41-12.99h33.41c7,0,13.03,2.52,18.01,7.56,4.98,5.14,7.47,11.15,7.47,18.22,0,5.43-1.44,10.27-4.51,14.63-2.97,4.36-6.7,7.47-11.2,9.31"/><polygon points="202.54 27.38 241.35 66.09 280.05 27.38 280.05 104.8 267.28 104.8 267.28 58.54 241.35 84.39 202.54 45.38 202.54 27.38"/><path d="M530.15,91.88h51.65v12.97h-51.58v-1.07l-.07-11.9ZM543.09,59.76h30.06v12.87h-42.93v-12.87h12.87ZM581.8,27.43v12.97h-51.65l.07-12.97h51.58Z"/><polygon points="329.09 104.84 314.64 104.84 321.4 91.44 327.58 78.99 364.84 78.99 353.43 56.26 346.17 41.8 353.43 27.27 392.22 104.84 377.87 104.84 371.27 91.85 371.07 91.44 335.74 91.44 329.09 104.84"/><polygon points="467.15 55.75 467.58 55.32 495.67 27.27 477.43 27.27 453.89 50.66 453.87 50.68 438.45 66 438.46 66.01 426.71 77.69 426.71 96.13 447.68 75.2 477.43 104.84 495.67 104.84 456.88 66 467.15 55.75"/></svg>
+    <span class="cover-x">×</span>
+    <span class="cover-client">Innovanort</span>
+  </div>
+  <h1 class="cover-h">Verse experto.<br><em>Llegar primero.</em></h1>
+  <div class="cover-meta">Propuesta · Contenido + Alcance · 2026</div>
+  <div class="foot-brand">Operaciones de IA</div>
+</section>
+
+<!-- 02 · EL RETO -->
+<section class="slide img" style="background-image:url('https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=1600')">
+  <div class="label">02 — El reto</div>
+  <h2 style="max-width:16ch">El mejor consultor no sirve<br>si nadie sabe que existe.</h2>
+  <p class="lead">Innovanort arranca con algo que pocos tienen: experiencia real y muy específica en el sector exequial. Pero hoy no hay redes, no hay presencia — y el buen contenido cuesta tiempo, diseñador y dinero, justo lo que una empresa que arranca no quiere gastar de más.</p>
+  <div class="foot-brand">REMAKE × Innovanort</div>
+</section>
+
+<!-- 03 · REASON WHY -->
+<section class="slide alt">
+  <div class="bar"></div>
+  <div class="label">03 — La verdad</div>
+  <div class="pull">En su sector, la confianza no se declara: <em>se demuestra.</em> Y hoy se demuestra en redes.</div>
+  <p class="note" style="max-width:44ch;margin-top:2rem">Quien invierte o decide en lo exequial busca a alguien que sepa. Cada pieza suya de valor es una prueba de que ustedes son ese alguien.</p>
+  <div class="foot-brand">REMAKE × Innovanort</div>
+</section>
+
+<!-- 04 · EL MOTOR -->
+<section class="slide">
+  <div class="bar"></div>
+  <div class="label">04 — El motor de contenido</div>
+  <h2>Su conocimiento,<br>convertido en contenido — <em>casi solo.</em></h2>
+  <p class="lead">Montamos y operamos un sistema de contenido con IA. Ustedes ponen los temas; nosotros los convertimos en piezas profesionales, con su marca, listas para publicar.</p>
+  <div class="steps">
+    <div class="step"><span class="n">01</span><p>Ustedes dan el <b>tema o la pieza</b> — estrategia, comercialización, sistemas de gestión, operación.</p></div>
+    <div class="step"><span class="n">02</span><p>El sistema <b>arma el contenido</b> (diseño + texto) con su marca y su tono de especialistas.</p></div>
+    <div class="step"><span class="n">03</span><p>Ustedes <b>aprueban y se publica</b> en Instagram y LinkedIn. Suben y bajan según lo que tengan.</p></div>
+  </div>
+  <p class="note">¿Sin fotos todavía? No es problema: arrancamos con piezas de valor (carruseles, datos, guías) que no dependen de una sesión de fotos.</p>
+  <div class="foot-brand">REMAKE × Innovanort</div>
+</section>
+
+<!-- 05 · QUÉ RECIBEN (split) -->
+<section class="slide" style="padding:0">
+  <div class="split">
+    <div class="media" style="background-image:url('https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1100')"></div>
+    <div class="body">
+      <div class="label">05 — Lo que reciben cada mes</div>
+      <h2 style="color:var(--cream)">Un flujo de contenido<br>que no se detiene.</h2>
+      <div style="margin-top:.6rem">
+        <div class="li"><span class="dot">—</span><div><b>12 piezas</b>/mes (posts y carruseles de valor), con su marca.</div></div>
+        <div class="li"><span class="dot">—</span><div><b>4 guiones</b> de reel / video corto, listos para grabar o animar.</div></div>
+        <div class="li"><span class="dot">—</span><div><b>Calendario de publicación</b> para Instagram y LinkedIn.</div></div>
+        <div class="li"><span class="dot">—</span><div><b>Su marca aplicada</b> + una persona de REMAKE a cargo, con ajustes.</div></div>
+        <div class="li"><span class="dot">—</span><div><b>Montaje del sistema</b> — de regalo.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · LA PAUTA -->
+<section class="slide img" style="background-image:url('https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1600')">
+  <div class="label">06 — El siguiente nivel</div>
+  <h2 style="max-width:18ch">El contenido los hace verse.<br>La <em>pauta</em> los hace llegar.</h2>
+  <p class="lead">La pauta lleva su mensaje a <b>exactamente quien invierte o decide en el sector exequial</b> — para que no esperen a que los encuentren, sino que ustedes lleguen primero. Es el camino a <b>adquirir clientes</b>, no solo a existir.</p>
+  <p class="note"><b>Ustedes ponen la inversión de anuncios</b> — va directa a Meta, nunca pasa por nosotros — y se puede empezar con poco. REMAKE crea y optimiza las campañas. No prometemos un número de clientes; sí que verán, con datos, el <b>alcance real</b> de las redes.</p>
+  <div class="foot-brand">REMAKE × Innovanort</div>
+</section>
+
+<!-- 07 · LOS DOS PLANES -->
+<section class="slide alt">
+  <div class="bar"></div>
+  <div class="label">07 — Dos formas de arrancar</div>
+  <div class="plans">
+    <div class="plan">
+      <div class="ptag">Plan A · Contenido</div>
+      <h3>Para empezar a existir<br>y verse experto.</h3>
+      <div class="psub">Presencia profesional y constante en IG y LinkedIn.</div>
+      <ul>
+        <li><b>12 piezas</b>/mes (posts y carruseles)</li>
+        <li><b>4 guiones</b> de reel / video corto</li>
+        <li>Calendario IG + LinkedIn</li>
+        <li>Su marca + persona a cargo</li>
+        <li>Montaje — <b>de regalo</b></li>
+      </ul>
+      <div class="pprice">$790.000 <small>COP / mes</small></div>
+    </div>
+    <div class="plan feat">
+      <div class="ptag">Plan B · Contenido + Pauta</div>
+      <h3>Lo mismo — y que<br>lleguen clientes.</h3>
+      <div class="psub">El mismo contenido, más el alcance de la pauta para adquisición.</div>
+      <ul>
+        <li><b>Todo el Plan A</b>, igual</li>
+        <li>+ <b>gestión de su pauta</b>: campañas creadas y optimizadas por REMAKE</li>
+        <li>Enfocada en <b>adquisición de clientes</b></li>
+        <li>Reporte del alcance real</li>
+      </ul>
+      <div class="pprice">$790.000 <small>COP / mes — <b>el mismo valor</b>. La inversión de pauta la ponen ustedes, directa a Meta.</small></div>
+    </div>
+  </div>
+  <p class="note">La diferencia entre los planes no es el precio: es que en el Plan B, además del contenido, gestionamos su pauta. La inversión de anuncios la definen ustedes (se puede empezar con poco) y va directa a Meta.</p>
+  <div class="foot-brand">REMAKE × Innovanort</div>
+</section>
+
+<!-- 08 · POR QUÉ VALE -->
+<section class="slide dark">
+  <div class="label">08 — Por qué vale la pena</div>
+  <p class="anchor">Un diseñador, un community manager y las herramientas de contenido cuestan <s>varios millones al mes</s>. Con REMAKE, todo el sistema — operado por un equipo humano + IA — por:</p>
+  <div class="price-big">$790.000 <small>COP / mes</small></div>
+  <p class="lead" style="margin-top:1.3rem">Montaje de regalo · sin permanencia forzada · la pauta va aparte, directa a Meta y la ponen ustedes.</p>
+  <div class="foot-brand">REMAKE × Innovanort</div>
+</section>
+
+<!-- 09 · CIERRE -->
+<section class="slide img" style="background-image:url('https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1600')">
+  <div class="label">09 — El siguiente paso</div>
+  <h2>¿Arrancamos?</h2>
+  <p class="lead">Elijan el plan y montamos el sistema de Innovanort. En pocos días empiezan a verse como los especialistas que son — y, cuando quieran, a que los clientes lleguen solos.</p>
+  <a class="cta" href="https://wa.me/15875854143?text=Hola%20REMAKE%2C%20quiero%20arrancar%20con%20la%20propuesta%20de%20Innovanort" target="_blank" rel="noopener">Hablemos por WhatsApp →</a>
+  <div class="foot-brand">REMAKE · mateo.corredor@helloremake.com</div>
+</section>
+
+<script>
+  var slides = document.querySelectorAll('.slide');
+  var count = document.getElementById('count');
+  var prog = document.getElementById('prog');
+  var total = String(slides.length).padStart(2,'0');
+  function upd(){
+    var y = document.body.scrollTop, h = document.body.scrollHeight - document.body.clientHeight;
+    prog.style.width = (h>0 ? (y/h*100) : 0) + '%';
+    var idx = Math.round(y / window.innerHeight);
+    if(idx<0)idx=0; if(idx>slides.length-1)idx=slides.length-1;
+    count.textContent = String(idx+1).padStart(2,'0') + ' / ' + total;
+  }
+  document.body.addEventListener('scroll', upd, {passive:true});
+  window.addEventListener('resize', upd);
+  upd();
+
+  /* Scroll reveals — Emil: solo transform+opacity (GPU), ease-out fuerte, stagger 70ms, reduced-motion aware, una sola vez */
+  (function(){
+    var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var SEL='.label,.cover-lockup,.cover-h,.cover-meta,h1,h2,.pull,.lead,.bar,.step,.li,.plan,.note,.price-big,.anchor';
+    var eo='cubic-bezier(.23,1,.32,1)';
+    document.querySelectorAll('.slide').forEach(function(sl){
+      sl.querySelectorAll(SEL).forEach(function(el){
+        el.style.opacity='0';
+        el.style.transition = reduce ? 'opacity .5s ease' : ('opacity .7s '+eo+', transform .7s '+eo);
+        if(!reduce){ el.style.transform='translateY(18px)'; el.style.willChange='opacity,transform'; }
+      });
+    });
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        e.target.querySelectorAll(SEL).forEach(function(el,i){
+          setTimeout(function(){ el.style.opacity='1'; el.style.transform='none'; el.style.willChange='auto'; }, i*70);
+        });
+        io.unobserve(e.target);
+      });
+    }, {threshold:0.18});
+    document.querySelectorAll('.slide').forEach(function(s){ io.observe(s); });
+  })();
+</script>
+</body>
+</html>

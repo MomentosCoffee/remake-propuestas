@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Propuesta — REMAKE × Innovanort</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0A0A; --cream:#F2EFE8; --bg-alt:#E8E4DA; --accent:#F64A00;
+    --blue:#18336E; --beige:#E5C29B; --mute:#6B6B6B; --line:#D8D4C8;
+    --grad:linear-gradient(100deg,#18336E 0%,#F64A00 55%,#E5C29B 100%);
+    --pad-x:4rem;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Space Grotesk',system-ui,sans-serif;color:var(--ink);background:var(--cream);
+    scroll-snap-type:y mandatory;height:100vh;overflow-y:scroll;-webkit-font-smoothing:antialiased}
+  .slide{min-height:100vh;scroll-snap-align:start;padding:5.5rem var(--pad-x) 4rem;
+    display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+  .dark{background:var(--ink);color:var(--cream)}
+  .alt{background:var(--bg-alt)}
+  .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.4rem}
+  .dark .eyebrow{color:var(--beige)}
+  h1{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(2.6rem,6.6vw,5.4rem);line-height:1.02;letter-spacing:-.02em}
+  h1 em{font-style:italic;color:var(--accent)}
+  h2{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.06;letter-spacing:-.02em;margin-bottom:1.3rem}
+  h2 em{font-style:italic;color:var(--accent)}
+  .lead{font-size:clamp(1rem,1.5vw,1.22rem);line-height:1.6;max-width:52ch;color:#2a2a2a}
+  .dark .lead{color:#d7d3c8}
+  .mute{color:var(--mute)}
+  .pull{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.3;max-width:26ch;margin-top:1.6rem}
+  .bar{height:3px;width:64px;background:var(--grad);border-radius:3px;margin:0 0 1.6rem}
+  /* nav */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+    padding:1.1rem var(--pad-x);pointer-events:none;mix-blend-mode:difference}
+  .nav .wm{height:15px;width:auto}
+  .nav .wm path,.nav .wm polygon{fill:#fff}
+  .nav .count{font-size:.78rem;font-weight:600;letter-spacing:.14em;color:#fff;font-variant-numeric:tabular-nums}
+  .progress-track{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(0,0,0,.08);z-index:60}
+  .progress{height:100%;width:0;background:var(--grad);box-shadow:0 0 12px rgba(246,74,0,.5);transition:width .1s linear}
+  /* steps + cards */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.4rem;max-width:60rem}
+  .step{border-top:2px solid var(--ink);padding-top:.9rem}
+  .dark .step{border-color:var(--beige)}
+  .step .n{font-family:'Fraunces',serif;font-style:italic;font-size:1.5rem;color:var(--accent);display:block;margin-bottom:.3rem}
+  .step p{font-size:.95rem;line-height:1.5}
+  .list{margin-top:1.6rem;max-width:46rem;display:flex;flex-direction:column;gap:.7rem}
+  .li{display:flex;gap:.7rem;align-items:flex-start;font-size:1.02rem;line-height:1.45}
+  .li .dot{color:var(--accent);font-weight:700;flex:none;margin-top:.05rem}
+  .li b{font-weight:600}
+  .gifts{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
+  .gift{border:1px solid var(--line);border-radius:99px;padding:.5rem 1rem;font-size:.86rem;font-weight:500;background:#fff}
+  .gift b{color:var(--accent)}
+  .note{margin-top:1.6rem;font-size:.86rem;color:var(--mute);max-width:48ch}
+  /* price */
+  .price{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(3rem,8vw,6rem);line-height:1;color:var(--accent)}
+  .price small{font-size:1.1rem;color:var(--cream);font-family:'Space Grotesk';font-weight:500;letter-spacing:.02em}
+  .anchor{font-size:1.05rem;line-height:1.6;max-width:44ch;color:#d7d3c8;margin-bottom:1.8rem}
+  .anchor s{color:#8a8578}
+  /* cta */
+  .cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:2rem;background:var(--accent);color:#fff;
+    text-decoration:none;font-weight:600;font-size:1.05rem;padding:.95rem 1.7rem;border-radius:99px;width:fit-content}
+  .cta.ghost{background:transparent;color:var(--cream);border:1px solid rgba(255,255,255,.35)}
+  .foot-brand{position:absolute;bottom:1.6rem;left:var(--pad-x);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+  .dark .foot-brand{color:#8a8578}
+  @media(max-width:768px){
+    :root{--pad-x:1.5rem}
+    body{scroll-snap-type:y proximity}
+    .slide{min-height:100dvh;padding:5rem var(--pad-x) 5rem;justify-content:center}
+    .steps{grid-template-columns:1fr;gap:1rem}
+    .lead,.pull{max-width:none}
+  }
+</style>
+</head>
+<body>
+<div class="progress-track"><div class="progress" id="prog"></div></div>
+<div class="nav">
+  <svg class="wm" viewBox="0 0 608.19 142.31" xmlns="http://www.w3.org/2000/svg" aria-label="REMAKE"><path d="M116.43,91.84h51.58v12.96h-51.58v-12.96ZM129.3,59.71h30.18v12.87h-43.06v-12.87h12.88ZM168.01,40.35h-51.58v-12.97h51.58v12.97Z"/><path d="M66.25,76.99l15.71,27.82h-14.66l-22.22-38.86h11.39c3.45,0,6.43-1.17,8.92-3.69,2.59-2.52,3.83-5.62,3.83-9.21s-1.24-6.49-3.83-9.02c-2.49-2.52-5.46-3.78-8.91-3.78h-26l-7.41-12.99h33.41c7,0,13.03,2.52,18.01,7.56,4.98,5.14,7.47,11.15,7.47,18.22,0,5.43-1.44,10.27-4.51,14.63-2.97,4.36-6.7,7.47-11.2,9.31"/><polygon points="202.54 27.38 241.35 66.09 280.05 27.38 280.05 104.8 267.28 104.8 267.28 58.54 241.35 84.39 202.54 45.38 202.54 27.38"/><path d="M530.15,91.88h51.65v12.97h-51.58v-1.07l-.07-11.9ZM543.09,59.76h30.06v12.87h-42.93v-12.87h12.87ZM581.8,27.43v12.97h-51.65l.07-12.97h51.58Z"/><polygon points="329.09 104.84 314.64 104.84 321.4 91.44 327.58 78.99 364.84 78.99 353.43 56.26 346.17 41.8 353.43 27.27 392.22 104.84 377.87 104.84 371.27 91.85 371.07 91.44 335.74 91.44 329.09 104.84"/><polygon points="467.15 55.75 467.58 55.32 495.67 27.27 477.43 27.27 453.89 50.66 453.87 50.68 438.45 66 438.46 66.01 426.71 77.69 426.71 96.13 447.68 75.2 477.43 104.84 495.67 104.84 456.88 66 467.15 55.75"/></svg>
+  <span class="count" id="count">01 / 06</span>
+</div>
+
+<!-- 01 · RESULTADO -->
+<section class="slide dark">
+  <div class="eyebrow">Propuesta · REMAKE × Innovanort</div>
+  <h1>Empiecen viéndose<br>como los <em>expertos</em><br>que ya son.</h1>
+  <p class="lead" style="margin-top:1.8rem">Contenido profesional para Innovanort en Instagram y LinkedIn — que nace de su conocimiento del sector, sin que ustedes tengan que sentarse a producirlo.</p>
+  <div class="foot-brand">REMAKE · Operaciones de IA</div>
+</section>
+
+<!-- 02 · EL RETO -->
+<section class="slide">
+  <div class="bar"></div>
+  <div class="eyebrow">El reto</div>
+  <h2>El mejor consultor no sirve<br>si nadie sabe que existe.</h2>
+  <p class="lead">Innovanort arranca con algo que pocos tienen: experiencia real y muy específica en el sector exequial. Pero hoy no hay redes, no hay presencia, y el buen contenido cuesta tiempo, diseñador y dinero — justo lo que una empresa que arranca no quiere gastar de más.</p>
+  <div class="pull">El reto no es tener qué decir. Es <em>decirlo — seguido y bien —</em> sin montar un equipo.</div>
+  <div class="foot-brand">REMAKE × Innovanort</div>
+</section>
+
+<!-- 03 · LA SOLUCIÓN -->
+<section class="slide alt">
+  <div class="bar"></div>
+  <div class="eyebrow">La solución</div>
+  <h2>Su conocimiento,<br>convertido en contenido — <em>casi solo.</em></h2>
+  <p class="lead">Montamos y operamos para Innovanort un <b>sistema de contenido con IA</b>. Ustedes ponen los temas y lo que tengan; nosotros lo convertimos en piezas profesionales, con su marca, listas para publicar.</p>
+  <div class="steps">
+    <div class="step"><span class="n">01</span><p>Ustedes dan el <b>tema o la pieza</b> — estrategia, comercialización, sistemas de gestión, operación.</p></div>
+    <div class="step"><span class="n">02</span><p>El sistema <b>arma el contenido</b> (diseño + texto) con su marca y su tono de especialistas.</p></div>
+    <div class="step"><span class="n">03</span><p>Ustedes <b>aprueban y se publica</b> en Instagram y LinkedIn. Suben y bajan según lo que tengan.</p></div>
+  </div>
+  <p class="note">¿Sin fotos todavía? No es problema: arrancamos con piezas de valor (carruseles, datos, guías) que no dependen de una sesión de fotos.</p>
+  <div class="foot-brand">REMAKE × Innovanort</div>
+</section>
+
+<!-- 04 · QUÉ RECIBEN -->
+<section class="slide">
+  <div class="bar"></div>
+  <div class="eyebrow">Lo que reciben cada mes</div>
+  <h2>Un flujo de contenido<br>que no se detiene.</h2>
+  <div class="list">
+    <div class="li"><span class="dot">—</span><div><b>12 piezas</b> de contenido al mes (posts y carruseles de valor), con su marca.</div></div>
+    <div class="li"><span class="dot">—</span><div><b>4 guiones</b> de reel / video corto, listos para grabar fácil o animar.</div></div>
+    <div class="li"><span class="dot">—</span><div><b>Calendario de publicación</b> para Instagram y LinkedIn.</div></div>
+    <div class="li"><span class="dot">—</span><div><b>Su marca aplicada</b> (usamos su manual) y una persona de REMAKE pendiente, con ajustes.</div></div>
+  </div>
+  <div class="gifts">
+    <span class="gift"><b>Regalo:</b>&nbsp;montaje del sistema</span>
+    <span class="gift"><b>Regalo:</b>&nbsp;primeras campañas por tema definidas</span>
+  </div>
+  <p class="note">No incluye: pauta publicitaria (va aparte, directo a Meta) ni fotografía profesional. La respuesta a clientes la maneja su equipo.</p>
+  <div class="foot-brand">REMAKE × Innovanort</div>
+</section>
+
+<!-- 05 · LA INVERSIÓN -->
+<section class="slide dark">
+  <div class="eyebrow">La inversión</div>
+  <p class="anchor">Un diseñador, un community manager y las herramientas de contenido cuestan <s>varios millones al mes</s>. Con REMAKE, todo el sistema — operado por un equipo humano + IA — por:</p>
+  <div class="price">$790.000 <small>COP / mes</small></div>
+  <p class="lead" style="margin-top:1.4rem">Montaje de regalo · sin permanencia forzada · la pauta va aparte, directo a Meta.</p>
+  <div class="foot-brand">REMAKE × Innovanort</div>
+</section>
+
+<!-- 06 · CIERRE -->
+<section class="slide alt">
+  <div class="bar"></div>
+  <div class="eyebrow">El siguiente paso</div>
+  <h2>¿Arrancamos?</h2>
+  <p class="lead">Un mensaje y montamos el sistema de contenido de Innovanort. En pocos días empiezan a verse como los especialistas que son.</p>
+  <a class="cta" href="https://wa.me/15875854143?text=Hola%20REMAKE%2C%20quiero%20arrancar%20con%20el%20sistema%20de%20contenido%20de%20Innovanort" target="_blank" rel="noopener">Hablemos por WhatsApp →</a>
+  <div class="foot-brand">REMAKE · mateo.corredor@helloremake.com · Operaciones de IA</div>
+</section>
+
+<script>
+  var slides = document.querySelectorAll('.slide');
+  var count = document.getElementById('count');
+  var prog = document.getElementById('prog');
+  var total = String(slides.length).padStart(2,'0');
+  function upd(){
+    var y = document.body.scrollTop, h = document.body.scrollHeight - document.body.clientHeight;
+    prog.style.width = (h>0 ? (y/h*100) : 0) + '%';
+    var idx = Math.round(y / window.innerHeight);
+    if(idx<0)idx=0; if(idx>slides.length-1)idx=slides.length-1;
+    count.textContent = String(idx+1).padStart(2,'0') + ' / ' + total;
+  }
+  document.body.addEventListener('scroll', upd, {passive:true});
+  window.addEventListener('resize', upd);
+  upd();
+</script>
+</body>
+</html>
