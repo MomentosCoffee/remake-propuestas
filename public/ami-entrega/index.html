@@ -393,10 +393,10 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
 </section>
 
 <script>
-  var slides=document.querySelectorAll('.slide'),count=document.getElementById('count'),prog=document.getElementById('prog');
-  var total=String(slides.length).padStart(2,'0');
-  function upd(){var y=document.body.scrollTop,h=document.body.scrollHeight-document.body.clientHeight;prog.style.width=(h>0?(y/h*100):0)+'%';var idx=Math.round(y/window.innerHeight);if(idx<0)idx=0;if(idx>slides.length-1)idx=slides.length-1;count.textContent=String(idx+1).padStart(2,'0')+' / '+total;}
-  document.body.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
+  var prog=document.getElementById('prog');
+  function scEl(){var d=document;return (d.body.scrollTop>0?d.body:(d.documentElement.scrollTop>0?d.documentElement:(d.scrollingElement||d.body)));}
+  function updProg(){var el=scEl();var y=el.scrollTop||0;var h=(el.scrollHeight-el.clientHeight)||1;prog.style.width=Math.max(0,Math.min(100,y/h*100))+'%';}
+  window.addEventListener('scroll',updProg,true);window.addEventListener('resize',updProg);updProg();
   (function(){var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;var SEL='.label,.cover-lockup,.cover-h,.cover-meta,h1,h2,.lead,.bar,.idxi,.ci,.step,.rule,.chip,.tier,.linkbtn,.note,.cta';var eo='cubic-bezier(.23,1,.32,1)';
     document.querySelectorAll('.slide').forEach(function(sl){sl.querySelectorAll(SEL).forEach(function(el){el.style.opacity='0';el.style.transition=reduce?'opacity .5s ease':('opacity .7s '+eo+', transform .7s '+eo);if(!reduce){el.style.transform='translateY(18px)';el.style.willChange='opacity,transform';}});});
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.querySelectorAll(SEL).forEach(function(el,i){setTimeout(function(){el.style.opacity='1';el.style.transform='none';el.style.willChange='auto';},i*55);});io.unobserve(e.target);});},{threshold:0.16});
@@ -413,13 +413,14 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb();})
 </script>
 <script>
 (function(){var labels=['Portada','Índice','Dónde vamos','Aprobación','Su web','Sus blogs','Asistente','Su contenido','La pauta','Estado','Gracias'];
-var slides=document.querySelectorAll('.slide');if(!slides.length)return;
+var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));if(!slides.length)return;
+var count=document.getElementById('count');var total=String(slides.length).padStart(2,'0');
 var nav=document.createElement('div');nav.className='docknav';var as=[];
-slides.forEach(function(s,i){var a=document.createElement('a');a.setAttribute('aria-label',labels[i]||('Sección '+(i+1)));a.innerHTML='<span class="dn-l">'+(labels[i]||(i+1))+'</span><span class="dn-d"></span>';a.addEventListener('click',function(){var top=i*window.innerHeight;try{document.body.scrollTo({top:top,behavior:'smooth'});}catch(e){document.body.scrollTop=top;}});nav.appendChild(a);as.push(a);});
+slides.forEach(function(s,i){var a=document.createElement('a');a.setAttribute('aria-label',labels[i]||('Sección '+(i+1)));a.innerHTML='<span class="dn-l">'+(labels[i]||(i+1))+'</span><span class="dn-d"></span>';a.addEventListener('click',function(){s.scrollIntoView({behavior:'smooth',block:'start'});});nav.appendChild(a);as.push(a);});
 document.body.appendChild(nav);
-function setA(idx){for(var i=0;i<as.length;i++)as[i].classList.toggle('on',i===idx);}
-document.body.addEventListener('scroll',function(){var idx=Math.round(document.body.scrollTop/window.innerHeight);if(idx<0)idx=0;if(idx>as.length-1)idx=as.length-1;setA(idx);},{passive:true});
-setA(0);})();
+function setA(idx){for(var i=0;i<as.length;i++)as[i].classList.toggle('on',i===idx);if(count)count.textContent=String(idx+1).padStart(2,'0')+' / '+total;}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=slides.indexOf(e.target);if(i>=0)setA(i);}});},{rootMargin:'-50% 0px -50% 0px',threshold:0});
+slides.forEach(function(s){io.observe(s);});setA(0);})();
 </script>
 </body>
 </html>
