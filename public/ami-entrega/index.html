@@ -20,46 +20,53 @@
   .img::before{content:'';position:absolute;inset:0;background:linear-gradient(175deg,rgba(10,10,10,.28) 0%,rgba(10,10,10,.55) 45%,rgba(10,10,10,.88) 100%);z-index:0}
   .img>*{position:relative;z-index:1}
   .label{font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem}
-  .img .label,.dark .label{color:var(--beige)}
+  .img .label,.dark .label,.split .body .label{color:var(--beige)}
   h1{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(2.6rem,6.4vw,5.2rem);line-height:1.02;letter-spacing:-.02em}
   h1 em{font-style:italic;color:var(--accent)}
   h2{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(1.9rem,4.4vw,3.3rem);line-height:1.07;letter-spacing:-.02em;margin-bottom:1.2rem}
   h2 em{font-style:italic;color:var(--accent)}
   .lead{font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.6;max-width:54ch;color:#2a2a2a}
-  .dark .lead,.img .lead{color:#e2ded3}
+  .dark .lead,.img .lead,.split .body .lead{color:#e2ded3}
   .note{margin-top:1.5rem;font-size:.86rem;color:var(--mute);max-width:56ch;line-height:1.55}
-  .dark .note,.img .note{color:#a9a498}
+  .dark .note,.img .note,.split .body .note{color:#a9a498}
   .bar{height:3px;width:64px;background:var(--grad);border-radius:3px;margin:0 0 1.5rem}
   .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1.1rem var(--pad-x);pointer-events:none;mix-blend-mode:difference}
   .nav .wm{height:15px;width:auto}.nav .wm path,.nav .wm polygon{fill:#fff}
   .nav .count{font-size:.78rem;font-weight:600;letter-spacing:.14em;color:#fff;font-variant-numeric:tabular-nums}
   .progress-track{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(0,0,0,.08);z-index:60}
   .progress{height:100%;width:0;background:var(--grad);box-shadow:0 0 12px rgba(246,74,0,.5);transition:width .1s linear}
+  /* índice */
+  .idx{margin-top:2rem;display:flex;flex-direction:column;max-width:52rem}
+  .idxi{display:flex;align-items:baseline;gap:1.1rem;padding:1rem 0;border-top:1px solid rgba(255,255,255,.14)}
+  .idxi:last-child{border-bottom:1px solid rgba(255,255,255,.14)}
+  .idxi .in{font-family:'Fraunces',serif;font-style:italic;font-size:1.5rem;color:var(--accent);flex:none;width:2.4rem}
+  .idxi .it{font-size:1.25rem;font-weight:500;color:var(--cream)}
+  .idxi .id{margin-left:auto;font-size:.86rem;color:#8a8578;text-align:right}
   /* checklist */
   .chk{margin-top:1.8rem;display:flex;flex-direction:column;gap:.75rem;max-width:46rem}
   .ci{display:flex;gap:.8rem;align-items:flex-start;font-size:1.05rem;line-height:1.4}
   .ci .k{flex:none;height:22px;width:22px;border-radius:6px;background:#1f9d6a;color:#fff;display:grid;place-items:center;font-size:13px;margin-top:1px}
   .ci .k.soon{background:transparent;border:1.5px solid var(--beige);color:var(--beige)}
   .ci b{font-weight:600}.ci span{color:var(--mute)}.dark .ci span,.img .ci span{color:#a9a498}
-  /* steps / delivery */
+  /* steps / chips */
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2rem;max-width:62rem}
-  .step{border-top:2px solid currentColor;padding-top:.9rem;opacity:1}
+  .step{border-top:2px solid currentColor;padding-top:.9rem}
   .step .n{font-family:'Fraunces',serif;font-style:italic;font-size:1.5rem;color:var(--accent);display:block;margin-bottom:.3rem}
   .step p{font-size:.95rem;line-height:1.5}
-  .rules{margin-top:1.6rem;display:flex;flex-direction:column;gap:.6rem;max-width:50rem}
+  .chips{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
+  .chip{border:1px solid var(--line);border-radius:12px;padding:.7rem 1.1rem;font-size:1rem;background:#fff}
+  .dark .chip,.img .chip{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}
+  .chip b{color:var(--accent);font-family:'Fraunces',serif;font-style:italic;font-size:1.2rem;margin-right:.35rem}
+  .rules{margin-top:1.6rem;display:flex;flex-direction:column;gap:.6rem;max-width:52rem}
   .rule{display:flex;gap:.6rem;font-size:1rem;line-height:1.4}.rule .d{color:var(--accent);font-weight:700;flex:none}.rule b{font-weight:600}
-  /* link buttons */
   .linkrow{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
   .linkbtn{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.85rem 1.2rem;text-decoration:none;color:var(--ink);font-weight:600;font-size:.95rem;transition:transform .16s var(--eo),box-shadow .2s ease}
-  .dark .linkbtn,.img .linkbtn{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16);color:var(--cream)}
   .linkbtn:active{transform:scale(.98)}
   @media(hover:hover){.linkbtn:hover{box-shadow:0 8px 24px rgba(0,0,0,.12)}}
   .linkbtn .ar{color:var(--accent)}
-  /* split */
   .split{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
   .split .media{background-size:cover;background-position:center}
   .split .body{padding:5.5rem var(--pad-x) 4rem;display:flex;flex-direction:column;justify-content:center;background:var(--ink);color:var(--cream)}
-  /* pauta tiers */
   .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.8rem;max-width:66rem;width:100%}
   .tier{border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.2rem;background:#fff;display:flex;flex-direction:column}
   .tier.feat{background:var(--ink);color:var(--cream);border-color:var(--ink);position:relative;overflow:hidden}
@@ -76,7 +83,6 @@
   .cta:active{transform:scale(.97)}
   .foot-brand{position:absolute;bottom:1.5rem;left:var(--pad-x);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
   .dark .foot-brand,.img .foot-brand{color:#8a8578}
-  /* cover */
   .cover-lockup{display:flex;align-items:center;gap:1.1rem;margin-bottom:2.6rem;flex-wrap:wrap}
   .cover-wm{height:24px;width:auto}.cover-wm path,.cover-wm polygon{fill:var(--cream)}
   .cover-x{font-family:'Fraunces',serif;font-style:italic;font-size:1.5rem;color:var(--accent)}
@@ -91,8 +97,8 @@
     .steps{grid-template-columns:1fr;gap:.9rem}.tiers{grid-template-columns:1fr;gap:.9rem}
     .split{grid-template-columns:1fr}.split .media{min-height:36vh}.split .body{min-height:64dvh;padding:2.5rem var(--pad-x)}
     .lead,.note{max-width:none}.cover-h{font-size:clamp(2.6rem,12vw,4.2rem)}
+    .idxi .id{display:none}
   }
-  /* splash */
   #splash{position:fixed;inset:0;z-index:2147483647;background:#0B0B0D;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;opacity:1;transition:opacity .55s ease}
   #splash.hide{opacity:0;pointer-events:none}
   #splash .sp-mark{width:min(138px,38vw);height:auto;display:block;overflow:visible}
@@ -128,52 +134,80 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
 <div class="progress-track"><div class="progress" id="prog"></div></div>
 <div class="nav">
   <svg class="wm" viewBox="0 0 608.19 142.31" aria-label="REMAKE"><path d="M116.43,91.84h51.58v12.96h-51.58v-12.96ZM129.3,59.71h30.18v12.87h-43.06v-12.87h12.88ZM168.01,40.35h-51.58v-12.97h51.58v12.97Z"/><path d="M66.25,76.99l15.71,27.82h-14.66l-22.22-38.86h11.39c3.45,0,6.43-1.17,8.92-3.69,2.59-2.52,3.83-5.62,3.83-9.21s-1.24-6.49-3.83-9.02c-2.49-2.52-5.46-3.78-8.91-3.78h-26l-7.41-12.99h33.41c7,0,13.03,2.52,18.01,7.56,4.98,5.14,7.47,11.15,7.47,18.22,0,5.43-1.44,10.27-4.51,14.63-2.97,4.36-6.7,7.47-11.2,9.31"/><polygon points="202.54 27.38 241.35 66.09 280.05 27.38 280.05 104.8 267.28 104.8 267.28 58.54 241.35 84.39 202.54 45.38 202.54 27.38"/><path d="M530.15,91.88h51.65v12.97h-51.58v-1.07l-.07-11.9ZM543.09,59.76h30.06v12.87h-42.93v-12.87h12.87ZM581.8,27.43v12.97h-51.65l.07-12.97h51.58Z"/><polygon points="329.09 104.84 314.64 104.84 321.4 91.44 327.58 78.99 364.84 78.99 353.43 56.26 346.17 41.8 353.43 27.27 392.22 104.84 377.87 104.84 371.27 91.85 371.07 91.44 335.74 91.44 329.09 104.84"/><polygon points="467.15 55.75 467.58 55.32 495.67 27.27 477.43 27.27 453.89 50.66 453.87 50.68 438.45 66 438.46 66.01 426.71 77.69 426.71 96.13 447.68 75.2 477.43 104.84 495.67 104.84 456.88 66 467.15 55.75"/></svg>
-  <span class="count" id="count">01 / 09</span>
+  <span class="count" id="count">01 / 11</span>
 </div>
 
 <!-- 01 · PORTADA -->
 <section class="slide dark">
   <div class="cover-lockup"><svg class="cover-wm" viewBox="0 0 608.19 142.31" aria-label="REMAKE"><path d="M116.43,91.84h51.58v12.96h-51.58v-12.96ZM129.3,59.71h30.18v12.87h-43.06v-12.87h12.88ZM168.01,40.35h-51.58v-12.97h51.58v12.97Z"/><path d="M66.25,76.99l15.71,27.82h-14.66l-22.22-38.86h11.39c3.45,0,6.43-1.17,8.92-3.69,2.59-2.52,3.83-5.62,3.83-9.21s-1.24-6.49-3.83-9.02c-2.49-2.52-5.46-3.78-8.91-3.78h-26l-7.41-12.99h33.41c7,0,13.03,2.52,18.01,7.56,4.98,5.14,7.47,11.15,7.47,18.22,0,5.43-1.44,10.27-4.51,14.63-2.97,4.36-6.7,7.47-11.2,9.31"/><polygon points="202.54 27.38 241.35 66.09 280.05 27.38 280.05 104.8 267.28 104.8 267.28 58.54 241.35 84.39 202.54 45.38 202.54 27.38"/><path d="M530.15,91.88h51.65v12.97h-51.58v-1.07l-.07-11.9ZM543.09,59.76h30.06v12.87h-42.93v-12.87h12.87ZM581.8,27.43v12.97h-51.65l.07-12.97h51.58Z"/><polygon points="329.09 104.84 314.64 104.84 321.4 91.44 327.58 78.99 364.84 78.99 353.43 56.26 346.17 41.8 353.43 27.27 392.22 104.84 377.87 104.84 371.27 91.85 371.07 91.44 335.74 91.44 329.09 104.84"/><polygon points="467.15 55.75 467.58 55.32 495.67 27.27 477.43 27.27 453.89 50.66 453.87 50.68 438.45 66 438.46 66.01 426.71 77.69 426.71 96.13 447.68 75.2 477.43 104.84 495.67 104.84 456.88 66 467.15 55.75"/></svg><span class="cover-x">×</span><span class="cover-client">Clínica AMI</span></div>
   <h1 class="cover-h">Ya está casi todo.<br><em>Solo faltan ustedes.</em></h1>
-  <div class="cover-meta">Entrega · Web · Contenido · Bot · Pauta · 2026</div>
+  <div class="cover-meta">Entrega · Su presencia digital, lista · 2026</div>
   <div class="foot-brand">REMAKE · Operaciones de IA</div>
 </section>
 
-<!-- 02 · AVANCE -->
+<!-- 02 · ÍNDICE -->
+<section class="slide dark">
+  <div class="label">Índice</div>
+  <h2>Lo que ya les tenemos listo.</h2>
+  <div class="idx">
+    <div class="idxi"><span class="in">01</span><span class="it">Su web nueva</span><span class="id">Lista · para ajustar</span></div>
+    <div class="idxi"><span class="in">02</span><span class="it">Su contenido</span><span class="id">Piezas · reels · historias</span></div>
+    <div class="idxi"><span class="in">03</span><span class="it">Sus blogs</span><span class="id">2 ejemplos listos</span></div>
+    <div class="idxi"><span class="in">04</span><span class="it">Su asistente 24/7</span><span class="id">Casi configurado</span></div>
+    <div class="idxi"><span class="in">05</span><span class="it">La pauta</span><span class="id">3 niveles</span></div>
+  </div>
+  <p class="note">Y al final: cómo trabajamos juntos y lo único que necesitamos de ustedes.</p>
+  <div class="foot-brand">REMAKE × Clínica AMI</div>
+</section>
+
+<!-- 03 · AVANCE / PROOF -->
 <section class="slide img" style="background-image:url('https://images.pexels.com/photos/3845810/pexels-photo-3845810.jpeg?auto=compress&cs=tinysrgb&w=1600')">
-  <div class="label">02 — Dónde vamos</div>
+  <div class="label">Dónde vamos</div>
   <h2 style="max-width:16ch">No llegamos a proponer.<br>Llegamos con la mesa <em>servida.</em></h2>
   <div class="chk">
     <div class="ci"><span class="k">✓</span><div><b>Su web nueva</b> — lista, en propuesta para que la ajusten.</div></div>
     <div class="ci"><span class="k">✓</span><div><b>Las piezas del primer mes</b> — diseñadas y listas para su aprobación.</div></div>
     <div class="ci"><span class="k">✓</span><div><b>Los guiones de los reels</b> — listos para grabar a su manera.</div></div>
     <div class="ci"><span class="k">✓</span><div><b>Su asistente 24/7</b> — casi configurado; lo entrenamos con ustedes.</div></div>
-    <div class="ci"><span class="k soon">•</span><div><b>Los accesos</b> — los estamos resolviendo <b>internamente</b>, no los cargamos con eso. <span>Solo pediremos lo justo.</span></div></div>
+    <div class="ci"><span class="k soon">•</span><div><b>Los accesos</b> — los resolvemos <b>internamente</b>. No los cargamos con eso.</div></div>
   </div>
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
 
-<!-- 03 · LA WEB -->
+<!-- 04 · 01 SU WEB -->
 <section class="slide alt">
   <div class="bar"></div>
-  <div class="label">03 — Su web nueva</div>
-  <h2>Una web hecha para que<br>los <em>encuentren</em> y agenden.</h2>
-  <p class="lead">Sus 30 años, la valoración sin costo, las 24 cuotas y sus 11 especialidades — al fin visibles desde el primer scroll, y pensada para agendar en pocos toques desde el celular. <b>Es una propuesta: ajusten lo que quieran</b>, textos, fotos, orden. Es suya.</p>
-  <div class="linkrow">
-    <a class="linkbtn" href="https://dainty-paprenjak-b139c3.netlify.app/" target="_blank" rel="noopener">Ver la web propuesta <span class="ar">→</span></a>
-  </div>
-  <p class="note">Nota: los espacios de fotos y testimonios están marcados para llenarlos con su material real — nunca ponemos reseñas ni resultados inventados.</p>
+  <div class="label">01 — Su web nueva</div>
+  <h2>Una web para que los<br><em>encuentren</em> y agenden.</h2>
+  <p class="lead">Sus 30 años, la valoración sin costo, las 24 cuotas y sus 11 especialidades — al fin visibles desde el primer scroll, pensada para agendar en pocos toques desde el celular. <b>Es una propuesta: ajusten lo que quieran</b> (textos, fotos, orden). Es suya.</p>
+  <div class="linkrow"><a class="linkbtn" href="https://dainty-paprenjak-b139c3.netlify.app/" target="_blank" rel="noopener">Ver la web propuesta <span class="ar">→</span></a></div>
+  <p class="note">Los espacios de fotos y testimonios están marcados para llenarlos con su material real — nunca ponemos reseñas ni resultados inventados.</p>
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
 
-<!-- 04 · CÓMO ENTREGAMOS LAS PIEZAS -->
+<!-- 05 · 02 SU CONTENIDO -->
+<section class="slide">
+  <div class="bar"></div>
+  <div class="label">02 — Su contenido</div>
+  <h2>Un mes de contenido,<br>ya <em>diseñado.</em></h2>
+  <p class="lead">Producimos cada mes un flujo de contenido con su marca y sus ganchos reales (30 años, valoración gratis, 24 cuotas), listo para publicar en Instagram y Facebook.</p>
+  <div class="chips">
+    <span class="chip"><b>16</b> publicaciones (posts + carruseles)</span>
+    <span class="chip"><b>4</b> reels (guiones listos)</span>
+    <span class="chip"><b>12</b> historias</span>
+  </div>
+  <p class="note">Los <b>reels los graban a su manera</b> con los guiones que les dejamos — así se ven auténticos. El material lo suben al Drive y nosotros lo integramos.</p>
+  <div class="foot-brand">REMAKE × Clínica AMI</div>
+</section>
+
+<!-- 06 · CÓMO ENTREGAMOS -->
 <section class="slide dark">
   <div class="bar"></div>
-  <div class="label">04 — Cómo entregamos el contenido</div>
-  <h2>Así van a ver, aprobar<br>y ajustar cada pieza.</h2>
+  <div class="label">Cómo van a aprobar el contenido</div>
+  <h2>Ustedes ven, aprueban<br>y ajustan cada pieza.</h2>
   <div class="steps">
     <div class="step"><span class="n">01</span><p><b>Esta primera vez</b> les entregamos <b>todo el lote junto</b> — para encontrar juntos el estilo que les gusta.</p></div>
-    <div class="step"><span class="n">02</span><p><b>De ahí en adelante</b>, les vamos enviando pieza por pieza por <b>Slack</b> (ideal), WhatsApp o SMS — ustedes eligen.</p></div>
+    <div class="step"><span class="n">02</span><p><b>De ahí en adelante</b>, pieza por pieza por <b>Slack</b> (ideal), WhatsApp o SMS — ustedes eligen.</p></div>
     <div class="step"><span class="n">03</span><p>Ustedes <b>aprueban o rechazan</b> cada una. Es su marca; su OK manda.</p></div>
   </div>
   <div class="rules">
@@ -183,12 +217,12 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
 
-<!-- 05 · LOS BLOGS -->
+<!-- 07 · 03 SUS BLOGS -->
 <section class="slide" style="padding:0">
   <div class="split">
     <div class="media" style="background-image:url('https://images.pexels.com/photos/6528856/pexels-photo-6528856.jpeg?auto=compress&cs=tinysrgb&w=1100')"></div>
     <div class="body">
-      <div class="label">05 — Sus blogs</div>
+      <div class="label">03 — Sus blogs</div>
       <h2 style="color:var(--cream)">Contenido que los pone<br>a salir en <em>Google.</em></h2>
       <p class="lead">Su web hoy es casi invisible para los buscadores. Con blogs claros, sus pacientes los encuentran cuando buscan "cuánto cuesta un implante" o "diseño de sonrisa". Les dejamos <b>dos ejemplos reales</b>, listos, para que vean el tono:</p>
       <div class="linkrow">
@@ -199,64 +233,47 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
   </div>
 </section>
 
-<!-- 06 · ENTRENAR EL BOT -->
+<!-- 08 · 04 EL BOT -->
 <section class="slide img" style="background-image:url('https://images.pexels.com/photos/4269694/pexels-photo-4269694.jpeg?auto=compress&cs=tinysrgb&w=1600')">
-  <div class="label">06 — Su asistente 24/7</div>
+  <div class="label">04 — Su asistente 24/7</div>
   <h2 style="max-width:18ch">Entrenémoslo para que atienda<br>como <em>su mejor persona.</em></h2>
   <p class="lead">Ya sabemos montar asistentes que atienden y agendan de verdad — lo hemos hecho en otras clínicas. Ahora lo afinamos con lo suyo: sus sedes, sus servicios, sus reglas de agenda y su voz. Les dejamos un cuestionario corto para entrenarlo (nos lo pueden mandar por audio o WhatsApp).</p>
-  <div class="linkrow">
-    <a class="linkbtn" href="https://remake-propuestas.vercel.app/ami-bot" target="_blank" rel="noopener">Entrenar a su asistente <span class="ar">→</span></a>
-  </div>
+  <div class="linkrow"><a class="linkbtn" href="https://remake-propuestas.vercel.app/ami-bot" target="_blank" rel="noopener">Entrenar a su asistente <span class="ar">→</span></a></div>
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
 
-<!-- 07 · LA PAUTA -->
+<!-- 09 · 05 LA PAUTA -->
 <section class="slide alt">
   <div class="bar"></div>
-  <div class="label">07 — La pauta · adquisición de pacientes</div>
+  <div class="label">05 — La pauta · adquisición de pacientes</div>
   <h2>Tres niveles que recomendamos.</h2>
   <p class="lead" style="max-width:60ch">La inversión de anuncios la ponen ustedes, <b>directa a Meta</b> — nosotros creamos y optimizamos las campañas. Estos son rangos <b>estimados</b> para el sector dental en Colombia:</p>
   <div class="tiers">
-    <div class="tier">
-      <div class="tt">Presencia local</div>
-      <h3>Empezar a sonar</h3>
-      <div class="inv">$700.000 <small>COP / mes de inversión</small></div>
-      <div class="res">≈ <b>30–60</b> conversaciones de pacientes interesados al mes.</div>
-    </div>
-    <div class="tier feat">
-      <div class="tt">Más pacientes ★</div>
-      <h3>El punto dulce</h3>
-      <div class="inv">$1.500.000 <small>COP / mes de inversión</small></div>
-      <div class="res">≈ <b>70–130</b> conversaciones de pacientes interesados al mes.</div>
-    </div>
-    <div class="tier">
-      <div class="tt">Máximo alcance</div>
-      <h3>Llenar la agenda</h3>
-      <div class="inv">$3.000.000 <small>COP / mes de inversión</small></div>
-      <div class="res">≈ <b>150–260</b> conversaciones de pacientes interesados al mes.</div>
-    </div>
+    <div class="tier"><div class="tt">Presencia local</div><h3>Empezar a sonar</h3><div class="inv">$700.000 <small>COP / mes de inversión</small></div><div class="res">≈ <b>30–60</b> conversaciones de pacientes interesados al mes.</div></div>
+    <div class="tier feat"><div class="tt">Más pacientes ★</div><h3>El punto dulce</h3><div class="inv">$1.500.000 <small>COP / mes de inversión</small></div><div class="res">≈ <b>70–130</b> conversaciones de pacientes interesados al mes.</div></div>
+    <div class="tier"><div class="tt">Máximo alcance</div><h3>Llenar la agenda</h3><div class="inv">$3.000.000 <small>COP / mes de inversión</small></div><div class="res">≈ <b>150–260</b> conversaciones de pacientes interesados al mes.</div></div>
   </div>
-  <p class="note">Son <b>conversaciones de gente interesada, no pacientes cerrados</b>. La pauta nunca pasa por REMAKE y no garantiza un número mágico — se afina con los datos reales del primer mes. Se puede empezar con poco y subir.</p>
+  <p class="note">Son <b>conversaciones de gente interesada, no pacientes cerrados</b>. La pauta nunca pasa por REMAKE y no garantiza un número mágico — se afina con los datos reales del primer mes.</p>
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
 
-<!-- 08 · LO QUE NECESITAMOS -->
+<!-- 10 · LO QUE NECESITAMOS -->
 <section class="slide dark">
   <div class="bar"></div>
-  <div class="label">08 — Lo único que nos falta de ustedes</div>
+  <div class="label">Lo único que nos falta de ustedes</div>
   <h2>Su <em>material real.</em><br>Eso es lo auténtico.</h2>
   <p class="lead">Lo único que no podemos inventar (y que jamás inventaríamos) son sus fotos y videos reales: las sedes, el equipo, los doctores, sus pacientes felices. Eso es lo que hace que todo se sienta AMI de verdad.</p>
   <div class="rules">
     <div class="rule"><span class="d">—</span><div>Súbanlo a la <b>carpeta de Drive</b> que les compartimos — como quieran, sin orden. Nosotros lo organizamos.</div></div>
-    <div class="rule"><span class="d">—</span><div>Los <b>reels los graban a su manera</b>, con los guiones que les dejamos. Apenas estén, se los integramos.</div></div>
+    <div class="rule"><span class="d">—</span><div>Los <b>reels los graban a su manera</b>, con los guiones que les dejamos.</div></div>
     <div class="rule"><span class="d">—</span><div>Los <b>accesos</b> los coordinamos nosotros, paso a paso — nunca les pedimos contraseñas.</div></div>
   </div>
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
 
-<!-- 09 · CIERRE -->
+<!-- 11 · CIERRE -->
 <section class="slide img" style="background-image:url('https://images.pexels.com/photos/3762453/pexels-photo-3762453.jpeg?auto=compress&cs=tinysrgb&w=1600')">
-  <div class="label">09 — Sigamos</div>
+  <div class="label">Sigamos</div>
   <h2>Ya casi todo está listo.<br>Terminemos <em>juntos.</em></h2>
   <p class="lead">Manden su material al Drive y cuéntennos qué quieren ajustar de la web y las piezas. Con eso arrancamos en firme — su presencia digital, operada por nosotros.</p>
   <a class="cta" href="https://wa.me/15875854143?text=Hola%20REMAKE%2C%20vimos%20la%20entrega%20de%20AMI%20y%20queremos%20seguir" target="_blank" rel="noopener">Hablemos por WhatsApp →</a>
@@ -268,9 +285,9 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
   var total=String(slides.length).padStart(2,'0');
   function upd(){var y=document.body.scrollTop,h=document.body.scrollHeight-document.body.clientHeight;prog.style.width=(h>0?(y/h*100):0)+'%';var idx=Math.round(y/window.innerHeight);if(idx<0)idx=0;if(idx>slides.length-1)idx=slides.length-1;count.textContent=String(idx+1).padStart(2,'0')+' / '+total;}
   document.body.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
-  (function(){var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;var SEL='.label,.cover-lockup,.cover-h,.cover-meta,h1,h2,.lead,.bar,.ci,.step,.rule,.tier,.linkbtn,.note,.cta';var eo='cubic-bezier(.23,1,.32,1)';
+  (function(){var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;var SEL='.label,.cover-lockup,.cover-h,.cover-meta,h1,h2,.lead,.bar,.idxi,.ci,.step,.rule,.chip,.tier,.linkbtn,.note,.cta';var eo='cubic-bezier(.23,1,.32,1)';
     document.querySelectorAll('.slide').forEach(function(sl){sl.querySelectorAll(SEL).forEach(function(el){el.style.opacity='0';el.style.transition=reduce?'opacity .5s ease':('opacity .7s '+eo+', transform .7s '+eo);if(!reduce){el.style.transform='translateY(18px)';el.style.willChange='opacity,transform';}});});
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.querySelectorAll(SEL).forEach(function(el,i){setTimeout(function(){el.style.opacity='1';el.style.transform='none';el.style.willChange='auto';},i*60);});io.unobserve(e.target);});},{threshold:0.16});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.querySelectorAll(SEL).forEach(function(el,i){setTimeout(function(){el.style.opacity='1';el.style.transform='none';el.style.willChange='auto';},i*55);});io.unobserve(e.target);});},{threshold:0.16});
     document.querySelectorAll('.slide').forEach(function(s){io.observe(s);});})();
 </script>
 </body>
