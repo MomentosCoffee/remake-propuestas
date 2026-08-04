@@ -67,6 +67,12 @@
   .split{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
   .split .media{background-size:cover;background-position:center}
   .split .body{padding:5.5rem var(--pad-x) 4rem;display:flex;flex-direction:column;justify-content:center;background:var(--ink);color:var(--cream)}
+  .split .media.live{position:relative;overflow:hidden;background:#0065AD}
+  .split .media.live iframe{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none}
+  .split .media .tag{position:absolute;left:1rem;bottom:1rem;z-index:2;font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(10,10,10,.5);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:.4rem .7rem;border-radius:8px}
+  .gallery{display:flex;gap:1rem;margin-top:1.4rem;margin-bottom:.3rem;max-width:60rem}
+  .gallery figure{flex:1;max-width:200px;height:188px;border-radius:12px;overflow:hidden;box-shadow:0 14px 34px rgba(10,10,10,.16);background:#0065AD;line-height:0}
+  .gallery img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
   .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.8rem;max-width:66rem;width:100%}
   .tier{border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.2rem;background:#fff;display:flex;flex-direction:column}
   .tier.feat{background:var(--ink);color:var(--cream);border-color:var(--ink);position:relative;overflow:hidden}
@@ -174,33 +180,7 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
 
-<!-- 04 · 01 SU WEB -->
-<section class="slide alt">
-  <div class="bar"></div>
-  <div class="label">01 — Su web nueva</div>
-  <h2>Una web para que los<br><em>encuentren</em> y agenden.</h2>
-  <p class="lead">Sus 30 años, la valoración sin costo, las 24 cuotas y sus 11 especialidades — al fin visibles desde el primer scroll, pensada para agendar en pocos toques desde el celular. <b>Es una propuesta: ajusten lo que quieran</b> (textos, fotos, orden). Es suya.</p>
-  <div class="linkrow"><a class="linkbtn" href="https://dainty-paprenjak-b139c3.netlify.app/" target="_blank" rel="noopener">Ver la web propuesta <span class="ar">→</span></a></div>
-  <p class="note">Los espacios de fotos y testimonios están marcados para llenarlos con su material real — nunca ponemos reseñas ni resultados inventados.</p>
-  <div class="foot-brand">REMAKE × Clínica AMI</div>
-</section>
-
-<!-- 05 · 02 SU CONTENIDO -->
-<section class="slide">
-  <div class="bar"></div>
-  <div class="label">02 — Su contenido</div>
-  <h2>Un mes de contenido,<br>ya <em>diseñado.</em></h2>
-  <p class="lead">Producimos cada mes un flujo de contenido con su marca y sus ganchos reales (30 años, valoración gratis, 24 cuotas), listo para publicar en Instagram y Facebook.</p>
-  <div class="chips">
-    <span class="chip"><b>16</b> publicaciones (posts + carruseles)</span>
-    <span class="chip"><b>4</b> reels (guiones listos)</span>
-    <span class="chip"><b>12</b> historias</span>
-  </div>
-  <p class="note">Los <b>reels los graban a su manera</b> con los guiones que les dejamos — así se ven auténticos. El material lo suben al Drive y nosotros lo integramos.</p>
-  <div class="foot-brand">REMAKE × Clínica AMI</div>
-</section>
-
-<!-- 06 · CÓMO ENTREGAMOS -->
+<!-- 04 · CÓMO APRUEBAN (movido: va justo después de Dónde vamos) -->
 <section class="slide dark">
   <div class="bar"></div>
   <div class="label">Cómo van a aprobar el contenido</div>
@@ -214,6 +194,40 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
     <div class="rule"><span class="d">—</span><div>Una pieza <b>rechazada NO cuenta</b> como aprobada: la reemplazamos hasta que quede a su gusto.</div></div>
     <div class="rule"><span class="d">—</span><div>El contenido <b>orgánico</b> y las creatividades de <b>pauta</b> son entregas <b>separadas</b>.</div></div>
   </div>
+  <div class="foot-brand">REMAKE × Clínica AMI</div>
+</section>
+
+<!-- 05 · 01 SU WEB -->
+<section class="slide" style="padding:0">
+  <div class="split">
+    <div class="media live"><iframe src="https://dainty-paprenjak-b139c3.netlify.app/" title="Web propuesta de Clínica AMI" loading="lazy" scrolling="no" aria-hidden="true"></iframe><span class="tag">Web propuesta · vista en vivo</span></div>
+    <div class="body">
+      <div class="label">01 — Su web nueva</div>
+      <h2 style="color:var(--cream)">Una web para que los<br><em>encuentren</em> y agenden.</h2>
+      <p class="lead">Sus 30 años, la valoración sin costo, las 24 cuotas y sus 11 especialidades — visibles desde el primer scroll, pensada para agendar en pocos toques desde el celular. <b>Es una propuesta: ajusten lo que quieran</b> (textos, fotos, orden).</p>
+      <div class="linkrow"><a class="linkbtn" href="https://dainty-paprenjak-b139c3.netlify.app/" target="_blank" rel="noopener">Abrir la web completa <span class="ar">→</span></a></div>
+      <p class="note">Los espacios de fotos y testimonios están marcados para llenarlos con su material real — nunca ponemos reseñas ni resultados inventados.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · 02 SU CONTENIDO -->
+<section class="slide">
+  <div class="bar"></div>
+  <div class="label">02 — Su contenido</div>
+  <h2>Un mes de contenido,<br>ya <em>diseñado.</em></h2>
+  <p class="lead">Cada mes producimos un flujo con su marca y sus ganchos reales (30 años, valoración gratis, 24 cuotas), listo para Instagram y Facebook. Estos son <b>ejemplos reales</b>, ya diseñados:</p>
+  <div class="gallery">
+    <figure><img src="piezas/pieza-1.png" alt="Pieza AMI — 30 años haciéndote sonreír"></figure>
+    <figure><img src="piezas/pieza-2.png" alt="Pieza AMI — carrusel: 5 señales de que necesitas una valoración"></figure>
+    <figure><img src="piezas/pieza-3.png" alt="Pieza AMI — tu primera valoración sin costo"></figure>
+  </div>
+  <div class="chips">
+    <span class="chip"><b>16</b> publicaciones</span>
+    <span class="chip"><b>4</b> reels (guiones listos)</span>
+    <span class="chip"><b>12</b> historias</span>
+  </div>
+  <p class="note">Los <b>reels los graban a su manera</b> con nuestros guiones — así se ven auténticos.</p>
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
 
@@ -267,15 +281,16 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
     <div class="rule"><span class="d">—</span><div>Súbanlo a la <b>carpeta de Drive</b> que les compartimos — como quieran, sin orden. Nosotros lo organizamos.</div></div>
     <div class="rule"><span class="d">—</span><div>Los <b>reels los graban a su manera</b>, con los guiones que les dejamos.</div></div>
     <div class="rule"><span class="d">—</span><div>Los <b>accesos</b> los coordinamos nosotros, paso a paso — nunca les pedimos contraseñas.</div></div>
+    <div class="rule"><span class="d">—</span><div><b>Cuéntennos qué quieren ajustar</b> de la web y las piezas — es el último paso antes de arrancar en firme.</div></div>
   </div>
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
 
-<!-- 11 · CIERRE -->
+<!-- 11 · GRACIAS -->
 <section class="slide img" style="background-image:url('https://images.pexels.com/photos/3762453/pexels-photo-3762453.jpeg?auto=compress&cs=tinysrgb&w=1600')">
-  <div class="label">Sigamos</div>
-  <h2>Ya casi todo está listo.<br>Terminemos <em>juntos.</em></h2>
-  <p class="lead">Manden su material al Drive y cuéntennos qué quieren ajustar de la web y las piezas. Con eso arrancamos en firme — su presencia digital, operada por nosotros.</p>
+  <div class="label">Gracias</div>
+  <h2>Gracias por confiarnos su<br><em>sonrisa.</em></h2>
+  <p class="lead">Ya está casi todo listo — solo faltan ustedes. Cuando nos den el visto bueno, seguimos.</p>
   <a class="cta" href="https://wa.me/15875854143?text=Hola%20REMAKE%2C%20vimos%20la%20entrega%20de%20AMI%20y%20queremos%20seguir" target="_blank" rel="noopener">Hablemos por WhatsApp →</a>
   <div class="foot-brand">REMAKE · mateo.corredor@helloremake.com · Su contacto: Juliana</div>
 </section>
