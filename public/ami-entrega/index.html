@@ -73,9 +73,11 @@
   .gallery{display:flex;gap:1rem;margin-top:1.4rem;margin-bottom:.3rem;max-width:60rem}
   .gallery figure{flex:1;max-width:200px;height:188px;border-radius:12px;overflow:hidden;box-shadow:0 14px 34px rgba(10,10,10,.16);background:#0065AD;line-height:0}
   .gallery img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+  .gallery-6{max-width:66rem;gap:.85rem}
+  .gallery-6 figure{height:170px}
   /* portada: logo AMI + imagen sutil a la derecha */
   .cover-ami{height:44px;width:auto;display:block}
-  .cover-art{position:absolute;top:0;right:0;height:100vh;width:52%;z-index:0;background-image:url('portada-sonrisa.jpg');background-size:cover;background-position:center right}
+  .cover-art{position:absolute;top:0;right:0;height:100vh;width:52%;z-index:0;background-image:url('/ami-entrega/portada-sonrisa.jpg');background-size:cover;background-position:center right}
   .cover-art::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#0A0A0A 0%,#0A0A0A 14%,rgba(10,10,10,.72) 46%,rgba(10,10,10,.5) 100%)}
   .slide.cover>*:not(.cover-art){position:relative;z-index:1}
   /* tabla de entregables */
@@ -88,6 +90,25 @@
   .drow.ok .dico{background:#1f9d6a;color:#fff}.drow.ok .dstat{background:rgba(31,157,106,.16);color:#5cd6a4}
   .drow.mid .dico{background:var(--accent);color:#fff}.drow.mid .dstat{background:rgba(246,74,0,.16);color:#ff9160}
   .drow.wait .dico{background:transparent;border:1.5px solid var(--beige);color:var(--beige)}.drow.wait .dstat{background:rgba(229,194,155,.12);color:var(--beige)}
+  /* Cómo aprueban: feed animado de lo que les llega */
+  .approve{display:grid;grid-template-columns:1fr 1fr;gap:2.8rem;align-items:center;margin-top:1.6rem;max-width:64rem;width:100%}
+  .feed{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:1rem;display:flex;flex-direction:column;gap:.6rem}
+  .fhead{font-size:.76rem;color:#a9a498;display:flex;align-items:center;gap:.5rem;margin-bottom:.15rem}
+  .fdot{width:8px;height:8px;border-radius:50%;background:#1f9d6a;box-shadow:0 0 0 3px rgba(31,157,106,.18);animation:fpulse 2.4s ease-in-out infinite}
+  @keyframes fpulse{0%,100%{box-shadow:0 0 0 3px rgba(31,157,106,.18)}50%{box-shadow:0 0 0 7px rgba(31,157,106,0)}}
+  .fcard{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.75rem;background:#141414;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.72rem .8rem;opacity:0;animation:feedin 6.8s var(--eo) infinite}
+  .fico{width:33px;height:33px;border-radius:9px;flex:none;display:grid;place-items:center}
+  .fico svg{width:17px;height:17px;fill:#fff}
+  .fico.piez{background:var(--accent)}.fico.web{background:var(--blue)}.fico.reel{background:#c98a2b}.fico.data{background:#1f9d6a}
+  .ftx b{font-size:.92rem;font-weight:600;line-height:1.15}.ftx small{display:block;font-size:.76rem;color:#a9a498;margin-top:.12rem}
+  .fpill{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--beige);background:rgba(229,194,155,.14);padding:.34rem .68rem;border-radius:99px;white-space:nowrap}
+  @keyframes feedin{0%{opacity:0;transform:translateY(20px) scale(.96);filter:blur(3px)}9%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}84%{opacity:1;transform:translateY(0) scale(1)}95%,100%{opacity:0;transform:translateY(-12px) scale(.98);filter:blur(2px)}}
+  .flow{display:flex;flex-direction:column;gap:1rem}
+  .fstep{display:flex;gap:.85rem;align-items:flex-start}
+  .fstep .fn{font-family:'Fraunces',serif;font-style:italic;font-size:1.4rem;color:var(--accent);flex:none;line-height:1;margin-top:.05rem}
+  .fstep p{font-size:1rem;line-height:1.42}
+  .fnote{font-size:.85rem;color:#a9a498;line-height:1.5;border-top:1px solid rgba(255,255,255,.1);padding-top:.85rem;margin-top:.2rem}
+  @media(prefers-reduced-motion:reduce){.fcard{opacity:1;animation:none}.fdot{animation:none}}
   .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.8rem;max-width:66rem;width:100%}
   .tier{border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.2rem;background:#fff;display:flex;flex-direction:column}
   .tier.feat{background:var(--ink);color:var(--cream);border-color:var(--ink);position:relative;overflow:hidden}
@@ -123,6 +144,9 @@
     .cover-art::after{background:linear-gradient(180deg,rgba(10,10,10,.5) 0%,rgba(10,10,10,.82) 55%,#0A0A0A 100%)}
     .drow{grid-template-columns:auto 1fr;gap:.7rem;padding:.8rem 1rem}
     .drow .dstat{grid-column:2;justify-self:start;margin-top:.4rem}
+    .gallery{overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
+    .gallery-6 figure{flex:0 0 44%;height:200px;scroll-snap-align:start}
+    .approve{grid-template-columns:1fr;gap:1.5rem}
   }
   #splash{position:fixed;inset:0;z-index:2147483647;background:#0B0B0D;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;opacity:1;transition:opacity .55s ease}
   #splash.hide{opacity:0;pointer-events:none}
@@ -165,7 +189,7 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
 <!-- 01 · PORTADA -->
 <section class="slide dark cover">
   <div class="cover-art" aria-hidden="true"></div>
-  <div class="cover-lockup"><svg class="cover-wm" viewBox="0 0 608.19 142.31" aria-label="REMAKE"><path d="M116.43,91.84h51.58v12.96h-51.58v-12.96ZM129.3,59.71h30.18v12.87h-43.06v-12.87h12.88ZM168.01,40.35h-51.58v-12.97h51.58v12.97Z"/><path d="M66.25,76.99l15.71,27.82h-14.66l-22.22-38.86h11.39c3.45,0,6.43-1.17,8.92-3.69,2.59-2.52,3.83-5.62,3.83-9.21s-1.24-6.49-3.83-9.02c-2.49-2.52-5.46-3.78-8.91-3.78h-26l-7.41-12.99h33.41c7,0,13.03,2.52,18.01,7.56,4.98,5.14,7.47,11.15,7.47,18.22,0,5.43-1.44,10.27-4.51,14.63-2.97,4.36-6.7,7.47-11.2,9.31"/><polygon points="202.54 27.38 241.35 66.09 280.05 27.38 280.05 104.8 267.28 104.8 267.28 58.54 241.35 84.39 202.54 45.38 202.54 27.38"/><path d="M530.15,91.88h51.65v12.97h-51.58v-1.07l-.07-11.9ZM543.09,59.76h30.06v12.87h-42.93v-12.87h12.87ZM581.8,27.43v12.97h-51.65l.07-12.97h51.58Z"/><polygon points="329.09 104.84 314.64 104.84 321.4 91.44 327.58 78.99 364.84 78.99 353.43 56.26 346.17 41.8 353.43 27.27 392.22 104.84 377.87 104.84 371.27 91.85 371.07 91.44 335.74 91.44 329.09 104.84"/><polygon points="467.15 55.75 467.58 55.32 495.67 27.27 477.43 27.27 453.89 50.66 453.87 50.68 438.45 66 438.46 66.01 426.71 77.69 426.71 96.13 447.68 75.2 477.43 104.84 495.67 104.84 456.88 66 467.15 55.75"/></svg><span class="cover-x">×</span><img class="cover-ami" src="logo-ami-white.png" alt="Clínica AMI"></div>
+  <div class="cover-lockup"><svg class="cover-wm" viewBox="0 0 608.19 142.31" aria-label="REMAKE"><path d="M116.43,91.84h51.58v12.96h-51.58v-12.96ZM129.3,59.71h30.18v12.87h-43.06v-12.87h12.88ZM168.01,40.35h-51.58v-12.97h51.58v12.97Z"/><path d="M66.25,76.99l15.71,27.82h-14.66l-22.22-38.86h11.39c3.45,0,6.43-1.17,8.92-3.69,2.59-2.52,3.83-5.62,3.83-9.21s-1.24-6.49-3.83-9.02c-2.49-2.52-5.46-3.78-8.91-3.78h-26l-7.41-12.99h33.41c7,0,13.03,2.52,18.01,7.56,4.98,5.14,7.47,11.15,7.47,18.22,0,5.43-1.44,10.27-4.51,14.63-2.97,4.36-6.7,7.47-11.2,9.31"/><polygon points="202.54 27.38 241.35 66.09 280.05 27.38 280.05 104.8 267.28 104.8 267.28 58.54 241.35 84.39 202.54 45.38 202.54 27.38"/><path d="M530.15,91.88h51.65v12.97h-51.58v-1.07l-.07-11.9ZM543.09,59.76h30.06v12.87h-42.93v-12.87h12.87ZM581.8,27.43v12.97h-51.65l.07-12.97h51.58Z"/><polygon points="329.09 104.84 314.64 104.84 321.4 91.44 327.58 78.99 364.84 78.99 353.43 56.26 346.17 41.8 353.43 27.27 392.22 104.84 377.87 104.84 371.27 91.85 371.07 91.44 335.74 91.44 329.09 104.84"/><polygon points="467.15 55.75 467.58 55.32 495.67 27.27 477.43 27.27 453.89 50.66 453.87 50.68 438.45 66 438.46 66.01 426.71 77.69 426.71 96.13 447.68 75.2 477.43 104.84 495.67 104.84 456.88 66 467.15 55.75"/></svg><span class="cover-x">×</span><img class="cover-ami" src="/ami-entrega/logo-ami-white.png" alt="Clínica AMI"></div>
   <h1 class="cover-h">Ya está casi todo.<br><em>Solo faltan ustedes.</em></h1>
   <div class="cover-meta">Entrega · Su presencia digital, lista · 2026</div>
 </section>
@@ -203,15 +227,21 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
 <section class="slide dark">
   <div class="bar"></div>
   <div class="label">Cómo van a aprobar el contenido</div>
-  <h2>Ustedes ven, aprueban<br>y ajustan cada pieza.</h2>
-  <div class="steps">
-    <div class="step"><span class="n">01</span><p><b>Esta primera vez</b> les entregamos <b>todo el lote junto</b> — para encontrar juntos el estilo que les gusta.</p></div>
-    <div class="step"><span class="n">02</span><p><b>De ahí en adelante</b>, pieza por pieza por <b>Slack</b> (ideal), WhatsApp o SMS — ustedes eligen.</p></div>
-    <div class="step"><span class="n">03</span><p>Ustedes <b>aprueban o rechazan</b> cada una. Es su marca; su OK manda.</p></div>
-  </div>
-  <div class="rules">
-    <div class="rule"><span class="d">—</span><div>Una pieza <b>rechazada NO cuenta</b> como aprobada: la reemplazamos hasta que quede a su gusto.</div></div>
-    <div class="rule"><span class="d">—</span><div>El contenido <b>orgánico</b> y las creatividades de <b>pauta</b> son entregas <b>separadas</b>.</div></div>
+  <h2>Les va llegando todo,<br>ustedes solo <em>aprueban.</em></h2>
+  <div class="approve">
+    <div class="feed" aria-hidden="true">
+      <div class="fhead"><span class="fdot"></span> Les llega listo, en un solo lugar</div>
+      <div class="fcard" style="animation-delay:0s"><span class="fico piez"><svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2v6.6l3.5-3.5 3 3 3-3L20 15V7H5z"/></svg></span><div class="ftx"><b>Nueva pieza</b><small>Post · lista para tu OK</small></div><span class="fpill">Aprobar</span></div>
+      <div class="fcard" style="animation-delay:1.4s"><span class="fico web"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 9h-3.1a15 15 0 0 0-1-4.6A8 8 0 0 1 18.9 11zM12 4c.8 1 1.6 2.8 1.8 5h-3.6C10.4 6.8 11.2 5 12 4zM4.3 13h3.1a15 15 0 0 0 1 4.6A8 8 0 0 1 4.3 13zm3.1-2H4.3a8 8 0 0 1 4.1-4.6 15 15 0 0 0-1 4.6zm2.8 2h3.6c-.2 2.2-1 4-1.8 5-.8-1-1.6-2.8-1.8-5zm5.4 4.6a15 15 0 0 0 1-4.6h3.1a8 8 0 0 1-4.1 4.6z"/></svg></span><div class="ftx"><b>Tu web, actualizada</b><small>Con el ajuste que pediste</small></div><span class="fpill">Ver</span></div>
+      <div class="fcard" style="animation-delay:2.8s"><span class="fico reel"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><div class="ftx"><b>Reel · guion listo</b><small>Para grabar a su manera</small></div><span class="fpill">Aprobar</span></div>
+      <div class="fcard" style="animation-delay:4.2s"><span class="fico data"><svg viewBox="0 0 24 24"><path d="M4 20V10h4v10H4zm6 0V4h4v16h-4zm6 0v-7h4v7h-4z"/></svg></span><div class="ftx"><b>Reporte del mes</b><small>Sus números, claros</small></div><span class="fpill">Abrir</span></div>
+    </div>
+    <div class="flow">
+      <div class="fstep"><span class="fn">01</span><p><b>La primera vez</b>, todo el lote junto — para hallar juntos su estilo.</p></div>
+      <div class="fstep"><span class="fn">02</span><p><b>De ahí en adelante</b>, pieza por pieza por <b>Slack</b> (ideal), WhatsApp o SMS.</p></div>
+      <div class="fstep"><span class="fn">03</span><p>Ustedes <b>aprueban o rechazan</b> cada una. Su OK manda.</p></div>
+      <p class="fnote">Una pieza <b>rechazada no cuenta</b> — la reemplazamos hasta que quede a su gusto. Orgánico y pauta son entregas <b>separadas</b>.</p>
+    </div>
   </div>
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
@@ -261,17 +291,20 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
   <div class="label">02 — Su contenido</div>
   <h2>Un mes de contenido,<br>ya <em>diseñado.</em></h2>
   <p class="lead">Cada mes producimos un flujo con su marca y sus ganchos reales (30 años, valoración gratis, 24 cuotas), listo para Instagram y Facebook. Estos son <b>ejemplos reales</b>, ya diseñados:</p>
-  <div class="gallery">
-    <figure><img src="piezas/pieza-1.png" alt="Pieza AMI — 30 años haciéndote sonreír"></figure>
-    <figure><img src="piezas/pieza-2.png" alt="Pieza AMI — carrusel: 5 señales de que necesitas una valoración"></figure>
-    <figure><img src="piezas/pieza-3.png" alt="Pieza AMI — tu primera valoración sin costo"></figure>
+  <div class="gallery gallery-6">
+    <figure><img src="/ami-entrega/piezas/pieza-1.png" alt="Pieza AMI — 30 años haciéndote sonreír"></figure>
+    <figure><img src="/ami-entrega/piezas/pieza-2.png" alt="Pieza AMI — ¿cada cuánto ir al odontólogo?"></figure>
+    <figure><img src="/ami-entrega/piezas/pieza-3.png" alt="Pieza AMI — carrusel: 5 señales de que necesitas una valoración"></figure>
+    <figure><img src="/ami-entrega/piezas/pieza-4.png" alt="Pieza AMI — tu primera valoración sin costo"></figure>
+    <figure><img src="/ami-entrega/piezas/pieza-5.png" alt="Pieza AMI — mito: las caries no avisan"></figure>
+    <figure><img src="/ami-entrega/piezas/pieza-6.png" alt="Pieza AMI — tratamiento hasta en 24 cuotas"></figure>
   </div>
   <div class="chips">
     <span class="chip"><b>16</b> publicaciones</span>
     <span class="chip"><b>4</b> reels (guiones listos)</span>
     <span class="chip"><b>12</b> historias</span>
   </div>
-  <p class="note">Los <b>reels los graban a su manera</b> con nuestros guiones — así se ven auténticos.</p>
+  <p class="note">Estas 6 son <b>ejemplos reales</b>. Los <b>reels los graban a su manera</b> con nuestros guiones — así se ven auténticos.</p>
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
 
