@@ -73,6 +73,21 @@
   .gallery{display:flex;gap:1rem;margin-top:1.4rem;margin-bottom:.3rem;max-width:60rem}
   .gallery figure{flex:1;max-width:200px;height:188px;border-radius:12px;overflow:hidden;box-shadow:0 14px 34px rgba(10,10,10,.16);background:#0065AD;line-height:0}
   .gallery img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+  /* portada: logo AMI + imagen sutil a la derecha */
+  .cover-ami{height:44px;width:auto;display:block}
+  .cover-art{position:absolute;top:0;right:0;height:100vh;width:52%;z-index:0;background-image:url('portada-sonrisa.jpg');background-size:cover;background-position:center right}
+  .cover-art::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#0A0A0A 0%,#0A0A0A 14%,rgba(10,10,10,.72) 46%,rgba(10,10,10,.5) 100%)}
+  .slide.cover>*:not(.cover-art){position:relative;z-index:1}
+  /* tabla de entregables */
+  .delivs{margin-top:1.7rem;display:flex;flex-direction:column;max-width:60rem;width:100%;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.12)}
+  .drow{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;padding:.82rem 1.3rem;border-bottom:1px solid rgba(255,255,255,.08)}
+  .drow:last-child{border-bottom:0}
+  .drow .dico{width:29px;height:29px;border-radius:9px;display:grid;place-items:center;font-size:15px;font-weight:700;flex:none;line-height:1}
+  .dname{font-size:1.02rem;line-height:1.2}.dname small{display:block;font-size:.8rem;color:#a9a498;margin-top:.12rem;font-weight:400}
+  .dstat{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .8rem;border-radius:99px;white-space:nowrap}
+  .drow.ok .dico{background:#1f9d6a;color:#fff}.drow.ok .dstat{background:rgba(31,157,106,.16);color:#5cd6a4}
+  .drow.mid .dico{background:var(--accent);color:#fff}.drow.mid .dstat{background:rgba(246,74,0,.16);color:#ff9160}
+  .drow.wait .dico{background:transparent;border:1.5px solid var(--beige);color:var(--beige)}.drow.wait .dstat{background:rgba(229,194,155,.12);color:var(--beige)}
   .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.8rem;max-width:66rem;width:100%}
   .tier{border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.2rem;background:#fff;display:flex;flex-direction:column}
   .tier.feat{background:var(--ink);color:var(--cream);border-color:var(--ink);position:relative;overflow:hidden}
@@ -104,6 +119,10 @@
     .split{grid-template-columns:1fr}.split .media{min-height:36vh}.split .body{min-height:64dvh;padding:2.5rem var(--pad-x)}
     .lead,.note{max-width:none}.cover-h{font-size:clamp(2.6rem,12vw,4.2rem)}
     .idxi .id{display:none}
+    .cover-art{width:100%;opacity:.55}
+    .cover-art::after{background:linear-gradient(180deg,rgba(10,10,10,.5) 0%,rgba(10,10,10,.82) 55%,#0A0A0A 100%)}
+    .drow{grid-template-columns:auto 1fr;gap:.7rem;padding:.8rem 1rem}
+    .drow .dstat{grid-column:2;justify-self:start;margin-top:.4rem}
   }
   #splash{position:fixed;inset:0;z-index:2147483647;background:#0B0B0D;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;opacity:1;transition:opacity .55s ease}
   #splash.hide{opacity:0;pointer-events:none}
@@ -144,11 +163,11 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
 </div>
 
 <!-- 01 · PORTADA -->
-<section class="slide dark">
-  <div class="cover-lockup"><svg class="cover-wm" viewBox="0 0 608.19 142.31" aria-label="REMAKE"><path d="M116.43,91.84h51.58v12.96h-51.58v-12.96ZM129.3,59.71h30.18v12.87h-43.06v-12.87h12.88ZM168.01,40.35h-51.58v-12.97h51.58v12.97Z"/><path d="M66.25,76.99l15.71,27.82h-14.66l-22.22-38.86h11.39c3.45,0,6.43-1.17,8.92-3.69,2.59-2.52,3.83-5.62,3.83-9.21s-1.24-6.49-3.83-9.02c-2.49-2.52-5.46-3.78-8.91-3.78h-26l-7.41-12.99h33.41c7,0,13.03,2.52,18.01,7.56,4.98,5.14,7.47,11.15,7.47,18.22,0,5.43-1.44,10.27-4.51,14.63-2.97,4.36-6.7,7.47-11.2,9.31"/><polygon points="202.54 27.38 241.35 66.09 280.05 27.38 280.05 104.8 267.28 104.8 267.28 58.54 241.35 84.39 202.54 45.38 202.54 27.38"/><path d="M530.15,91.88h51.65v12.97h-51.58v-1.07l-.07-11.9ZM543.09,59.76h30.06v12.87h-42.93v-12.87h12.87ZM581.8,27.43v12.97h-51.65l.07-12.97h51.58Z"/><polygon points="329.09 104.84 314.64 104.84 321.4 91.44 327.58 78.99 364.84 78.99 353.43 56.26 346.17 41.8 353.43 27.27 392.22 104.84 377.87 104.84 371.27 91.85 371.07 91.44 335.74 91.44 329.09 104.84"/><polygon points="467.15 55.75 467.58 55.32 495.67 27.27 477.43 27.27 453.89 50.66 453.87 50.68 438.45 66 438.46 66.01 426.71 77.69 426.71 96.13 447.68 75.2 477.43 104.84 495.67 104.84 456.88 66 467.15 55.75"/></svg><span class="cover-x">×</span><span class="cover-client">Clínica AMI</span></div>
+<section class="slide dark cover">
+  <div class="cover-art" aria-hidden="true"></div>
+  <div class="cover-lockup"><svg class="cover-wm" viewBox="0 0 608.19 142.31" aria-label="REMAKE"><path d="M116.43,91.84h51.58v12.96h-51.58v-12.96ZM129.3,59.71h30.18v12.87h-43.06v-12.87h12.88ZM168.01,40.35h-51.58v-12.97h51.58v12.97Z"/><path d="M66.25,76.99l15.71,27.82h-14.66l-22.22-38.86h11.39c3.45,0,6.43-1.17,8.92-3.69,2.59-2.52,3.83-5.62,3.83-9.21s-1.24-6.49-3.83-9.02c-2.49-2.52-5.46-3.78-8.91-3.78h-26l-7.41-12.99h33.41c7,0,13.03,2.52,18.01,7.56,4.98,5.14,7.47,11.15,7.47,18.22,0,5.43-1.44,10.27-4.51,14.63-2.97,4.36-6.7,7.47-11.2,9.31"/><polygon points="202.54 27.38 241.35 66.09 280.05 27.38 280.05 104.8 267.28 104.8 267.28 58.54 241.35 84.39 202.54 45.38 202.54 27.38"/><path d="M530.15,91.88h51.65v12.97h-51.58v-1.07l-.07-11.9ZM543.09,59.76h30.06v12.87h-42.93v-12.87h12.87ZM581.8,27.43v12.97h-51.65l.07-12.97h51.58Z"/><polygon points="329.09 104.84 314.64 104.84 321.4 91.44 327.58 78.99 364.84 78.99 353.43 56.26 346.17 41.8 353.43 27.27 392.22 104.84 377.87 104.84 371.27 91.85 371.07 91.44 335.74 91.44 329.09 104.84"/><polygon points="467.15 55.75 467.58 55.32 495.67 27.27 477.43 27.27 453.89 50.66 453.87 50.68 438.45 66 438.46 66.01 426.71 77.69 426.71 96.13 447.68 75.2 477.43 104.84 495.67 104.84 456.88 66 467.15 55.75"/></svg><span class="cover-x">×</span><img class="cover-ami" src="logo-ami-white.png" alt="Clínica AMI"></div>
   <h1 class="cover-h">Ya está casi todo.<br><em>Solo faltan ustedes.</em></h1>
   <div class="cover-meta">Entrega · Su presencia digital, lista · 2026</div>
-  <div class="foot-brand">REMAKE · Operaciones de IA</div>
 </section>
 
 <!-- 02 · ÍNDICE -->
@@ -211,27 +230,7 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
   </div>
 </section>
 
-<!-- 05 · 02 SU CONTENIDO -->
-<section class="slide">
-  <div class="bar"></div>
-  <div class="label">02 — Su contenido</div>
-  <h2>Un mes de contenido,<br>ya <em>diseñado.</em></h2>
-  <p class="lead">Cada mes producimos un flujo con su marca y sus ganchos reales (30 años, valoración gratis, 24 cuotas), listo para Instagram y Facebook. Estos son <b>ejemplos reales</b>, ya diseñados:</p>
-  <div class="gallery">
-    <figure><img src="piezas/pieza-1.png" alt="Pieza AMI — 30 años haciéndote sonreír"></figure>
-    <figure><img src="piezas/pieza-2.png" alt="Pieza AMI — carrusel: 5 señales de que necesitas una valoración"></figure>
-    <figure><img src="piezas/pieza-3.png" alt="Pieza AMI — tu primera valoración sin costo"></figure>
-  </div>
-  <div class="chips">
-    <span class="chip"><b>16</b> publicaciones</span>
-    <span class="chip"><b>4</b> reels (guiones listos)</span>
-    <span class="chip"><b>12</b> historias</span>
-  </div>
-  <p class="note">Los <b>reels los graban a su manera</b> con nuestros guiones — así se ven auténticos.</p>
-  <div class="foot-brand">REMAKE × Clínica AMI</div>
-</section>
-
-<!-- 07 · 03 SUS BLOGS -->
+<!-- 06 · 03 SUS BLOGS -->
 <section class="slide" style="padding:0">
   <div class="split">
     <div class="media" style="background-image:url('https://images.pexels.com/photos/6528856/pexels-photo-6528856.jpeg?auto=compress&cs=tinysrgb&w=1100')"></div>
@@ -256,6 +255,26 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
 
+<!-- 08 · 02 SU CONTENIDO (movido: después del asistente) -->
+<section class="slide">
+  <div class="bar"></div>
+  <div class="label">02 — Su contenido</div>
+  <h2>Un mes de contenido,<br>ya <em>diseñado.</em></h2>
+  <p class="lead">Cada mes producimos un flujo con su marca y sus ganchos reales (30 años, valoración gratis, 24 cuotas), listo para Instagram y Facebook. Estos son <b>ejemplos reales</b>, ya diseñados:</p>
+  <div class="gallery">
+    <figure><img src="piezas/pieza-1.png" alt="Pieza AMI — 30 años haciéndote sonreír"></figure>
+    <figure><img src="piezas/pieza-2.png" alt="Pieza AMI — carrusel: 5 señales de que necesitas una valoración"></figure>
+    <figure><img src="piezas/pieza-3.png" alt="Pieza AMI — tu primera valoración sin costo"></figure>
+  </div>
+  <div class="chips">
+    <span class="chip"><b>16</b> publicaciones</span>
+    <span class="chip"><b>4</b> reels (guiones listos)</span>
+    <span class="chip"><b>12</b> historias</span>
+  </div>
+  <p class="note">Los <b>reels los graban a su manera</b> con nuestros guiones — así se ven auténticos.</p>
+  <div class="foot-brand">REMAKE × Clínica AMI</div>
+</section>
+
 <!-- 09 · 05 LA PAUTA -->
 <section class="slide alt">
   <div class="bar"></div>
@@ -271,18 +290,21 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
 
-<!-- 10 · LO QUE NECESITAMOS -->
+<!-- 10 · ESTADO DE LA ENTREGA -->
 <section class="slide dark">
   <div class="bar"></div>
-  <div class="label">Lo único que nos falta de ustedes</div>
-  <h2>Su <em>material real.</em><br>Eso es lo auténtico.</h2>
-  <p class="lead">Lo único que no podemos inventar (y que jamás inventaríamos) son sus fotos y videos reales: las sedes, el equipo, los doctores, sus pacientes felices. Eso es lo que hace que todo se sienta AMI de verdad.</p>
-  <div class="rules">
-    <div class="rule"><span class="d">—</span><div>Súbanlo a la <b>carpeta de Drive</b> que les compartimos — como quieran, sin orden. Nosotros lo organizamos.</div></div>
-    <div class="rule"><span class="d">—</span><div>Los <b>reels los graban a su manera</b>, con los guiones que les dejamos.</div></div>
-    <div class="rule"><span class="d">—</span><div>Los <b>accesos</b> los coordinamos nosotros, paso a paso — nunca les pedimos contraseñas.</div></div>
-    <div class="rule"><span class="d">—</span><div><b>Cuéntennos qué quieren ajustar</b> de la web y las piezas — es el último paso antes de arrancar en firme.</div></div>
+  <div class="label">El estado de la entrega</div>
+  <h2>Lo entregado<br>y lo <em>que falta.</em></h2>
+  <div class="delivs">
+    <div class="drow ok"><span class="dico">✓</span><div class="dname">Su web nueva<small>Lista — solo falta que la ajusten</small></div><span class="dstat">Entregada</span></div>
+    <div class="drow ok"><span class="dico">✓</span><div class="dname">Sus blogs<small>Dos ejemplos listos para Google</small></div><span class="dstat">Entregados</span></div>
+    <div class="drow ok"><span class="dico">✓</span><div class="dname">Su contenido · piezas<small>Primer mes, ya diseñado</small></div><span class="dstat">Entregado</span></div>
+    <div class="drow mid"><span class="dico">◐</span><div class="dname">Su asistente 24/7<small>Casi configurado — lo entrenamos juntos</small></div><span class="dstat">En proceso</span></div>
+    <div class="drow mid"><span class="dico">◐</span><div class="dname">La pauta<small>Lista — ustedes definen la inversión</small></div><span class="dstat">En proceso</span></div>
+    <div class="drow wait"><span class="dico">○</span><div class="dname">Su material real<small>Fotos y videos — al Drive que les compartimos</small></div><span class="dstat">Les toca</span></div>
+    <div class="drow wait"><span class="dico">○</span><div class="dname">Sus ajustes<small>Cuéntennos qué cambiar de la web y las piezas</small></div><span class="dstat">Les toca</span></div>
   </div>
+  <p class="note"><span style="color:#5cd6a4">✓ Entregado por REMAKE</span> · <span style="color:#ff9160">◐ En proceso, juntos</span> · <span style="color:var(--beige)">○ Les toca a ustedes</span>. Los <b>accesos</b> los coordinamos nosotros — nunca les pedimos contraseñas.</p>
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
 
