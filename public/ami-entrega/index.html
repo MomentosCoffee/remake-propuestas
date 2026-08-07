@@ -195,6 +195,9 @@
   .sendbtn{display:inline-flex;align-items:center;gap:.6rem;background:var(--accent);color:#fff;border:0;font-weight:700;font-size:1.08rem;padding:1rem 2rem;border-radius:99px;cursor:pointer;transition:transform .14s var(--eo)}
   .sendbtn:active{transform:scale(.97)}
   .sendmeta{margin-top:1rem;font-size:.86rem;color:#a9a498;line-height:1.5}
+  .sentok{display:flex;flex-direction:column;gap:.25rem;color:var(--cream);animation:rise .6s var(--eo)}
+  .sentok h3{font-family:'Fraunces',serif;font-weight:400;font-size:1.7rem;color:#5cd6a4;margin-top:.4rem}
+  .sentok p{font-size:1rem;color:#c9c4b8;max-width:34rem;line-height:1.5}
   .prcount{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:55;background:rgba(10,10,10,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;font-size:.74rem;font-weight:600;letter-spacing:.04em;padding:.4rem .9rem;border-radius:99px;pointer-events:none;opacity:0;transition:opacity .3s}
   .prcount.on{opacity:1}.prcount b{color:var(--lima)}
   .howto{margin-top:1.8rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-left:3px solid var(--accent);border-radius:12px;padding:.95rem 1.15rem;font-size:.98rem;line-height:1.55;color:var(--cream);max-width:54rem}
@@ -275,7 +278,7 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
     <div class="idxi"><span class="in">04</span><span class="it">Su asistente 24/7</span><span class="id">Casi configurado</span></div>
     <div class="idxi"><span class="in">05</span><span class="it">La pauta</span><span class="id">3 niveles</span></div>
   </div>
-  <div class="howto"><b>Es interactiva y rapidita:</b> revisen cada sección, <b>elijan su estilo</b>, y al final nos dejan un comentario y le dan <b>"Enviar"</b>. Se abre su correo con todo ya escrito — así nos llega su respuesta de una.</div>
+  <div class="howto"><b>Es interactiva y rapidita:</b> revisen cada sección, <b>elijan su estilo</b>, y al final nos dejan un comentario y le dan <b>"Enviar"</b>. Su respuesta nos llega directo — no tienen que hacer nada más.</div>
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
 
@@ -423,7 +426,7 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
   <div class="sendform">
     <input type="text" id="respName" placeholder="¿Quién responde? (nombre y clínica)">
     <button class="sendbtn" id="sendBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> Enviar resumen a REMAKE</button>
-    <p class="sendmeta" id="sendMeta">Se abre su correo con todo ya escrito — ustedes solo dan "Enviar".</p>
+    <p class="sendmeta" id="sendMeta">Al darle enviar, su respuesta nos llega directo — no tienen que hacer nada más.</p>
   </div>
   <p class="lead" style="margin-top:1.4rem;font-size:.96rem;color:#c9c4b8">Gracias por confiarnos su sonrisa. Cuando nos den el visto bueno, seguimos.</p>
   <div class="foot-brand">REMAKE · mateo.corredor@helloremake.com · Su contacto: Juliana</div>
@@ -481,8 +484,19 @@ slides.forEach(function(s){io.observe(s);});setA(0);})();
     L.push('¿Cómo ven la entrega?: '+(OPINION||'(sin marcar)'));
     if(COMMENT)L.push('Comentario: '+COMMENT);
     L.push('');L.push('Enviado desde la entrega REMAKE × AMI.');
-    var body=encodeURIComponent(L.join('\n')),subj=encodeURIComponent('AMI — Resumen de la entrega'+(name?(' ('+name+')'):''));
-    window.location.href='mailto:mateo.corredor@helloremake.com?subject='+subj+'&body='+body;
+    var msg=L.join('\n'),subj='AMI — Resumen de la entrega'+(name?(' ('+name+')'):'');
+    var meta=document.getElementById('sendMeta'),oldHTML=sb.innerHTML;
+    sb.disabled=true;sb.innerHTML='Enviando…';
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:'6dedb9ad-7eb1-4df1-bbb1-5607911b455f',subject:subj,from_name:name||'Cliente Clínica AMI',message:msg})})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d&&d.success){var f=document.querySelector('.sendform');if(f)f.innerHTML='<div class="sentok"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#5cd6a4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><h3>¡Enviado!</h3><p>Gracias'+(name?(', '+name):'')+'. Ya nos llegó su respuesta — les escribimos muy pronto.</p></div>';}
+      else{throw new Error('nose');}
+    })
+    .catch(function(){
+      sb.disabled=false;sb.innerHTML=oldHTML;
+      if(meta)meta.innerHTML='No se pudo enviar automáticamente. <a style="color:#ff9160;text-decoration:underline" href="mailto:mateo.corredor@helloremake.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(msg)+'">Enviar por correo</a> o escríbannos.';
+    });
   });
 })();
 </script>
