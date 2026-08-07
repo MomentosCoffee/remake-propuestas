@@ -205,6 +205,21 @@
   .pickmsg span{font-weight:400;color:var(--mute)}
   .pickmsg.done{color:#1f9d6a}
   .finalq{max-width:40rem}.finalq .savedok{margin-top:.6rem}
+  .recap{margin-top:1.3rem;display:flex;flex-direction:column;gap:.6rem;max-width:44rem}
+  .rrow{display:flex;align-items:center;justify-content:space-between;gap:1rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.7rem .9rem .7rem 1.1rem}
+  .rname{font-size:1rem;font-weight:500;color:var(--cream)}
+  .rbtns{display:flex;gap:.5rem;flex:none}
+  .ropt{border:1.5px solid rgba(255,255,255,.22);border-radius:99px;padding:.42rem .95rem;font-size:.88rem;font-weight:600;cursor:pointer;color:var(--cream);user-select:none;transition:transform .12s var(--eo),background .2s}
+  .ropt:active{transform:scale(.96)}
+  .ropt.sel{background:#1f9d6a;border-color:#1f9d6a;color:#fff}
+  .ropt.adj.sel{background:var(--accent);border-color:var(--accent)}
+  #finalComment{width:100%;max-width:44rem;margin-top:1rem;border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:.85rem 1rem;font-family:inherit;font-size:1rem;line-height:1.5;background:rgba(255,255,255,.07);color:var(--cream);min-height:72px;resize:vertical}
+  #finalComment::placeholder{color:#a9a498}
+  @media(max-width:600px){.rrow{flex-direction:column;align-items:flex-start;gap:.6rem}}
+  .asklist{margin-top:1.4rem;display:flex;flex-direction:column;gap:.75rem;max-width:48rem}
+  .askrow{display:flex;gap:.9rem;align-items:flex-start;font-size:1.05rem;line-height:1.45;color:var(--cream)}
+  .askrow .askn{flex:none;width:26px;height:26px;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;font-size:.85rem;display:grid;place-items:center;margin-top:.15rem}
+  .askrow b{color:#fff}
   @media(max-width:768px){
     :root{--pad-x:1.5rem}
     body{scroll-snap-type:y proximity}
@@ -278,7 +293,7 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
     <div class="idxi"><span class="in">04</span><span class="it">Su asistente 24/7</span><span class="id">Casi configurado</span></div>
     <div class="idxi"><span class="in">05</span><span class="it">La pauta</span><span class="id">3 niveles</span></div>
   </div>
-  <div class="howto"><b>Es interactiva y rapidita:</b> revisen cada sección, <b>elijan su estilo</b>, y al final nos dejan un comentario y le dan <b>"Enviar"</b>. Su respuesta nos llega directo — no tienen que hacer nada más.</div>
+  <div class="howto"><b>Cómo revisarla:</b> vean cada sección y usen los botones para abrir más de cada cosa (su web, blogs, estilos…). Al final les decimos, área por área, qué necesitamos de su lado para arrancar.</div>
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
 
@@ -371,7 +386,7 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
     <div class="scard" data-style="Moderno"><img src="/ami-estilos/piezas/vivere-1.jpg" alt="Estilo Moderno" loading="eager"><div class="sname"><span>Moderno<small>Ágil, tipo app</small></span><span class="stick"></span></div></div>
   </div>
   <div class="linkrow" style="margin-top:1.2rem"><a class="linkbtn" href="https://remake-propuestas.vercel.app/ami-estilos" target="_blank" rel="noopener">Ver los 4 estilos con más ejemplos <span class="ar">→</span></a></div>
-  <div class="pickmsg" id="pickmsg">Toquen el estilo que más los representa <span>· si ninguno encaja, nos lo dicen al final</span></div>
+  <div class="pickmsg" id="pickmsg">Miren cuál los representa más <span>· nos dicen su elección en la respuesta por correo</span></div>
   <p class="note"><b>16</b> publicaciones · <b>4</b> reels (con guion) · <b>12</b> historias al mes. Los reels los graban a su manera con nuestros guiones — así se ven auténticos.</p>
   <div class="foot-brand">REMAKE × Clínica AMI</div>
 </section>
@@ -413,22 +428,17 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
 <section class="slide dark" id="finalsec">
   <div class="bar"></div>
   <div class="label">Último paso</div>
-  <h2>Cuéntennos y le dan <em>enviar.</em></h2>
-  <div class="resp finalq">
-    <div class="qq">¿Cómo ven la entrega?</div>
-    <div class="opts">
-      <span class="opt okgood" data-v="Nos encanta, arranquemos">Nos encanta, arranquemos</span>
-      <span class="opt" data-v="Queremos ajustar algo">Queremos ajustar algo</span>
-    </div>
-    <textarea class="show" placeholder="¿Algo que ajustar o comentar? (web, estilo, blogs, asistente, pauta, o un referente que les guste…)"></textarea>
-    <span class="savedok" style="margin-top:.7rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg> ¡Anotado!</span>
+  <h2>Cuéntennos qué opinan de <em>cada área.</em></h2>
+  <p class="lead">Cuando revisen todo, <b>respóndannos a este mismo correo</b> con sus comentarios. Para no dejar nada suelto, cuéntennos de cada una:</p>
+  <div class="asklist">
+    <div class="askrow"><span class="askn">1</span><div>El <b>estilo</b> que más los representa (Clínica · Editorial · Emocional · Moderno) — o un referente si ninguno encaja.</div></div>
+    <div class="askrow"><span class="askn">2</span><div><b>Su web</b> — ¿va así o qué ajustan?</div></div>
+    <div class="askrow"><span class="askn">3</span><div><b>Sus piezas</b> y <b>blogs</b> — ¿visto bueno o cambios?</div></div>
+    <div class="askrow"><span class="askn">4</span><div><b>Su asistente 24/7</b> — ¿lo configuramos?</div></div>
+    <div class="askrow"><span class="askn">5</span><div><b>La pauta</b> — ¿con cuál nivel arrancarían?</div></div>
   </div>
-  <div class="sendform">
-    <input type="text" id="respName" placeholder="¿Quién responde? (nombre y clínica)">
-    <button class="sendbtn" id="sendBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> Enviar resumen a REMAKE</button>
-    <p class="sendmeta" id="sendMeta">Al darle enviar, su respuesta nos llega directo — no tienen que hacer nada más.</p>
-  </div>
-  <p class="lead" style="margin-top:1.4rem;font-size:.96rem;color:#c9c4b8">Gracias por confiarnos su sonrisa. Cuando nos den el visto bueno, seguimos.</p>
+  <p class="note">Y suban su <b>material real</b> (fotos y videos) al Drive que les compartimos. Con eso arrancamos en firme.</p>
+  <p class="lead" style="margin-top:1.2rem;font-size:.98rem;color:#c9c4b8">Gracias por confiarnos su sonrisa. Cuando nos den el visto bueno, seguimos.</p>
   <div class="foot-brand">REMAKE · mateo.corredor@helloremake.com · Su contacto: Juliana</div>
 </section>
 
@@ -452,7 +462,7 @@ lb.addEventListener('click',function(e){if(e.target===lb||e.target.classList.con
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb();});})();
 </script>
 <script>
-(function(){var labels=['Portada','Índice','Dónde vamos','Aprobación','Su web','Sus blogs','Asistente','Sus estilos','La pauta','Estado','Enviar'];
+(function(){var labels=['Portada','Índice','Dónde vamos','Aprobación','Su web','Sus blogs','Asistente','Sus estilos','La pauta','Estado','Responder'];
 var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));if(!slides.length)return;
 var count=document.getElementById('count');var total=String(slides.length).padStart(2,'0');
 var nav=document.createElement('div');nav.className='docknav';var as=[];
@@ -461,44 +471,6 @@ document.body.appendChild(nav);
 function setA(idx){for(var i=0;i<as.length;i++)as[i].classList.toggle('on',i===idx);if(count)count.textContent=String(idx+1).padStart(2,'0')+' / '+total;}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=slides.indexOf(e.target);if(i>=0)setA(i);}});},{rootMargin:'-50% 0px -50% 0px',threshold:0});
 slides.forEach(function(s){io.observe(s);});setA(0);})();
-</script>
-<script>
-/* ===== Interactivo (simple): elegir estilo + opinión final + enviar ===== */
-(function(){
-  var STYLE=null,OPINION=null,COMMENT='';
-  var pm=document.getElementById('pickmsg'),spick=document.getElementById('spick');
-  if(spick){spick.querySelectorAll('.scard').forEach(function(c){c.addEventListener('click',function(){
-    spick.querySelectorAll('.scard').forEach(function(x){x.classList.remove('sel');});c.classList.add('sel');STYLE=c.getAttribute('data-style');
-    if(pm){pm.classList.add('done');pm.innerHTML='✓ Estilo elegido: <b>'+STYLE+'</b> — ¡buenísimo! Sigan bajando.';}
-  });});}
-  var fq=document.querySelector('.finalq');
-  if(fq){var opts=fq.querySelectorAll('.opt'),ta=fq.querySelector('textarea'),ok=fq.querySelector('.savedok');
-    opts.forEach(function(o){o.addEventListener('click',function(){opts.forEach(function(x){x.classList.remove('sel');});o.classList.add('sel');OPINION=o.getAttribute('data-v');if(ok)ok.classList.add('on');});});
-    if(ta)ta.addEventListener('input',function(){COMMENT=ta.value;if(ok)ok.classList.add('on');});
-  }
-  var sb=document.getElementById('sendBtn');
-  if(sb)sb.addEventListener('click',function(){
-    var name=((document.getElementById('respName')||{}).value||'').trim();
-    var L=[];L.push('RESUMEN — Entrega Clínica AMI');if(name)L.push('Responde: '+name);L.push('');
-    L.push('Estilo elegido: '+(STYLE||'(no marcaron uno — quizá piden un referente)'));
-    L.push('¿Cómo ven la entrega?: '+(OPINION||'(sin marcar)'));
-    if(COMMENT)L.push('Comentario: '+COMMENT);
-    L.push('');L.push('Enviado desde la entrega REMAKE × AMI.');
-    var msg=L.join('\n'),subj='AMI — Resumen de la entrega'+(name?(' ('+name+')'):'');
-    var meta=document.getElementById('sendMeta'),oldHTML=sb.innerHTML;
-    sb.disabled=true;sb.innerHTML='Enviando…';
-    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:'6dedb9ad-7eb1-4df1-bbb1-5607911b455f',subject:subj,from_name:name||'Cliente Clínica AMI',message:msg})})
-    .then(function(r){return r.json();})
-    .then(function(d){
-      if(d&&d.success){var f=document.querySelector('.sendform');if(f)f.innerHTML='<div class="sentok"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#5cd6a4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><h3>¡Enviado!</h3><p>Gracias'+(name?(', '+name):'')+'. Ya nos llegó su respuesta — les escribimos muy pronto.</p></div>';}
-      else{throw new Error('nose');}
-    })
-    .catch(function(){
-      sb.disabled=false;sb.innerHTML=oldHTML;
-      if(meta)meta.innerHTML='No se pudo enviar automáticamente. <a style="color:#ff9160;text-decoration:underline" href="mailto:mateo.corredor@helloremake.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(msg)+'">Enviar por correo</a> o escríbannos.';
-    });
-  });
-})();
 </script>
 </body>
 </html>
