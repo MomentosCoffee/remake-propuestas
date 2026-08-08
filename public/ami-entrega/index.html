@@ -220,6 +220,22 @@
   .askrow{display:flex;gap:.9rem;align-items:flex-start;font-size:1.05rem;line-height:1.45;color:var(--cream)}
   .askrow .askn{flex:none;width:26px;height:26px;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;font-size:.85rem;display:grid;place-items:center;margin-top:.15rem}
   .askrow b{color:#fff}
+  .entrega-form{margin-top:1.3rem;max-width:44rem;display:flex;flex-direction:column;gap:.5rem}
+  .ef-q{font-weight:700;color:#fff;font-size:1rem;margin-top:.6rem;display:block}
+  .ef-styles{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.2rem}
+  .ef-styles label{display:flex;align-items:center;gap:.4rem;padding:.5rem .85rem;border:1px solid rgba(255,255,255,.22);border-radius:99px;cursor:pointer;font-size:.95rem;color:var(--cream);transition:border-color .15s,background .15s}
+  .ef-styles input{accent-color:var(--accent);margin:0}
+  .ef-styles label:has(input:checked){border-color:var(--accent);background:rgba(246,74,0,.16)}
+  .entrega-form textarea,.entrega-form input[type=text]{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:.75rem .95rem;color:var(--cream);font-family:inherit;font-size:1rem;line-height:1.5;resize:vertical}
+  .entrega-form textarea::placeholder,.entrega-form input::placeholder{color:#a9a498}
+  .entrega-form textarea:focus,.entrega-form input:focus{outline:none;border-color:var(--accent)}
+  #ef-send{margin-top:.9rem;align-self:flex-start;background:var(--accent);color:#fff;border:0;border-radius:99px;padding:.8rem 1.6rem;font-weight:700;font-size:1rem;font-family:inherit;cursor:pointer;transition:transform .15s}
+  #ef-send:hover{transform:translateY(-2px)}
+  #ef-send:disabled{opacity:.6;cursor:default;transform:none}
+  .ef-msg{font-size:.96rem;margin-top:.25rem;min-height:1.1em}
+  .ef-msg.ok{color:#5cd6a4;font-weight:600}
+  .ef-msg.err{color:#ff9160}
+  .ef-sent h3{color:#fff;font-family:var(--serif),Georgia,serif;font-weight:400;font-size:1.5rem;margin-bottom:.35rem}
   @media(max-width:768px){
     :root{--pad-x:1.5rem}
     body{scroll-snap-type:y proximity}
@@ -428,19 +444,55 @@ function step(ts){if(done)return;if(t0==null)t0=ts;var p=(ts-t0)/DUR,pct=Math.fl
 <section class="slide dark" id="finalsec">
   <div class="bar"></div>
   <div class="label">Último paso</div>
-  <h2>Cuéntennos qué opinan de <em>cada área.</em></h2>
-  <p class="lead">Cuando revisen todo, <b>respóndannos a este mismo correo</b> con sus comentarios. Para no dejar nada suelto, cuéntennos de cada una:</p>
-  <div class="asklist">
-    <div class="askrow"><span class="askn">1</span><div>El <b>estilo</b> que más los representa (Clínica · Editorial · Emocional · Moderno) — o un referente si ninguno encaja.</div></div>
-    <div class="askrow"><span class="askn">2</span><div><b>Su web</b> — ¿va así o qué ajustan?</div></div>
-    <div class="askrow"><span class="askn">3</span><div><b>Sus piezas</b> y <b>blogs</b> — ¿visto bueno o cambios?</div></div>
-    <div class="askrow"><span class="askn">4</span><div><b>Su asistente 24/7</b> — ¿lo configuramos?</div></div>
-    <div class="askrow"><span class="askn">5</span><div><b>La pauta</b> — ¿con cuál nivel arrancarían?</div></div>
-  </div>
-  <p class="note">Y suban su <b>material real</b> (fotos y videos) al Drive que les compartimos. Con eso arrancamos en firme.</p>
-  <p class="lead" style="margin-top:1.2rem;font-size:.98rem;color:#c9c4b8">Gracias por confiarnos su sonrisa. Cuando nos den el visto bueno, seguimos.</p>
+  <h2>Cuéntennos qué opinan y <em>arrancamos.</em></h2>
+  <p class="lead">Respóndannos aquí mismo — es un minuto. Elijan su estilo y déjennos sus comentarios; nos llega al instante.</p>
+  <form class="entrega-form" id="entregaForm" autocomplete="off">
+    <div class="ef-q">1 · ¿Qué estilo los representa más?</div>
+    <div class="ef-styles">
+      <label><input type="radio" name="estilo" value="Clínica"><span>Clínica</span></label>
+      <label><input type="radio" name="estilo" value="Editorial"><span>Editorial</span></label>
+      <label><input type="radio" name="estilo" value="Emocional"><span>Emocional</span></label>
+      <label><input type="radio" name="estilo" value="Moderno"><span>Moderno</span></label>
+      <label><input type="radio" name="estilo" value="Aún no sé / les mando un referente"><span>Aún no sé</span></label>
+    </div>
+    <label class="ef-q" for="ef-com">2 · Sus comentarios</label>
+    <textarea id="ef-com" name="comentarios" rows="4" placeholder="Su web, las piezas, los blogs, el asistente 24/7 y la pauta — ¿qué va bien y qué ajustamos? Escríbannos con confianza."></textarea>
+    <label class="ef-q" for="ef-nom">3 · ¿Con quién hablamos?</label>
+    <input id="ef-nom" name="nombre" type="text" placeholder="Su nombre">
+    <button type="submit" id="ef-send">Enviar nuestras respuestas</button>
+    <div class="ef-msg" id="ef-msg" role="status" aria-live="polite"></div>
+  </form>
+  <p class="note">También suban su <b>material real</b> (fotos y videos) al Drive que les compartimos. ¿Prefieren correo? Escríbannos a <b>mateo.corredor@helloremake.com</b>.</p>
   <div class="foot-brand">REMAKE · mateo.corredor@helloremake.com · Su contacto: Juliana</div>
 </section>
+
+<script>
+/* Envío de la entrega → backend /api/entrega (reenvía al equipo por correo). Con fallback a correo si falla. */
+(function(){
+  var f=document.getElementById('entregaForm'); if(!f) return;
+  f.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var btn=document.getElementById('ef-send'), msg=document.getElementById('ef-msg');
+    var estilo=(f.querySelector('input[name=estilo]:checked')||{}).value||'';
+    var comentarios=((document.getElementById('ef-com')||{}).value||'').trim();
+    var nombre=((document.getElementById('ef-nom')||{}).value||'').trim();
+    if(!estilo && !comentarios){ msg.className='ef-msg err'; msg.textContent='Elijan un estilo o déjennos un comentario, por favor.'; return; }
+    btn.disabled=true; var old=btn.textContent; btn.textContent='Enviando…'; msg.className='ef-msg'; msg.textContent='';
+    fetch('/api/entrega',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({cliente:'Clínica AMI',estilo:estilo,comentarios:comentarios,nombre:nombre})})
+      .then(function(r){ return r.json().then(function(d){ return {ok:r.ok, d:d}; }); })
+      .then(function(x){
+        if(x.ok && x.d && x.d.ok){
+          f.innerHTML='<div class="ef-sent"><h3>¡Recibido!'+(nombre?(' Gracias, '+nombre.split(' ')[0]+'.'):' Gracias.')+'</h3><p class="lead">Ya nos llegó su respuesta. Les escribimos muy pronto para arrancar.</p></div>';
+        } else { throw new Error('fail'); }
+      })
+      .catch(function(){
+        btn.disabled=false; btn.textContent=old;
+        msg.className='ef-msg err';
+        msg.innerHTML='No se pudo enviar ahora. Intenten de nuevo o escríbannos a <b>mateo.corredor@helloremake.com</b>.';
+      });
+  });
+})();
+</script>
 
 <script>
   var prog=document.getElementById('prog');
