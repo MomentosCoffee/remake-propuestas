@@ -1940,7 +1940,7 @@ body.dark-active .top-nav > * { color: var(--cream); }
           <span class="cierre-action-arrow">→</span>
         </a>
         
-        <a href="mailto:mateo.corredor@helloremake.com?subject=Dave%20-%20Quiero%20el%20formulario%20y%20contrato&body=Hola%20Mateo%2C%0A%0AVi%20la%20propuesta.%20Mánda me%20el%20formulario%20y%20el%20contrato%20para%20empezar.%0A%0ADave" class="cierre-action">
+        <a href="#responder" data-responder data-cliente="Dave" data-tipo="Propuesta" data-titulo="Arranquemos" data-mensaje="Vi la propuesta. Mándame el formulario y el contrato para empezar." class="cierre-action">
           <span class="cierre-action-num">02</span>
           <span class="cierre-action-content">
             <span class="cierre-action-label">Pide formulario y contrato</span>
@@ -2049,5 +2049,6 @@ document.getElementById('mNext')?.addEventListener('click', () => {
 });
 </script>
 
+<script src="/responder.js" defer></script>
 </body>
 </html>

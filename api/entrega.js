@@ -13,31 +13,33 @@ export default async function handler(req, res) {
   b = b || {};
 
   // Saneo + topes defensivos (evita payloads abusivos).
-  const cliente   = String(b.cliente   || 'Clínica AMI').slice(0, 80);
+  const cliente   = String(b.cliente   || 'Cliente').slice(0, 80);
+  const tipo      = String(b.tipo      || 'Respuesta').trim().slice(0, 40); // Propuesta · Brief · Scope · Entrega · Respuesta…
   const nombre    = String(b.nombre    || '').trim().slice(0, 100);
   const estilo    = String(b.estilo    || '').trim().slice(0, 60);
   const comentarios = String(b.comentarios || '').trim().slice(0, 4000);
 
   // Debe traer al menos algo útil.
   if (!estilo && !comentarios) {
-    return res.status(400).json({ error: 'Cuéntennos su estilo o algún comentario, por favor.' });
+    return res.status(400).json({ error: 'Cuéntennos algo (su elección o un comentario), por favor.' });
   }
 
   const fecha = new Date().toLocaleString('es-CO', { timeZone: 'America/Bogota', hour12: false });
   const mensaje = [
     nombre ? ('Responde: ' + nombre) : '',
-    estilo ? ('Estilo elegido: ' + estilo) : '',
+    estilo ? ('Elección: ' + estilo) : '',
     comentarios ? ('Comentarios:\n' + comentarios) : ''
   ].filter(Boolean).join('\n\n');
 
   // Mismo shape que consume el escenario de Make (fecha, canal, asistente, mensaje, respuesta, tema, contacto).
+  // 🔴 'asistente' DEBE contener "REMAKE" para caer en la ruta correcta del escenario de Make (la que va a los 3 correos).
   const payload = JSON.stringify({
     fecha,
-    canal: 'Presentación de entrega · ' + cliente,
-    asistente: 'REMAKE Entregas',
+    canal: tipo + ' · ' + cliente,
+    asistente: 'REMAKE · ' + tipo,
     mensaje,
     respuesta: '',
-    tema: '📋 Respuesta de entrega — ' + cliente,
+    tema: '📋 ' + tipo + ' — ' + cliente,
     contacto: nombre || cliente
   });
 

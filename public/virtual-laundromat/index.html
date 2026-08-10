@@ -1930,7 +1930,7 @@ body.dark-active .top-nav > * { color: var(--cream); }
           <span class="cierre-action-arrow">→</span>
         </a>
 
-        <a href="mailto:mateo.corredor@helloremake.com?subject=Virtual%20Laundromat%20-%20Quiero%20arrancar&body=Hola%20Mateo%2C%0A%0AVimos%20la%20propuesta%20y%20la%20p%C3%A1gina%20de%20ejemplo.%20Queremos%20arrancar.%0A%0ABoris%20%26%20Ana" class="cierre-action">
+        <a href="#responder" data-responder data-cliente="Virtual Laundromat" data-tipo="Propuesta" data-titulo="Arranquemos" data-mensaje="Vimos la propuesta y la página de ejemplo. Queremos arrancar." class="cierre-action">
           <span class="cierre-action-num">02</span>
           <span class="cierre-action-content">
             <span class="cierre-action-label">Arranquemos</span>
@@ -2039,5 +2039,6 @@ document.getElementById('mNext')?.addEventListener('click', () => {
 });
 </script>
 
+<script src="/responder.js" defer></script>
 </body>
 </html>

@@ -1998,7 +1998,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
           <span class="cierre-action-arrow">→</span>
         </a>
 
-        <a href="mailto:mateo.corredor@helloremake.com?subject=Jaime%20-%20Quiero%20arrancar%20Cota%20se%20siente&body=Hola%20Mateo%2C%0A%0AVi%20la%20propuesta.%20Hablemos%20para%20arrancar.%0A%0AJaime" class="cierre-action">
+        <a href="#responder" data-responder data-cliente="Jaime — Cota" data-tipo="Propuesta" data-titulo="Arranquemos" data-mensaje="Vi la propuesta. Hablemos para arrancar." class="cierre-action">
           <span class="cierre-action-num">02</span>
           <span class="cierre-action-content">
             <span class="cierre-action-label">Hablemos y te paso el contrato</span>
@@ -2107,5 +2107,6 @@ document.getElementById('mNext')?.addEventListener('click', () => {
 });
 </script>
 
+<script src="/responder.js" defer></script>
 </body>
 </html>
