@@ -49,12 +49,14 @@ h1,h2,h3{font-weight:600;line-height:1.05;letter-spacing:-.025em}
 :focus-visible{outline:2px solid var(--azul);outline-offset:3px}
 
 /* ── NAV ── */
-header{position:sticky;top:0;z-index:90;background:rgba(246,250,253,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--linea)}
+header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,101,173,.14)}
+header:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--azul),var(--lima) 72%)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
 .nav .logo{height:42px;width:auto}
-.nav-links{display:flex;gap:24px}
-.nav-links a{font-weight:500;font-size:13.5px;color:rgba(12,31,46,.72);transition:color .16s}
-@media (hover:hover) and (pointer:fine){.nav-links a:hover{color:var(--azul)}}
+.nav-links{display:flex;gap:28px}
+.nav-links a{position:relative;font-weight:600;font-size:14px;color:var(--azul-os);letter-spacing:-.01em;transition:color .16s}
+.nav-links a:after{content:"";position:absolute;left:0;right:100%;bottom:-9px;height:2.5px;background:var(--lima);border-radius:2px;transition:right .24s var(--ease)}
+@media (hover:hover) and (pointer:fine){.nav-links a:hover{color:var(--azul)}.nav-links a:hover:after{right:0}}
 @media(max-width:980px){.nav-links{display:none}}
 
 /* ── HERO ── */
@@ -90,6 +92,9 @@ header{position:sticky;top:0;z-index:90;background:rgba(246,250,253,.86);backdro
 .innov h2{font-size:clamp(30px,4vw,50px);color:#fff;margin-top:12px}
 .innov h2 em{font-style:normal;color:var(--lima);display:block}
 .innov .lead{color:rgba(255,255,255,.78);margin-top:18px;font-size:18px}
+.eco-note{background:rgba(177,201,0,.10);border:1px solid rgba(177,201,0,.34);border-left:4px solid var(--lima);border-radius:14px;padding:16px 18px;margin:24px 0 4px}
+.eco-tag{display:inline-block;font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--lima);margin-bottom:7px}
+.eco-note p{color:rgba(255,255,255,.84);font-size:14.5px;margin:0;line-height:1.55}
 .innov-pts{display:flex;flex-direction:column;gap:14px;margin:28px 0}
 .ip{display:flex;gap:14px;align-items:flex-start}
 .ip .k{flex:none;width:34px;height:34px;border-radius:10px;background:rgba(177,201,0,.16);border:1px solid rgba(177,201,0,.35);display:grid;place-items:center;color:var(--lima);font-weight:700}
@@ -252,10 +257,14 @@ footer a{display:block;padding:4px 0}
     <div class="rv">
       <span class="eyebrow">Lo nuevo de AMI</span>
       <h2>Alineadores y prótesis<em>100% digitales</em></h2>
-      <p class="lead">Somos pioneros en Colombia en un nuevo estándar: alineadores, prótesis y placas diseñados y fabricados de forma digital. Sin las impresiones incómodas de antes, y amigables con el planeta.</p>
+      <p class="lead">Somos pioneros en Colombia en un nuevo estándar: alineadores, prótesis y placas diseñados y fabricados de forma digital. Sin las impresiones incómodas de antes, biocompatibles y con conciencia ambiental.</p>
+      <div class="eco-note">
+        <span class="eco-tag">Conciencia ambiental</span>
+        <p>En AMI trabajamos cuidando el planeta. Al ser 100% digital, evitamos el plástico y los desechos especiales como el yeso y el alginato. Menos residuos: un tratamiento que cuida tu salud y también el medio ambiente.</p>
+      </div>
       <div class="innov-pts">
         <div class="ip"><span class="k">1</span><div><b>Sin impresiones incómodas</b><span>Escaneamos tu boca en digital. Adiós a las cubetas y el material en la boca.</span></div></div>
-        <div class="ip"><span class="k">2</span><div><b>Biocompatible y sin plástico</b><span>Todo lo que sale de la máquina es amigable con el planeta: sin plástico ni desechos como yeso o alginato.</span></div></div>
+        <div class="ip"><span class="k">2</span><div><b>Biocompatible y sin plástico</b><span>Materiales biocompatibles, sin plástico ni desechos como yeso o alginato. Amigable contigo y con el planeta.</span></div></div>
         <div class="ip"><span class="k">3</span><div><b>Diseño digital preciso</b><span>Planeamos tu tratamiento en el computador antes de empezar, para un resultado más exacto.</span></div></div>
       </div>
       <a href="#" class="btn btn-lima wa-link" data-msg="Hola AMI 👋 Quiero conocer los alineadores 100% digitales.">Conoce la tecnología</a>
