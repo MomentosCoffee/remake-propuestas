@@ -16,13 +16,13 @@
    pop-up "Lo nuevo de AMI", sección Aprende (glosario), tono
    emocional+profesional, "valoración sin costo hecha por especialistas".
    Asistente renombrado Era -> Mía. Diseño y colores heredados de v1.
-   Colores del logo: azul #0065AD + lima #B1C900. Tipo: Jost.
+   Colores oficiales (brand book Pomelli): Cobalto #04527F + Azul Capri #0CABF8 + Verde lima #8DC828. Tipos: Poppins + Inter.
    ══════════════════════════════════════════════════════════════ */
 :root{
-  --azul:#0065AD;--azul-os:#00456F;--azul-cl:#8DC5E8;
-  --lima:#B1C900;--lima-tx:#5C6A00;
-  --papel:#F6FAFD;--papel-2:#EAF3FA;--tinta:#0C1F2E;--humo:#06131D;
-  --linea:rgba(12,31,46,.10);--linea-os:rgba(255,255,255,.14);
+  --azul:#04527F;--azul-os:#033A5C;--azul-cl:#0CABF8;
+  --lima:#8DC828;--lima-tx:#4E6A00;
+  --papel:#F5FAFE;--papel-2:#E7F4FC;--tinta:#0C2233;--humo:#06131D;
+  --linea:rgba(12,34,51,.10);--linea-os:rgba(255,255,255,.14);
   --sans:'Inter','Century Gothic',system-ui,sans-serif;
   --title:'Poppins','Century Gothic',system-ui,sans-serif;
   --ease:cubic-bezier(.23,1,.32,1);--maxw:1240px;--r:18px;
@@ -43,15 +43,15 @@ h1,h2,h3{font-family:var(--title);font-weight:600;line-height:1.06;letter-spacin
 .btn-line{border:1.5px solid var(--linea);color:var(--tinta)}
 .btn-lima{background:var(--lima);color:#0C1F2E}
 @media (hover:hover) and (pointer:fine){
-  .btn-azul:hover{background:#0076CC;transform:translateY(-2px)}
+  .btn-azul:hover{background:#0A6BA0;transform:translateY(-2px)}
   .btn-line:hover{border-color:var(--azul);color:var(--azul)}
   .btn-lima:hover{transform:translateY(-2px);filter:brightness(1.05)}
 }
 :focus-visible{outline:2px solid var(--azul);outline-offset:3px}
 
 /* ── NAV ── */
-header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,101,173,.14)}
-header:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--azul),var(--lima) 72%)}
+header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(4,82,127,.16)}
+header:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--azul-cl),var(--lima) 72%)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
 .nav .logo{height:42px;width:auto}
 .nav-links{display:flex;gap:28px}
@@ -67,12 +67,26 @@ header:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;bac
 .hero h1 em{font-style:normal;color:var(--azul);display:block}
 .hero .lead{margin:22px 0 28px;font-size:18px}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
-.chip{display:inline-flex;align-items:center;gap:8px;background:rgba(0,101,173,.08);color:var(--azul-os);font-weight:600;font-size:12px;padding:7px 14px;border-radius:99px;margin-bottom:16px}
+.chip{display:inline-flex;align-items:center;gap:8px;background:rgba(12,171,248,.12);color:var(--azul-os);font-weight:600;font-size:12px;padding:7px 14px;border-radius:99px;margin-bottom:16px}
 .chip .dot{width:7px;height:7px;border-radius:50%;background:var(--lima)}
-.slot{position:relative;aspect-ratio:4/5;border-radius:26px;background:var(--papel-2);border:2px dashed rgba(0,101,173,.35);display:grid;place-items:center;text-align:center;padding:24px}
+.slot{position:relative;aspect-ratio:4/5;border-radius:26px;background:var(--papel-2);border:2px dashed rgba(4,82,127,.28);display:grid;place-items:center;text-align:center;padding:24px}
 .slot b{display:block;font-size:14px;color:var(--azul-os);margin-bottom:6px}
 .slot span{font-size:12.5px;color:rgba(12,31,46,.68);max-width:26ch;display:block}
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:34px}.slot{aspect-ratio:16/10}}
+/* ── FOTO real (reemplaza slot) ── */
+.shot{position:relative;aspect-ratio:4/5;border-radius:26px;overflow:hidden;background:var(--papel-2);box-shadow:0 26px 64px -30px rgba(4,82,127,.5)}
+.shot img{width:100%;height:100%;object-fit:cover}
+.shot .tagov{position:absolute;left:14px;bottom:14px;background:rgba(4,82,127,.92);color:#fff;font-family:var(--title);font-weight:600;font-size:12px;letter-spacing:.01em;padding:8px 14px;border-radius:99px;display:inline-flex;align-items:center;gap:8px;backdrop-filter:blur(2px)}
+.shot .tagov .d{width:7px;height:7px;border-radius:50%;background:var(--lima)}
+@media(max-width:900px){.shot{aspect-ratio:16/10}}
+/* ── GALERÍA "Así es AMI" ── */
+.gal{padding:90px 0;background:var(--papel)}
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:188px;grid-auto-flow:dense;gap:14px;margin-top:32px}
+.gal figure{border-radius:18px;overflow:hidden;position:relative;background:var(--papel-2)}
+.gal figure img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+@media (hover:hover){.gal figure:hover img{transform:scale(1.05)}}
+.gal .tall{grid-row:span 2}
+@media(max-width:720px){.gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}.gal .tall{grid-row:span 2}}
 
 /* ── BARRA DE VALOR ── */
 .valor{background:var(--azul);color:#fff}
@@ -129,7 +143,7 @@ header:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;bac
 .srv h2{font-size:clamp(28px,3.6vw,44px)}
 .srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:40px}
 .s{background:#fff;border:1px solid var(--linea);border-radius:var(--r);padding:22px;transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s;position:relative}
-@media (hover:hover) and (pointer:fine){.s:hover{transform:translateY(-4px);border-color:var(--azul-cl);box-shadow:0 18px 38px -20px rgba(0,101,173,.35)}}
+@media (hover:hover) and (pointer:fine){.s:hover{transform:translateY(-4px);border-color:var(--azul-cl);box-shadow:0 18px 38px -20px rgba(4,82,127,.28)}}
 .s b{display:block;font-size:14.5px;font-weight:600;margin-bottom:5px}
 .s span{font-size:12.5px;color:rgba(12,31,46,.68)}
 .s i{display:block;width:26px;height:26px;border-radius:8px;background:var(--papel-2);margin-bottom:14px}
@@ -233,11 +247,9 @@ footer a{display:block;padding:4px 0}
         <a href="#innovacion" class="btn btn-line">Conoce lo nuevo</a>
       </div>
     </div>
-    <div class="slot rv">
-      <div>
-        <b>Foto real de la clínica</b>
-        <span>Un paciente sonriendo o un doctor mirando a cámara. Nunca banco de imágenes: eso es lo que la categoría castiga.</span>
-      </div>
+    <div class="shot rv">
+      <img src="/ami-web/hero-smile.jpg" alt="Paciente sonriendo en Clínica AMI">
+      <span class="tagov"><span class="d"></span>Estamos para hacerte sonreír</span>
     </div>
   </div>
 </section>
@@ -270,11 +282,9 @@ footer a{display:block;padding:4px 0}
       </div>
       <a href="#" class="btn btn-lima wa-link" data-msg="Hola AMI 👋 Quiero conocer los alineadores 100% digitales.">Conoce la tecnología</a>
     </div>
-    <div class="slot dark rv">
-      <div>
-        <b>Video del proceso de la máquina</b>
-        <span>El escaneo y la impresión digital en acción. Es lo que muestra que AMI está a otro nivel.</span>
-      </div>
+    <div class="shot rv">
+      <img src="/ami-web/innov-alineador.jpg" alt="Alineador digital de Clínica AMI">
+      <span class="tagov"><span class="d"></span>Alineadores 100% digitales</span>
     </div>
   </div>
 </section>
@@ -359,6 +369,25 @@ footer a{display:block;padding:4px 0}
       <p class="lead" style="margin-top:14px">Cuatro sedes en la Sabana y Bogotá, y la nueva de Cajicá en camino. Escribe a un solo número: te agendamos en la que te quede mejor.</p>
     </div>
     <div class="sede-grid rv" id="sedeGrid"></div>
+  </div>
+</section>
+
+<!-- ═══ GALERÍA · fotos reales de AMI (acta: nada de banco de imágenes) ═══ -->
+<section class="gal" id="clinica">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">Así es AMI</span>
+      <h2 style="margin-top:12px">Personas reales, tecnología real</h2>
+      <p class="lead" style="margin-top:14px">Nuestras sedes, nuestros especialistas y nuestros pacientes. Somos de carne y hueso, y estamos para hacerte sonreír.</p>
+    </div>
+    <div class="gal-grid rv">
+      <figure class="tall"><img src="/ami-web/clinic-recepcion.jpg" alt="Recepción de Clínica AMI"></figure>
+      <figure><img src="/ami-web/clinic-paciente.jpg" alt="Paciente en atención"></figure>
+      <figure class="tall"><img src="/ami-web/clinic-doctor.jpg" alt="Especialista de Clínica AMI"></figure>
+      <figure><img src="/ami-web/clinic-digital.jpg" alt="Diseño digital del tratamiento"></figure>
+      <figure><img src="/ami-web/clinic-fachada.jpg" alt="Fachada de Clínica AMI"></figure>
+      <figure><img src="/ami-web/clinic-nou.jpg" alt="Sede en el centro empresarial Nou"></figure>
+    </div>
   </div>
 </section>
 
