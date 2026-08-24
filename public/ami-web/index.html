@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════════════════════════════
    AMI · v2 (borrador interno REMAKE — no publicar)
@@ -23,7 +23,8 @@
   --lima:#B1C900;--lima-tx:#5C6A00;
   --papel:#F6FAFD;--papel-2:#EAF3FA;--tinta:#0C1F2E;--humo:#06131D;
   --linea:rgba(12,31,46,.10);--linea-os:rgba(255,255,255,.14);
-  --sans:'Jost','Century Gothic',system-ui,sans-serif;
+  --sans:'Inter','Century Gothic',system-ui,sans-serif;
+  --title:'Poppins','Century Gothic',system-ui,sans-serif;
   --ease:cubic-bezier(.23,1,.32,1);--maxw:1240px;--r:18px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -33,7 +34,7 @@ img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 26px}
 @media(max-width:600px){.wrap{padding:0 18px}}
-h1,h2,h3{font-weight:600;line-height:1.05;letter-spacing:-.025em}
+h1,h2,h3{font-family:var(--title);font-weight:600;line-height:1.06;letter-spacing:-.02em}
 .eyebrow{font-weight:600;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul)}
 .lead{font-size:17px;color:rgba(12,31,46,.68);max-width:60ch}
 .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:14.5px;padding:15px 26px;border-radius:99px;cursor:pointer;transition:transform .16s var(--ease),background .16s,color .16s,border-color .16s}
