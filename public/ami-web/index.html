@@ -209,14 +209,21 @@ footer a{display:block;padding:4px 0}
 /* ── POP-UP "Lo nuevo de AMI" ── */
 .pop-ov{position:fixed;inset:0;z-index:120;background:rgba(6,19,29,.55);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:22px}
 .pop-ov.on{display:flex}
-.pop{background:#fff;border-radius:22px;max-width:430px;width:100%;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4);position:relative}
-.pop-top{background:var(--humo);color:#fff;padding:26px 28px}
-.pop-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(177,201,0,.16);border:1px solid rgba(177,201,0,.4);color:var(--lima);font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:99px;margin-bottom:14px}
-.pop-top h3{font-size:23px;color:#fff}
+.pop{background:#fff;border-radius:24px;max-width:440px;width:100%;overflow:hidden;box-shadow:0 34px 90px rgba(4,82,127,.45);position:relative;border:2px solid var(--lima)}
+.pop-ov.on .pop{animation:popIn .38s var(--ease)}
+@keyframes popIn{from{opacity:0;transform:translateY(16px) scale(.94)}to{opacity:1;transform:none}}
+.pop-top{background:linear-gradient(160deg,#0d2a41,var(--humo));color:#fff;padding:32px 30px 28px;text-align:center;position:relative;overflow:hidden}
+.pop-top:before{content:"";position:absolute;top:-45%;right:-25%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(141,200,40,.34),transparent 70%);pointer-events:none}
+.pop-top:after{content:"";position:absolute;left:-20%;bottom:-55%;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(12,171,248,.28),transparent 72%);pointer-events:none}
+.pop-badge{position:relative;display:inline-flex;align-items:center;gap:8px;background:rgba(141,200,40,.18);border:1px solid rgba(141,200,40,.5);color:var(--lima);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:6px 14px;border-radius:99px;margin-bottom:16px}
+.pop-top h3{position:relative;font-size:26px;line-height:1.14;color:#fff;letter-spacing:-.02em}
 .pop-top h3 em{font-style:normal;color:var(--lima)}
-.pop-body{padding:22px 28px 26px}
-.pop-body p{font-size:14.5px;color:rgba(12,31,46,.74);margin-bottom:18px}
-.pop-x{position:absolute;top:12px;right:14px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:16px;cursor:pointer;line-height:1;z-index:2}
+.pop-body{padding:24px 30px 28px;text-align:center}
+.pop-body p{font-size:14.5px;color:rgba(12,34,51,.76);margin-bottom:20px;line-height:1.55}
+.pop-body .btn-lima{font-size:15.5px;padding:16px 26px;box-shadow:0 14px 30px -8px rgba(141,200,40,.65)}
+@media (hover:hover){.pop-body .btn-lima:hover{filter:brightness(1.06);transform:translateY(-2px)}}
+.pop-x{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.16);border:none;color:#fff;font-size:17px;cursor:pointer;line-height:1;z-index:2;transition:background .16s}
+@media (hover:hover){.pop-x:hover{background:rgba(255,255,255,.3)}}
 </style>
 </head>
 <body>
@@ -434,11 +441,11 @@ footer a{display:block;padding:4px 0}
     <button class="pop-x" id="popX" aria-label="Cerrar">×</button>
     <div class="pop-top">
       <span class="pop-badge">Lo nuevo de AMI</span>
-      <h3>Ya llegaron los<em>alineadores 100% digitales</em></h3>
+      <h3>Ya llegaron los <em>alineadores 100%&nbsp;digitales</em></h3>
     </div>
     <div class="pop-body">
       <p>Sin impresiones incómodas, biocompatibles y sin plástico. Somos pioneros en Colombia. Agenda tu valoración sin costo y te contamos si son para ti.</p>
-      <a href="#" class="btn btn-azul wa-link" data-msg="Hola AMI 👋 Vi lo de los alineadores 100% digitales y quiero una valoración sin costo." style="width:100%;justify-content:center">Quiero saber más</a>
+      <a href="#" class="btn btn-lima wa-link" data-msg="Hola AMI 👋 Vi lo de los alineadores 100% digitales y quiero una valoración sin costo." style="width:100%;justify-content:center">Quiero saber más</a>
     </div>
   </div>
 </div>
