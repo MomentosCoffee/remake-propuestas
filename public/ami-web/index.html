@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clínica AMI · La odontología más moderna de la Sabana · Chía, Zipaquirá y Bogotá</title>
+<meta name="description" content="30 años de experiencia y ahora pioneros en alineadores y prótesis 100% digitales, biocompatibles y sin plástico. Valoración sin costo hecha por especialistas, financiación hasta 24 cuotas y atención por WhatsApp a cualquier hora.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════════════
+   AMI · v2 (borrador interno REMAKE — no publicar)
+   Cambios del acta 13-ago: innovación/alineadores 100% digitales,
+   pop-up "Lo nuevo de AMI", sección Aprende (glosario), tono
+   emocional+profesional, "valoración sin costo hecha por especialistas".
+   Asistente renombrado Era -> Mía. Diseño y colores heredados de v1.
+   Colores del logo: azul #0065AD + lima #B1C900. Tipo: Jost.
+   ══════════════════════════════════════════════════════════════ */
+:root{
+  --azul:#0065AD;--azul-os:#00456F;--azul-cl:#8DC5E8;
+  --lima:#B1C900;--lima-tx:#5C6A00;
+  --papel:#F6FAFD;--papel-2:#EAF3FA;--tinta:#0C1F2E;--humo:#06131D;
+  --linea:rgba(12,31,46,.10);--linea-os:rgba(255,255,255,.14);
+  --sans:'Jost','Century Gothic',system-ui,sans-serif;
+  --ease:cubic-bezier(.23,1,.32,1);--maxw:1240px;--r:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--papel);color:var(--tinta);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 26px}
+@media(max-width:600px){.wrap{padding:0 18px}}
+h1,h2,h3{font-weight:600;line-height:1.05;letter-spacing:-.025em}
+.eyebrow{font-weight:600;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul)}
+.lead{font-size:17px;color:rgba(12,31,46,.68);max-width:60ch}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:14.5px;padding:15px 26px;border-radius:99px;cursor:pointer;transition:transform .16s var(--ease),background .16s,color .16s,border-color .16s}
+.btn:active{transform:scale(.97)}
+.btn-azul{background:var(--azul);color:#fff}
+.btn-line{border:1.5px solid var(--linea);color:var(--tinta)}
+.btn-lima{background:var(--lima);color:#0C1F2E}
+@media (hover:hover) and (pointer:fine){
+  .btn-azul:hover{background:#0076CC;transform:translateY(-2px)}
+  .btn-line:hover{border-color:var(--azul);color:var(--azul)}
+  .btn-lima:hover{transform:translateY(-2px);filter:brightness(1.05)}
+}
+:focus-visible{outline:2px solid var(--azul);outline-offset:3px}
+
+/* ── NAV ── */
+header{position:sticky;top:0;z-index:90;background:rgba(246,250,253,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--linea)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
+.nav .logo{height:42px;width:auto}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-weight:500;font-size:13.5px;color:rgba(12,31,46,.72);transition:color .16s}
+@media (hover:hover) and (pointer:fine){.nav-links a:hover{color:var(--azul)}}
+@media(max-width:980px){.nav-links{display:none}}
+
+/* ── HERO ── */
+.hero{position:relative;padding:64px 0 76px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+.hero h1{font-size:clamp(38px,5vw,62px)}
+.hero h1 em{font-style:normal;color:var(--azul);display:block}
+.hero .lead{margin:22px 0 28px;font-size:18px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:8px;background:rgba(0,101,173,.08);color:var(--azul-os);font-weight:600;font-size:12px;padding:7px 14px;border-radius:99px;margin-bottom:16px}
+.chip .dot{width:7px;height:7px;border-radius:50%;background:var(--lima)}
+.slot{position:relative;aspect-ratio:4/5;border-radius:26px;background:var(--papel-2);border:2px dashed rgba(0,101,173,.35);display:grid;place-items:center;text-align:center;padding:24px}
+.slot b{display:block;font-size:14px;color:var(--azul-os);margin-bottom:6px}
+.slot span{font-size:12.5px;color:rgba(12,31,46,.68);max-width:26ch;display:block}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:34px}.slot{aspect-ratio:16/10}}
+
+/* ── BARRA DE VALOR ── */
+.valor{background:var(--azul);color:#fff}
+.valor-in{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:0}
+.v-item{padding:26px 22px;border-left:1px solid rgba(255,255,255,.16)}
+.v-item:first-child{border-left:0}
+.v-item b{display:block;font-size:19px;font-weight:600;letter-spacing:-.02em}
+.v-item span{font-size:13px;color:rgba(255,255,255,.88)}
+@media(max-width:860px){.valor-in{grid-template-columns:repeat(2,1fr)}
+  .v-item:nth-child(3){border-left:0}
+  .v-item:nth-child(n+3){border-top:1px solid rgba(255,255,255,.16)}}
+
+/* ── INNOVACIÓN · alineadores y prótesis 100% digitales (prioridad #1 del acta) ── */
+.innov{background:var(--humo);color:#fff;padding:100px 0;position:relative;overflow:hidden}
+.innov:before{content:"";position:absolute;top:-30%;right:-10%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(177,201,0,.16),transparent 70%);pointer-events:none}
+.innov-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative}
+.innov .eyebrow{color:var(--lima)}
+.innov h2{font-size:clamp(30px,4vw,50px);color:#fff;margin-top:12px}
+.innov h2 em{font-style:normal;color:var(--lima);display:block}
+.innov .lead{color:rgba(255,255,255,.78);margin-top:18px;font-size:18px}
+.innov-pts{display:flex;flex-direction:column;gap:14px;margin:28px 0}
+.ip{display:flex;gap:14px;align-items:flex-start}
+.ip .k{flex:none;width:34px;height:34px;border-radius:10px;background:rgba(177,201,0,.16);border:1px solid rgba(177,201,0,.35);display:grid;place-items:center;color:var(--lima);font-weight:700}
+.ip b{display:block;font-size:15.5px;font-weight:600}
+.ip span{font-size:13.5px;color:rgba(255,255,255,.72)}
+.slot.dark{background:rgba(255,255,255,.03);border-color:rgba(177,201,0,.4)}
+.slot.dark b{color:var(--lima)}
+.slot.dark span{color:rgba(255,255,255,.7)}
+@media(max-width:900px){.innov-grid{grid-template-columns:1fr;gap:36px}}
+
+/* ── ASISTENTE MÍA (lo que REMAKE instala) ── */
+.era{background:var(--papel-2);color:var(--tinta);padding:96px 0;position:relative;overflow:hidden}
+.era h2{font-size:clamp(28px,3.6vw,44px)}
+.era-grid{display:grid;grid-template-columns:1fr .8fr;gap:56px;align-items:center}
+.era-datos{display:flex;gap:34px;margin-top:30px;flex-wrap:wrap}
+.era-datos b{display:block;font-size:30px;font-weight:600;color:var(--azul);letter-spacing:-.03em;line-height:1}
+.era-datos span{font-size:12.5px;color:rgba(12,31,46,.64)}
+.fono{background:var(--humo);border:1px solid rgba(255,255,255,.12);border-radius:26px;padding:16px;max-width:330px;margin-left:auto}
+.fono-top{display:flex;align-items:center;gap:10px;padding:6px 6px 14px;border-bottom:1px solid rgba(255,255,255,.1)}
+.fono-av{width:34px;height:34px;border-radius:50%;background:var(--lima);color:#0C1F2E;display:grid;place-items:center;font-weight:700;font-size:14px}
+.fono-top b{font-size:13.5px;font-weight:600;color:#fff}
+.fono-top span{font-size:11px;color:var(--lima);display:block}
+.msg{max-width:82%;padding:9px 13px;border-radius:14px;font-size:13.5px;line-height:1.45;margin-top:9px;color:#fff}
+.msg.p{background:#1D3B52;border-bottom-right-radius:4px;margin-left:auto}
+.msg.b{background:rgba(177,201,0,.16);border:1px solid rgba(177,201,0,.32);border-bottom-left-radius:4px}
+.hora{font-size:10.5px;color:rgba(255,255,255,.5);text-align:center;margin:12px 0 2px}
+@media(max-width:900px){.era-grid{grid-template-columns:1fr;gap:36px}.fono{margin:0 auto}}
+
+/* ── SERVICIOS ── */
+.srv{padding:96px 0}
+.srv h2{font-size:clamp(28px,3.6vw,44px)}
+.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:40px}
+.s{background:#fff;border:1px solid var(--linea);border-radius:var(--r);padding:22px;transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s;position:relative}
+@media (hover:hover) and (pointer:fine){.s:hover{transform:translateY(-4px);border-color:var(--azul-cl);box-shadow:0 18px 38px -20px rgba(0,101,173,.35)}}
+.s b{display:block;font-size:14.5px;font-weight:600;margin-bottom:5px}
+.s span{font-size:12.5px;color:rgba(12,31,46,.68)}
+.s i{display:block;width:26px;height:26px;border-radius:8px;background:var(--papel-2);margin-bottom:14px}
+.s .new{position:absolute;top:14px;right:14px;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lima-tx);background:rgba(177,201,0,.18);border:1px solid rgba(92,106,0,.3);border-radius:99px;padding:3px 8px}
+@media(max-width:940px){.srv-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.srv-grid{grid-template-columns:1fr}}
+
+/* ── APRENDE · glosario (educar al paciente, del acta) ── */
+.glos{padding:96px 0;background:var(--papel-2)}
+.glos h2{font-size:clamp(28px,3.6vw,44px)}
+.glos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:40px}
+.g{background:#fff;border:1px solid var(--linea);border-radius:var(--r);padding:24px}
+.g b{display:block;font-size:16px;font-weight:600;margin-bottom:6px;color:var(--azul-os)}
+.g span{font-size:13.5px;color:rgba(12,31,46,.72)}
+.glos-note{margin-top:22px;font-size:13px;color:rgba(12,31,46,.6)}
+@media(max-width:720px){.glos-grid{grid-template-columns:1fr}}
+
+/* ── FINANCIACIÓN ── */
+.fin{background:#fff;padding:88px 0;border-top:1px solid var(--linea)}
+.fin-in{display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:center}
+.fin h2{font-size:clamp(28px,3.4vw,42px)}
+.fin .num{font-size:clamp(64px,9vw,120px);font-weight:700;color:var(--azul);line-height:.9;letter-spacing:-.05em}
+.fin .num small{font-size:.3em;font-weight:600;letter-spacing:0;display:block;color:var(--tinta)}
+@media(max-width:860px){.fin-in{grid-template-columns:1fr;gap:28px}}
+
+/* ── SEDES ── */
+.sedes{padding:96px 0}
+.sedes h2{font-size:clamp(28px,3.6vw,44px)}
+.sede-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:40px}
+.sede{background:#fff;border:1px solid var(--linea);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:10px}
+.sede h3{font-size:16px}
+.sede .dir{font-size:13px;color:rgba(12,31,46,.68);flex:1}
+.sede .hor{font-size:12px;color:rgba(12,31,46,.68)}
+.sede .ir{font-weight:600;font-size:12px;color:var(--azul);letter-spacing:.04em}
+.sede.pronto{border-style:dashed;border-color:var(--azul-cl);background:transparent}
+.sede.pronto .tag{align-self:flex-start;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--lima-tx);border:1px solid rgba(92,106,0,.35);border-radius:99px;padding:3px 9px}
+@media(max-width:940px){.sede-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.sede-grid{grid-template-columns:1fr}}
+
+/* ── CTA + FOOTER ── */
+.cta{background:var(--azul);color:#fff;padding:96px 0;text-align:center}
+.cta h2{font-size:clamp(30px,4.4vw,54px);color:#fff;max-width:18ch;margin:0 auto}
+.cta .lead{color:rgba(255,255,255,.9);margin:18px auto 26px;text-align:center}
+.cta .btn-blanco{background:#fff;color:var(--azul)}
+footer{background:var(--humo);color:#fff;padding:56px 0 26px}
+footer .f-in{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px}
+footer h4{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--lima);margin-bottom:12px}
+footer p,footer a,footer span{font-size:13.5px;color:rgba(255,255,255,.72)}
+footer a{display:block;padding:4px 0}
+@media (hover:hover) and (pointer:fine){footer a:hover{color:#fff}}
+.f-base{border-top:1px solid var(--linea-os);margin-top:34px;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12px;color:rgba(255,255,255,.55)}
+@media(max-width:760px){footer .f-in{grid-template-columns:1fr;gap:24px}}
+
+/* ── reveals ── */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease) var(--d,0ms),transform .6s var(--ease) var(--d,0ms)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}.rv{transform:none!important;transition:opacity .2s linear!important}}
+.wa{position:fixed;right:18px;bottom:18px;z-index:80;width:54px;height:54px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 14px 34px rgba(0,0,0,.3);transition:transform .16s var(--ease)}
+@media (hover:hover) and (pointer:fine){.wa:hover{transform:scale(1.08)}}
+.wa:active{transform:scale(.94)}
+.wa svg{width:28px;height:28px;fill:#fff}
+
+/* ── POP-UP "Lo nuevo de AMI" ── */
+.pop-ov{position:fixed;inset:0;z-index:120;background:rgba(6,19,29,.55);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:22px}
+.pop-ov.on{display:flex}
+.pop{background:#fff;border-radius:22px;max-width:430px;width:100%;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4);position:relative}
+.pop-top{background:var(--humo);color:#fff;padding:26px 28px}
+.pop-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(177,201,0,.16);border:1px solid rgba(177,201,0,.4);color:var(--lima);font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:99px;margin-bottom:14px}
+.pop-top h3{font-size:23px;color:#fff}
+.pop-top h3 em{font-style:normal;color:var(--lima)}
+.pop-body{padding:22px 28px 26px}
+.pop-body p{font-size:14.5px;color:rgba(12,31,46,.74);margin-bottom:18px}
+.pop-x{position:absolute;top:12px;right:14px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:16px;cursor:pointer;line-height:1;z-index:2}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top"><img class="logo" src="/ami-web/ami-logo.png" alt="Clínica AMI · Odontología Integral"></a>
+    <nav class="nav-links">
+      <a href="#innovacion">Innovación</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#aprende">Aprende</a>
+      <a href="#sedes">Sedes</a>
+      <a href="#financiacion">Financiación</a>
+    </nav>
+    <a href="#" class="btn btn-azul wa-link" data-msg="Hola AMI 👋 Quiero agendar mi valoración sin costo.">Agenda tu valoración</a>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="rv">
+      <span class="chip"><span class="dot"></span>Pioneros en alineadores 100% digitales</span>
+      <h1>Llevamos 30 años<em>haciéndote sonreír</em></h1>
+      <p class="lead">La clínica más moderna de la Sabana. Valoración sin costo hecha por especialistas, financiación hasta 24 cuotas, y te respondemos a cualquier hora, incluso de madrugada.</p>
+      <div class="hero-cta">
+        <a href="#" class="btn btn-azul wa-link" data-msg="Hola AMI 👋 Quiero agendar mi valoración sin costo.">Agenda por WhatsApp</a>
+        <a href="#innovacion" class="btn btn-line">Conoce lo nuevo</a>
+      </div>
+    </div>
+    <div class="slot rv">
+      <div>
+        <b>Foto real de la clínica</b>
+        <span>Un paciente sonriendo o un doctor mirando a cámara. Nunca banco de imágenes: eso es lo que la categoría castiga.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BARRA DE VALOR ═══ -->
+<section class="valor">
+  <div class="wrap"><div class="valor-in">
+    <div class="v-item"><b>Sin costo</b><span>Valoración hecha por especialistas</span></div>
+    <div class="v-item"><b>Hasta 24 cuotas</b><span>Financiamos el tratamiento</span></div>
+    <div class="v-item"><b>4 sedes</b><span>Y una quinta en camino</span></div>
+    <div class="v-item"><b>A cualquier hora</b><span>Te contestamos por WhatsApp</span></div>
+  </div></div>
+</section>
+
+<!-- ═══ INNOVACIÓN · alineadores y prótesis 100% digitales (prioridad del acta) ═══ -->
+<section class="innov" id="innovacion">
+  <div class="wrap innov-grid">
+    <div class="rv">
+      <span class="eyebrow">Lo nuevo de AMI</span>
+      <h2>Alineadores y prótesis<em>100% digitales</em></h2>
+      <p class="lead">Somos pioneros en Colombia en un nuevo estándar: alineadores, prótesis y placas diseñados y fabricados de forma digital. Sin las impresiones incómodas de antes, y amigables con el planeta.</p>
+      <div class="innov-pts">
+        <div class="ip"><span class="k">1</span><div><b>Sin impresiones incómodas</b><span>Escaneamos tu boca en digital. Adiós a las cubetas y el material en la boca.</span></div></div>
+        <div class="ip"><span class="k">2</span><div><b>Biocompatible y sin plástico</b><span>Todo lo que sale de la máquina es amigable con el planeta: sin plástico ni desechos como yeso o alginato.</span></div></div>
+        <div class="ip"><span class="k">3</span><div><b>Diseño digital preciso</b><span>Planeamos tu tratamiento en el computador antes de empezar, para un resultado más exacto.</span></div></div>
+      </div>
+      <a href="#" class="btn btn-lima wa-link" data-msg="Hola AMI 👋 Quiero conocer los alineadores 100% digitales.">Conoce la tecnología</a>
+    </div>
+    <div class="slot dark rv">
+      <div>
+        <b>Video del proceso de la máquina</b>
+        <span>El escaneo y la impresión digital en acción. Es lo que muestra que AMI está a otro nivel.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ASISTENTE MÍA — atención 24/7 ═══ -->
+<section class="era">
+  <div class="wrap era-grid">
+    <div class="rv">
+      <span class="eyebrow">Atención 24/7</span>
+      <h2 style="margin-top:12px">El dolor de muela no espera a que abramos</h2>
+      <p class="lead" style="margin-top:16px">Un dolor a las 2 de la mañana no llama al otro día: busca en Google y le escribe a la clínica que le conteste. Ahora esa clínica somos nosotros, y te responde <strong>Mía</strong>.</p>
+      <div class="era-datos">
+        <div><b>1 de cada 4</b><span>mensajes llega fuera de horario</span></div>
+        <div><b>24/7</b><span>incluso fines de semana</span></div>
+        <div><b>4 sedes</b><span>te agenda donde te quede</span></div>
+      </div>
+    </div>
+    <div class="fono rv">
+      <div class="fono-top">
+        <div class="fono-av">M</div>
+        <div><b>Mía · Clínica AMI</b><span>En línea</span></div>
+      </div>
+      <div class="hora">2:14 a.m.</div>
+      <div class="msg p">Hola, se me partió una muela y me está doliendo horrible 😖</div>
+      <div class="msg b">Uy, qué dolor. Tranquilo, te ayudo ya mismo. ¿En qué sede te queda mejor: Chía, Zipaquirá o Bogotá?</div>
+      <div class="msg p">Chía</div>
+      <div class="msg b">Listo. Mañana a las 8:00 a.m. tenemos espacio en Chía Parque Principal. ¿Te lo aparto?</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICIOS ═══ -->
+<section class="srv" id="servicios">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">Servicios</span>
+      <h2 style="margin-top:12px">Todo en un solo lugar</h2>
+      <p class="lead" style="margin-top:14px">Once especialidades bajo el mismo techo, con la tecnología más moderna. No te mandamos a otra parte.</p>
+    </div>
+    <div class="srv-grid rv" id="srvGrid"></div>
+  </div>
+</section>
+
+<!-- ═══ APRENDE · glosario (educar al paciente) ═══ -->
+<section class="glos" id="aprende">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">Aprende</span>
+      <h2 style="margin-top:12px">Entiende tu tratamiento en palabras simples</h2>
+      <p class="lead" style="margin-top:14px">Sin términos raros. Aquí te explicamos claro qué es cada cosa, para que decidas con confianza.</p>
+    </div>
+    <div class="glos-grid rv">
+      <div class="g"><b>Alineador digital</b><span>Una férula transparente, hecha a la medida de tu boca en el computador, que va moviendo tus dientes poco a poco. Casi invisible y removible.</span></div>
+      <div class="g"><b>Implante dental</b><span>Un "tornillo" de titanio que reemplaza la raíz del diente que perdiste, y sobre él va la pieza nueva. Se siente y funciona como un diente propio.</span></div>
+      <div class="g"><b>Diseño de sonrisa</b><span>Planeamos cómo va a quedar tu sonrisa antes de empezar, combinando salud y estética para que se vea natural.</span></div>
+      <div class="g"><b>Endodoncia</b><span>Es "sacar el nervio": limpiamos por dentro el diente infectado para salvarlo, sin dolor y sin tener que quitarlo.</span></div>
+    </div>
+    <p class="glos-note rv">Muy pronto: nuestro blog con guías paso a paso de cada tratamiento.</p>
+  </div>
+</section>
+
+<!-- ═══ FINANCIACIÓN ═══ -->
+<section class="fin" id="financiacion">
+  <div class="wrap fin-in">
+    <div class="rv"><div class="num">24<small>cuotas</small></div></div>
+    <div class="rv">
+      <span class="eyebrow">Financiación</span>
+      <h2 style="margin-top:12px">El precio no debería decidir por tu salud</h2>
+      <p class="lead" style="margin-top:14px">Financiamos tu tratamiento hasta en 24 cuotas. Te decimos cuánto cuesta desde la valoración, sin letra menuda y sin sorpresas.</p>
+      <a href="#" class="btn btn-azul wa-link" data-msg="Hola AMI 👋 Quiero saber cómo funciona la financiación." style="margin-top:20px">Pregunta por tu plan</a>
+      <p style="font-size:12px;color:rgba(12,31,46,.68);margin-top:12px">Aplican condiciones y restricciones.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SEDES ═══ -->
+<section class="sedes" id="sedes">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">Sedes</span>
+      <h2 style="margin-top:12px">Cerca de donde vives</h2>
+      <p class="lead" style="margin-top:14px">Cuatro sedes en la Sabana y Bogotá, y la nueva de Cajicá en camino. Escribe a un solo número: te agendamos en la que te quede mejor.</p>
+    </div>
+    <div class="sede-grid rv" id="sedeGrid"></div>
+  </div>
+</section>
+
+<section class="cta" id="nosotros">
+  <div class="wrap">
+    <h2>30 años después, seguimos para hacerte sonreír</h2>
+    <p class="lead">Tu valoración con especialista no tiene costo. Escríbenos y te agendamos.</p>
+    <a href="#" class="btn btn-blanco wa-link" data-msg="Hola AMI 👋 Quiero agendar mi valoración sin costo.">Agenda tu valoración</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-in">
+      <div>
+        <h4>Clínica AMI</h4>
+        <p>Odontología integral con 30 años de experiencia, ahora pioneros en tratamientos 100% digitales. Estamos para hacerte sonreír.</p>
+        <p style="margin-top:10px;font-size:12px;color:rgba(255,255,255,.62)">Vigilado Supersalud</p>
+      </div>
+      <div>
+        <h4>Navega</h4>
+        <a href="#innovacion">Innovación</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#aprende">Aprende</a>
+        <a href="#sedes">Sedes</a>
+      </div>
+      <div>
+        <h4>Contáctanos</h4>
+        <a href="#" class="wa-link" data-msg="Hola AMI 👋">WhatsApp 313 401 5778</a>
+        <span>PBX 601 884 4819</span>
+        <span>Chía · Zipaquirá · Bogotá · Cajicá</span>
+      </div>
+    </div>
+    <div class="f-base">
+      <span>© <span id="y"></span> Clínica Odontológica AMI</span>
+      <span>Vista previa · AMI × REMAKE</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ POP-UP "Lo nuevo de AMI" ═══ -->
+<div class="pop-ov" id="popOv" aria-hidden="true">
+  <div class="pop" role="dialog" aria-label="Lo nuevo de AMI">
+    <button class="pop-x" id="popX" aria-label="Cerrar">×</button>
+    <div class="pop-top">
+      <span class="pop-badge">Lo nuevo de AMI</span>
+      <h3>Ya llegaron los<em>alineadores 100% digitales</em></h3>
+    </div>
+    <div class="pop-body">
+      <p>Sin impresiones incómodas, biocompatibles y sin plástico. Somos pioneros en Colombia. Agenda tu valoración sin costo y te contamos si son para ti.</p>
+      <a href="#" class="btn btn-azul wa-link" data-msg="Hola AMI 👋 Vi lo de los alineadores 100% digitales y quiero una valoración sin costo." style="width:100%;justify-content:center">Quiero saber más</a>
+    </div>
+  </div>
+</div>
+
+<a href="#" class="wa wa-link" data-msg="Hola AMI 👋 Vengo de la página web:" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.2c1.9 1 4 1.6 6.3 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3zm6.6 17c-.3.8-1.6 1.5-2.2 1.6-.6.1-1.3.2-3.7-.8-3.1-1.3-5.1-4.4-5.3-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .5-.1.7.5l1 2.4c.1.2.1.4 0 .6l-.4.7-.6.6c-.2.2-.4.4-.2.7.2.4 1 1.7 2.2 2.7 1.5 1.3 2.8 1.7 3.2 1.9.4.2.6.1.8-.1l1.3-1.5c.3-.3.5-.3.8-.2l2.6 1.2c.4.2.7.3.8.5.1.1.1.9-.2 1.6z"/></svg>
+</a>
+
+<script>
+var WA='573134015778';
+
+/* 11 servicios reales; se resaltan los digitales/innovación (del acta) */
+var SRV=[
+ {t:'Ortodoncia y alineadores', d:'Brackets y alineadores transparentes 100% digitales.', nw:true},
+ {t:'Odontología digital',      d:'Escáner y planeación digital, sin impresiones.', nw:true},
+ {t:'Implantología',            d:'Recupera la pieza que te falta.'},
+ {t:'Diseño de sonrisa',        d:'Estética que se ve natural.'},
+ {t:'Rehabilitación oral',      d:'Función y estética devueltas.'},
+ {t:'Odontología general',      d:'Limpieza, caries, control y prevención.'},
+ {t:'Endodoncia',               d:'Salvamos el diente, sin dolor.'},
+ {t:'Periodoncia',              d:'Cuidamos la encía que lo sostiene todo.'},
+ {t:'Cirugía oral',             d:'Con especialista y protocolo.'},
+ {t:'Radiología oral',          d:'Diagnóstico propio, aquí mismo.'},
+ {t:'Laboratorio dental',       d:'Propio: menos espera, más control.'}
+];
+document.getElementById('srvGrid').innerHTML = SRV.map(function(s){
+  return '<article class="s"><i></i>'+(s.nw?'<span class="new">Nuevo</span>':'')+'<b>'+s.t+'</b><span>'+s.d+'</span></article>';
+}).join('');
+
+var SEDES=[
+ {n:'Chía · Parque Principal', d:'Calle 12 No. 10-18', h:'Lun–Vie 8:00–20:00 · Sáb 7:00–19:00'},
+ {n:'Chía · Variante Chía-Cota', d:'Carrera 1 No. 5-30', h:'Lun–Vie 8:00–20:00 · Sáb 8:00–17:00'},
+ {n:'Zipaquirá · Algarra III', d:'Carrera 16 No. 6-97', h:'Lun–Sáb 8:00–20:00'},
+ {n:'Bogotá · Cedritos', d:'Carrera 7B No. 146-90', h:'Lun–Vie 8:00–20:00 · Sáb 8:00–17:00'},
+ {n:'Cajicá · Nou Centro Empresarial', d:'Km 1.5 vía Chía–Cajicá, Lote Bolonia', h:'', pronto:true}
+];
+document.getElementById('sedeGrid').innerHTML = SEDES.map(function(s){
+  if(s.pronto) return '<article class="sede pronto"><span class="tag">Próximamente</span><h3>'+s.n+'</h3><p class="dir">'+s.d+'</p></article>';
+  return '<article class="sede"><h3>'+s.n+'</h3><p class="dir">'+s.d+'</p><p class="hor">'+s.h+'</p><a href="#" class="ir wa-link" data-msg="Hola AMI 👋 Quiero agendar en la sede de '+s.n+'.">Agendar aquí →</a></article>';
+}).join('');
+
+document.querySelectorAll('.wa-link').forEach(function(a){
+  a.href='https://wa.me/'+WA+'?text='+encodeURIComponent(a.dataset.msg||'Hola AMI 👋');
+  a.target='_blank'; a.rel='noopener';
+});
+
+function obs(el,cb){var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){cb();o.disconnect();}},{threshold:.12});o.observe(el);}
+var orden=new Map();
+document.querySelectorAll('.rv').forEach(function(el){
+  var p=el.parentNode, i=orden.get(p)||0; orden.set(p,i+1);
+  el.style.setProperty('--d', Math.min(i,4)*60+'ms');
+  obs(el,function(){el.classList.add('in');});
+});
+document.getElementById('y').textContent=new Date().getFullYear();
+
+/* Pop-up "Lo nuevo de AMI" — aparece una vez por sesión */
+(function(){
+  var ov=document.getElementById('popOv');
+  function open(){ov.classList.add('on');ov.setAttribute('aria-hidden','false');}
+  function close(){ov.classList.remove('on');ov.setAttribute('aria-hidden','true');}
+  try{ if(!sessionStorage.getItem('ami_pop')){ setTimeout(open,1400); sessionStorage.setItem('ami_pop','1'); } }catch(e){ setTimeout(open,1400); }
+  document.getElementById('popX').addEventListener('click',close);
+  ov.addEventListener('click',function(e){ if(e.target===ov) close(); });
+  ov.querySelectorAll('.wa-link').forEach(function(a){a.addEventListener('click',close);});
+  addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+})();
+</script>
+</body>
+</html>
